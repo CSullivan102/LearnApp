@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		74418D131B83DD1500BCDD79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D121B83DD1500BCDD79 /* AppDelegate.swift */; };
-		74418D151B83DD1500BCDD79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D141B83DD1500BCDD79 /* ViewController.swift */; };
+		74418D151B83DD1500BCDD79 /* TopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D141B83DD1500BCDD79 /* TopicTableViewController.swift */; };
 		74418D181B83DD1500BCDD79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74418D161B83DD1500BCDD79 /* Main.storyboard */; };
 		74418D1A1B83DD1500BCDD79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74418D191B83DD1500BCDD79 /* Assets.xcassets */; };
 		74418D1D1B83DD1500BCDD79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74418D1B1B83DD1500BCDD79 /* LaunchScreen.storyboard */; };
 		74418D281B83DD1500BCDD79 /* LearnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D271B83DD1500BCDD79 /* LearnTests.swift */; };
 		74418D331B83DD1500BCDD79 /* LearnUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D321B83DD1500BCDD79 /* LearnUITests.swift */; };
+		74418D421B83DD5500BCDD79 /* LearnModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74418D401B83DD5500BCDD79 /* LearnModel.xcdatamodeld */; };
+		74418D451B83DF7400BCDD79 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D441B83DF7400BCDD79 /* Topic.swift */; };
+		74418D471B83E2BF00BCDD79 /* LearnItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D461B83E2BF00BCDD79 /* LearnItem.swift */; };
+		74418D491B83E2E000BCDD79 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D481B83E2E000BCDD79 /* CoreDataStack.swift */; };
+		74418D4D1B84D09700BCDD79 /* FetchedResultsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D4C1B84D09700BCDD79 /* FetchedResultsDataSource.swift */; };
+		74418D531B84F47500BCDD79 /* CreateTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +42,7 @@
 /* Begin PBXFileReference section */
 		74418D0F1B83DD1500BCDD79 /* Learn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Learn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74418D121B83DD1500BCDD79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		74418D141B83DD1500BCDD79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		74418D141B83DD1500BCDD79 /* TopicTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTableViewController.swift; sourceTree = "<group>"; };
 		74418D171B83DD1500BCDD79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		74418D191B83DD1500BCDD79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74418D1C1B83DD1500BCDD79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +53,12 @@
 		74418D2E1B83DD1500BCDD79 /* LearnUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		74418D321B83DD1500BCDD79 /* LearnUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnUITests.swift; sourceTree = "<group>"; };
 		74418D341B83DD1500BCDD79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74418D411B83DD5500BCDD79 /* LearnModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LearnModel.xcdatamodel; sourceTree = "<group>"; };
+		74418D441B83DF7400BCDD79 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		74418D461B83E2BF00BCDD79 /* LearnItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnItem.swift; sourceTree = "<group>"; };
+		74418D481B83E2E000BCDD79 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		74418D4C1B84D09700BCDD79 /* FetchedResultsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsDataSource.swift; sourceTree = "<group>"; };
+		74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +89,7 @@
 		74418D061B83DD1500BCDD79 = {
 			isa = PBXGroup;
 			children = (
+				74418D431B83DF5E00BCDD79 /* Models */,
 				74418D111B83DD1500BCDD79 /* Learn */,
 				74418D261B83DD1500BCDD79 /* LearnTests */,
 				74418D311B83DD1500BCDD79 /* LearnUITests */,
@@ -97,12 +110,16 @@
 		74418D111B83DD1500BCDD79 /* Learn */ = {
 			isa = PBXGroup;
 			children = (
+				74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */,
 				74418D121B83DD1500BCDD79 /* AppDelegate.swift */,
-				74418D141B83DD1500BCDD79 /* ViewController.swift */,
+				74418D481B83E2E000BCDD79 /* CoreDataStack.swift */,
+				74418D141B83DD1500BCDD79 /* TopicTableViewController.swift */,
+				74418D4C1B84D09700BCDD79 /* FetchedResultsDataSource.swift */,
 				74418D161B83DD1500BCDD79 /* Main.storyboard */,
 				74418D191B83DD1500BCDD79 /* Assets.xcassets */,
 				74418D1B1B83DD1500BCDD79 /* LaunchScreen.storyboard */,
 				74418D1E1B83DD1500BCDD79 /* Info.plist */,
+				74418D401B83DD5500BCDD79 /* LearnModel.xcdatamodeld */,
 			);
 			path = Learn;
 			sourceTree = "<group>";
@@ -123,6 +140,15 @@
 				74418D341B83DD1500BCDD79 /* Info.plist */,
 			);
 			path = LearnUITests;
+			sourceTree = "<group>";
+		};
+		74418D431B83DF5E00BCDD79 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				74418D441B83DF7400BCDD79 /* Topic.swift */,
+				74418D461B83E2BF00BCDD79 /* LearnItem.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -192,6 +218,7 @@
 				TargetAttributes = {
 					74418D0E1B83DD1500BCDD79 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 6J8P5T8PZQ;
 					};
 					74418D221B83DD1500BCDD79 = {
 						CreatedOnToolsVersion = 7.0;
@@ -255,7 +282,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74418D151B83DD1500BCDD79 /* ViewController.swift in Sources */,
+				74418D4D1B84D09700BCDD79 /* FetchedResultsDataSource.swift in Sources */,
+				74418D421B83DD5500BCDD79 /* LearnModel.xcdatamodeld in Sources */,
+				74418D451B83DF7400BCDD79 /* Topic.swift in Sources */,
+				74418D151B83DD1500BCDD79 /* TopicTableViewController.swift in Sources */,
+				74418D531B84F47500BCDD79 /* CreateTopicViewController.swift in Sources */,
+				74418D491B83E2E000BCDD79 /* CoreDataStack.swift in Sources */,
+				74418D471B83E2BF00BCDD79 /* LearnItem.swift in Sources */,
 				74418D131B83DD1500BCDD79 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,10 +431,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Learn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.Learn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -409,10 +445,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Learn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.Learn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -501,6 +540,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		74418D401B83DD5500BCDD79 /* LearnModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				74418D411B83DD5500BCDD79 /* LearnModel.xcdatamodel */,
+			);
+			currentVersion = 74418D411B83DD5500BCDD79 /* LearnModel.xcdatamodel */;
+			path = LearnModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 74418D071B83DD1500BCDD79 /* Project object */;
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,7 +16,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        let managedObjectContext = createMainContext()
+        
+        guard let rootVC = window?.rootViewController as? UINavigationController,
+            let vc = rootVC.viewControllers.first as? ManagedObjectContextSettable else {
+            fatalError("Wrong View Controller Type as Root")
+        }
+        
+        vc.managedObjectContext = managedObjectContext
+        
         return true
     }
 
@@ -43,4 +52,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
