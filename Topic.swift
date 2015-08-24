@@ -12,8 +12,8 @@ import CoreData
 public final class Topic: ManagedObject {
     @NSManaged var name: String
     @NSManaged var parent: Topic?
-    @NSManaged var children: Set<Topic>?
-    @NSManaged var items: Set<LearnItem>?
+    @NSManaged var childTopics: NSOrderedSet? //<Topic>
+    @NSManaged var learnItems: NSOrderedSet? //<LearnItem>
 }
 
 extension Topic: ManagedObjectType {

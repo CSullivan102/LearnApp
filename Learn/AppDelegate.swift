@@ -13,42 +13,41 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var pocketAPI: PocketAPI?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let managedObjectContext = createMainContext()
         
+        setupPocketAPI()
+        
         guard let rootVC = window?.rootViewController as? UINavigationController,
-            let vc = rootVC.viewControllers.first as? ManagedObjectContextSettable else {
+            let vc = rootVC.viewControllers.first as? protocol<ManagedObjectContextSettable, PocketAPISettable> else {
             fatalError("Wrong View Controller Type as Root")
         }
         
         vc.managedObjectContext = managedObjectContext
+        vc.pocketAPI = pocketAPI
         
         return true
     }
-
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    
+    private func setupPocketAPI() {
+        var pocketAppID: String?
+        var pocketConsumerKey: String?
+        if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist") {
+            if let pocketKeys = NSDictionary(contentsOfFile: path) {
+                pocketAppID = pocketKeys["PocketAppId"] as? String
+                pocketConsumerKey = pocketKeys["PocketConsumerKey"] as? String
+            }
+        }
+        
+        pocketAPI = PocketAPI(appId: pocketAppID, andConsumerKey: pocketConsumerKey)
     }
-
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        guard let pocketAPI = pocketAPI else { fatalError("No Pocket API instance on oAuth callback") }
+        pocketAPI.oAuthCallbackReceived()
+        return true
     }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-
 }

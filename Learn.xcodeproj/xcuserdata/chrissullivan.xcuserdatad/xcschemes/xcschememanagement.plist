@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Share.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>742D30201B8A4AEE002B8028</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>74418D0E1B83DD1500BCDD79</key>
 		<dict>
 			<key>primary</key>

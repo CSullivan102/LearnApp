@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		742D30241B8A4AEE002B8028 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742D30231B8A4AEE002B8028 /* ShareViewController.swift */; };
+		742D30271B8A4AEE002B8028 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 742D30251B8A4AEE002B8028 /* MainInterface.storyboard */; };
+		742D302B1B8A4AEE002B8028 /* Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 742D30211B8A4AEE002B8028 /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		74418D131B83DD1500BCDD79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D121B83DD1500BCDD79 /* AppDelegate.swift */; };
-		74418D151B83DD1500BCDD79 /* TopicTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D141B83DD1500BCDD79 /* TopicTableViewController.swift */; };
 		74418D181B83DD1500BCDD79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74418D161B83DD1500BCDD79 /* Main.storyboard */; };
 		74418D1A1B83DD1500BCDD79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74418D191B83DD1500BCDD79 /* Assets.xcassets */; };
 		74418D1D1B83DD1500BCDD79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74418D1B1B83DD1500BCDD79 /* LaunchScreen.storyboard */; };
@@ -18,11 +20,29 @@
 		74418D451B83DF7400BCDD79 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D441B83DF7400BCDD79 /* Topic.swift */; };
 		74418D471B83E2BF00BCDD79 /* LearnItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D461B83E2BF00BCDD79 /* LearnItem.swift */; };
 		74418D491B83E2E000BCDD79 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D481B83E2E000BCDD79 /* CoreDataStack.swift */; };
-		74418D4D1B84D09700BCDD79 /* FetchedResultsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D4C1B84D09700BCDD79 /* FetchedResultsDataSource.swift */; };
 		74418D531B84F47500BCDD79 /* CreateTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */; };
+		74B7634D1B86AA97001140F5 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B7634C1B86AA97001140F5 /* Argo.framework */; };
+		74B7634E1B86AB0A001140F5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D2931C1B869A910037EBA9 /* Alamofire.framework */; };
+		74C6E64A1B862F7C0013B1BD /* LearnItemTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6491B862F7C0013B1BD /* LearnItemTypeEnum.swift */; };
+		74C6E64C1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */; };
+		74C6E64E1B863C9D0013B1BD /* TopicCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64D1B863C9D0013B1BD /* TopicCollectionViewController.swift */; };
+		74C6E6501B863E800013B1BD /* TopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64F1B863E800013B1BD /* TopicCollectionViewCell.swift */; };
+		74C6E6541B8670CD0013B1BD /* ArticlesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6531B8670CD0013B1BD /* ArticlesCollectionViewController.swift */; };
+		74C6E6561B86711D0013B1BD /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6551B86711D0013B1BD /* ArticleCollectionViewCell.swift */; };
+		74C6E6581B867D780013B1BD /* CreateLearnItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */; };
+		74D22E4D1B8B70BC0097D5BC /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D22E4C1B8B70BC0097D5BC /* Keys.plist */; };
+		74D293191B86997D0037EBA9 /* PocketAPISettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D293181B86997D0037EBA9 /* PocketAPISettable.swift */; };
+		74D2931B1B86999D0037EBA9 /* PocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2931A1B86999D0037EBA9 /* PocketAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		742D30291B8A4AEE002B8028 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74418D071B83DD1500BCDD79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 742D30201B8A4AEE002B8028;
+			remoteInfo = Share;
+		};
 		74418D241B83DD1500BCDD79 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74418D071B83DD1500BCDD79 /* Project object */;
@@ -39,10 +59,27 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		742D302F1B8A4AEE002B8028 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				742D302B1B8A4AEE002B8028 /* Share.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		742D30211B8A4AEE002B8028 /* Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Share.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		742D30231B8A4AEE002B8028 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		742D30261B8A4AEE002B8028 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		742D30281B8A4AEE002B8028 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74418D0F1B83DD1500BCDD79 /* Learn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Learn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74418D121B83DD1500BCDD79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		74418D141B83DD1500BCDD79 /* TopicTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTableViewController.swift; sourceTree = "<group>"; };
 		74418D171B83DD1500BCDD79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		74418D191B83DD1500BCDD79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74418D1C1B83DD1500BCDD79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -57,15 +94,35 @@
 		74418D441B83DF7400BCDD79 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		74418D461B83E2BF00BCDD79 /* LearnItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnItem.swift; sourceTree = "<group>"; };
 		74418D481B83E2E000BCDD79 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		74418D4C1B84D09700BCDD79 /* FetchedResultsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsDataSource.swift; sourceTree = "<group>"; };
-		74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicViewController.swift; sourceTree = "<group>"; };
+		74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateTopicViewController.swift; path = Learn/CreateTopicViewController.swift; sourceTree = "<group>"; };
+		74B7634C1B86AA97001140F5 /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
+		74C6E6491B862F7C0013B1BD /* LearnItemTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LearnItemTypeEnum.swift; path = Learn/LearnItemTypeEnum.swift; sourceTree = "<group>"; };
+		74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsCollectionDataSource.swift; sourceTree = "<group>"; };
+		74C6E64D1B863C9D0013B1BD /* TopicCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicCollectionViewController.swift; path = Learn/TopicCollectionViewController.swift; sourceTree = "<group>"; };
+		74C6E64F1B863E800013B1BD /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicCollectionViewCell.swift; path = Learn/TopicCollectionViewCell.swift; sourceTree = "<group>"; };
+		74C6E6531B8670CD0013B1BD /* ArticlesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticlesCollectionViewController.swift; path = Learn/ArticlesCollectionViewController.swift; sourceTree = "<group>"; };
+		74C6E6551B86711D0013B1BD /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleCollectionViewCell.swift; path = Learn/ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
+		74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateLearnItemViewController.swift; path = Learn/CreateLearnItemViewController.swift; sourceTree = "<group>"; };
+		74D22E4C1B8B70BC0097D5BC /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
+		74D293181B86997D0037EBA9 /* PocketAPISettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAPISettable.swift; sourceTree = "<group>"; };
+		74D2931A1B86999D0037EBA9 /* PocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAPI.swift; sourceTree = "<group>"; };
+		74D2931C1B869A910037EBA9 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		742D301E1B8A4AEE002B8028 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		74418D0C1B83DD1500BCDD79 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74B7634D1B86AA97001140F5 /* Argo.framework in Frameworks */,
+				74B7634E1B86AB0A001140F5 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,13 +143,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		742D30221B8A4AEE002B8028 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				742D30231B8A4AEE002B8028 /* ShareViewController.swift */,
+				742D30251B8A4AEE002B8028 /* MainInterface.storyboard */,
+				742D30281B8A4AEE002B8028 /* Info.plist */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
 		74418D061B83DD1500BCDD79 = {
 			isa = PBXGroup;
 			children = (
+				74B7634C1B86AA97001140F5 /* Argo.framework */,
+				74D2931C1B869A910037EBA9 /* Alamofire.framework */,
+				74C6E6521B866F8E0013B1BD /* ArticlesView */,
+				74C6E6511B866F760013B1BD /* TopicsView */,
 				74418D431B83DF5E00BCDD79 /* Models */,
 				74418D111B83DD1500BCDD79 /* Learn */,
 				74418D261B83DD1500BCDD79 /* LearnTests */,
 				74418D311B83DD1500BCDD79 /* LearnUITests */,
+				742D30221B8A4AEE002B8028 /* Share */,
 				74418D101B83DD1500BCDD79 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,6 +175,7 @@
 				74418D0F1B83DD1500BCDD79 /* Learn.app */,
 				74418D231B83DD1500BCDD79 /* LearnTests.xctest */,
 				74418D2E1B83DD1500BCDD79 /* LearnUITests.xctest */,
+				742D30211B8A4AEE002B8028 /* Share.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,11 +183,12 @@
 		74418D111B83DD1500BCDD79 /* Learn */ = {
 			isa = PBXGroup;
 			children = (
-				74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */,
 				74418D121B83DD1500BCDD79 /* AppDelegate.swift */,
 				74418D481B83E2E000BCDD79 /* CoreDataStack.swift */,
-				74418D141B83DD1500BCDD79 /* TopicTableViewController.swift */,
-				74418D4C1B84D09700BCDD79 /* FetchedResultsDataSource.swift */,
+				74D293181B86997D0037EBA9 /* PocketAPISettable.swift */,
+				74D2931A1B86999D0037EBA9 /* PocketAPI.swift */,
+				74D22E4C1B8B70BC0097D5BC /* Keys.plist */,
+				74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */,
 				74418D161B83DD1500BCDD79 /* Main.storyboard */,
 				74418D191B83DD1500BCDD79 /* Assets.xcassets */,
 				74418D1B1B83DD1500BCDD79 /* LaunchScreen.storyboard */,
@@ -146,14 +220,52 @@
 			isa = PBXGroup;
 			children = (
 				74418D441B83DF7400BCDD79 /* Topic.swift */,
+				74C6E6491B862F7C0013B1BD /* LearnItemTypeEnum.swift */,
 				74418D461B83E2BF00BCDD79 /* LearnItem.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
 		};
+		74C6E6511B866F760013B1BD /* TopicsView */ = {
+			isa = PBXGroup;
+			children = (
+				74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */,
+				74C6E64F1B863E800013B1BD /* TopicCollectionViewCell.swift */,
+				74C6E64D1B863C9D0013B1BD /* TopicCollectionViewController.swift */,
+			);
+			name = TopicsView;
+			sourceTree = "<group>";
+		};
+		74C6E6521B866F8E0013B1BD /* ArticlesView */ = {
+			isa = PBXGroup;
+			children = (
+				74C6E6531B8670CD0013B1BD /* ArticlesCollectionViewController.swift */,
+				74C6E6551B86711D0013B1BD /* ArticleCollectionViewCell.swift */,
+				74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */,
+			);
+			name = ArticlesView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		742D30201B8A4AEE002B8028 /* Share */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 742D302E1B8A4AEE002B8028 /* Build configuration list for PBXNativeTarget "Share" */;
+			buildPhases = (
+				742D301D1B8A4AEE002B8028 /* Sources */,
+				742D301E1B8A4AEE002B8028 /* Frameworks */,
+				742D301F1B8A4AEE002B8028 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Share;
+			productName = Share;
+			productReference = 742D30211B8A4AEE002B8028 /* Share.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		74418D0E1B83DD1500BCDD79 /* Learn */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 74418D371B83DD1500BCDD79 /* Build configuration list for PBXNativeTarget "Learn" */;
@@ -161,10 +273,13 @@
 				74418D0B1B83DD1500BCDD79 /* Sources */,
 				74418D0C1B83DD1500BCDD79 /* Frameworks */,
 				74418D0D1B83DD1500BCDD79 /* Resources */,
+				74D293201B869AA70037EBA9 /* ShellScript */,
+				742D302F1B8A4AEE002B8028 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				742D302A1B8A4AEE002B8028 /* PBXTargetDependency */,
 			);
 			name = Learn;
 			productName = Learn;
@@ -216,6 +331,10 @@
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Christopher Sullivan";
 				TargetAttributes = {
+					742D30201B8A4AEE002B8028 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 6J8P5T8PZQ;
+					};
 					74418D0E1B83DD1500BCDD79 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 6J8P5T8PZQ;
@@ -246,15 +365,25 @@
 				74418D0E1B83DD1500BCDD79 /* Learn */,
 				74418D221B83DD1500BCDD79 /* LearnTests */,
 				74418D2D1B83DD1500BCDD79 /* LearnUITests */,
+				742D30201B8A4AEE002B8028 /* Share */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		742D301F1B8A4AEE002B8028 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				742D30271B8A4AEE002B8028 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		74418D0D1B83DD1500BCDD79 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74D22E4D1B8B70BC0097D5BC /* Keys.plist in Resources */,
 				74418D1D1B83DD1500BCDD79 /* LaunchScreen.storyboard in Resources */,
 				74418D1A1B83DD1500BCDD79 /* Assets.xcassets in Resources */,
 				74418D181B83DD1500BCDD79 /* Main.storyboard in Resources */,
@@ -277,19 +406,52 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		74D293201B869AA70037EBA9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Argo.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		742D301D1B8A4AEE002B8028 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				742D30241B8A4AEE002B8028 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		74418D0B1B83DD1500BCDD79 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74418D4D1B84D09700BCDD79 /* FetchedResultsDataSource.swift in Sources */,
+				74C6E6581B867D780013B1BD /* CreateLearnItemViewController.swift in Sources */,
+				74C6E64E1B863C9D0013B1BD /* TopicCollectionViewController.swift in Sources */,
+				74C6E6501B863E800013B1BD /* TopicCollectionViewCell.swift in Sources */,
 				74418D421B83DD5500BCDD79 /* LearnModel.xcdatamodeld in Sources */,
 				74418D451B83DF7400BCDD79 /* Topic.swift in Sources */,
-				74418D151B83DD1500BCDD79 /* TopicTableViewController.swift in Sources */,
+				74D2931B1B86999D0037EBA9 /* PocketAPI.swift in Sources */,
+				74C6E64A1B862F7C0013B1BD /* LearnItemTypeEnum.swift in Sources */,
+				74D293191B86997D0037EBA9 /* PocketAPISettable.swift in Sources */,
 				74418D531B84F47500BCDD79 /* CreateTopicViewController.swift in Sources */,
 				74418D491B83E2E000BCDD79 /* CoreDataStack.swift in Sources */,
 				74418D471B83E2BF00BCDD79 /* LearnItem.swift in Sources */,
+				74C6E6541B8670CD0013B1BD /* ArticlesCollectionViewController.swift in Sources */,
+				74C6E6561B86711D0013B1BD /* ArticleCollectionViewCell.swift in Sources */,
 				74418D131B83DD1500BCDD79 /* AppDelegate.swift in Sources */,
+				74C6E64C1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +474,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		742D302A1B8A4AEE002B8028 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 742D30201B8A4AEE002B8028 /* Share */;
+			targetProxy = 742D30291B8A4AEE002B8028 /* PBXContainerItemProxy */;
+		};
 		74418D251B83DD1500BCDD79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 74418D0E1B83DD1500BCDD79 /* Learn */;
@@ -325,6 +492,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		742D30251B8A4AEE002B8028 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				742D30261B8A4AEE002B8028 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		74418D161B83DD1500BCDD79 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -344,6 +519,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		742D302C1B8A4AEE002B8028 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Share/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.Learn.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		742D302D1B8A4AEE002B8028 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = Share/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.Learn.Share;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		74418D351B83DD1500BCDD79 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -433,6 +636,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Learn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.Learn;
@@ -447,6 +655,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Learn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.Learn;
@@ -506,6 +719,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		742D302E1B8A4AEE002B8028 /* Build configuration list for PBXNativeTarget "Share" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				742D302C1B8A4AEE002B8028 /* Debug */,
+				742D302D1B8A4AEE002B8028 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		74418D0A1B83DD1500BCDD79 /* Build configuration list for PBXProject "Learn" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -522,6 +744,7 @@
 				74418D391B83DD1500BCDD79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		74418D3A1B83DD1500BCDD79 /* Build configuration list for PBXNativeTarget "LearnTests" */ = {
 			isa = XCConfigurationList;
@@ -530,6 +753,7 @@
 				74418D3C1B83DD1500BCDD79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		74418D3D1B83DD1500BCDD79 /* Build configuration list for PBXNativeTarget "LearnUITests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +762,7 @@
 				74418D3F1B83DD1500BCDD79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
