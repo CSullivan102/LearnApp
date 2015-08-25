@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreData
+import LearnKit
 
 class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataSourceDelegate>: NSObject, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
     private let fetchedResultsController: NSFetchedResultsController

@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7415CB681B8BA764008FB09B /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7415CB671B8BA764008FB09B /* KeychainAccess.framework */; };
+		7415CB741B8BCC9B008FB09B /* LearnKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7415CB731B8BCC9B008FB09B /* LearnKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7415CB7B1B8BCC9B008FB09B /* LearnKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7415CB711B8BCC9B008FB09B /* LearnKit.framework */; };
+		7415CB821B8BCC9B008FB09B /* LearnKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415CB811B8BCC9B008FB09B /* LearnKitTests.swift */; };
+		7415CB861B8BCC9B008FB09B /* LearnKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7415CB711B8BCC9B008FB09B /* LearnKit.framework */; };
+		7415CB871B8BCC9B008FB09B /* LearnKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7415CB711B8BCC9B008FB09B /* LearnKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		7415CB901B8BCE34008FB09B /* LearnModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74418D401B83DD5500BCDD79 /* LearnModel.xcdatamodeld */; };
+		7415CB911B8BCEA5008FB09B /* LearnKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7415CB711B8BCC9B008FB09B /* LearnKit.framework */; };
+		7415CB921B8BCF10008FB09B /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D441B83DF7400BCDD79 /* Topic.swift */; };
+		7415CB931B8BCF14008FB09B /* LearnItemTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6491B862F7C0013B1BD /* LearnItemTypeEnum.swift */; };
+		7415CB941B8BCF18008FB09B /* LearnItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D461B83E2BF00BCDD79 /* LearnItem.swift */; };
+		7415CB951B8BCF32008FB09B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D481B83E2E000BCDD79 /* CoreDataStack.swift */; };
 		742D30241B8A4AEE002B8028 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742D30231B8A4AEE002B8028 /* ShareViewController.swift */; };
 		742D30271B8A4AEE002B8028 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 742D30251B8A4AEE002B8028 /* MainInterface.storyboard */; };
 		742D302B1B8A4AEE002B8028 /* Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 742D30211B8A4AEE002B8028 /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -16,26 +28,47 @@
 		74418D1D1B83DD1500BCDD79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74418D1B1B83DD1500BCDD79 /* LaunchScreen.storyboard */; };
 		74418D281B83DD1500BCDD79 /* LearnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D271B83DD1500BCDD79 /* LearnTests.swift */; };
 		74418D331B83DD1500BCDD79 /* LearnUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D321B83DD1500BCDD79 /* LearnUITests.swift */; };
-		74418D421B83DD5500BCDD79 /* LearnModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74418D401B83DD5500BCDD79 /* LearnModel.xcdatamodeld */; };
-		74418D451B83DF7400BCDD79 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D441B83DF7400BCDD79 /* Topic.swift */; };
-		74418D471B83E2BF00BCDD79 /* LearnItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D461B83E2BF00BCDD79 /* LearnItem.swift */; };
-		74418D491B83E2E000BCDD79 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D481B83E2E000BCDD79 /* CoreDataStack.swift */; };
 		74418D531B84F47500BCDD79 /* CreateTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */; };
+		7469F22B1B8CC21100AB3A7C /* PocketAPISettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D293181B86997D0037EBA9 /* PocketAPISettable.swift */; settings = {ASSET_TAGS = (); }; };
+		7469F22C1B8CC21500AB3A7C /* PocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2931A1B86999D0037EBA9 /* PocketAPI.swift */; settings = {ASSET_TAGS = (); }; };
+		7469F22D1B8CC39E00AB3A7C /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D2931C1B869A910037EBA9 /* Alamofire.framework */; };
+		7469F22E1B8CC39E00AB3A7C /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B7634C1B86AA97001140F5 /* Argo.framework */; };
+		7469F22F1B8CC39E00AB3A7C /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7415CB671B8BA764008FB09B /* KeychainAccess.framework */; };
+		7469F2311B8CC3FE00AB3A7C /* KeychainAccess+LearnAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415CB6A1B8BB4CD008FB09B /* KeychainAccess+LearnAdditions.swift */; settings = {ASSET_TAGS = (); }; };
+		7469F2341B8CD79B00AB3A7C /* TopicConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7469F2321B8CD62F00AB3A7C /* TopicConfigTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		7469F2351B8CF9B000AB3A7C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D22E4C1B8B70BC0097D5BC /* Keys.plist */; settings = {ASSET_TAGS = (); }; };
 		74B7634D1B86AA97001140F5 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B7634C1B86AA97001140F5 /* Argo.framework */; };
 		74B7634E1B86AB0A001140F5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D2931C1B869A910037EBA9 /* Alamofire.framework */; };
-		74C6E64A1B862F7C0013B1BD /* LearnItemTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6491B862F7C0013B1BD /* LearnItemTypeEnum.swift */; };
 		74C6E64C1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */; };
 		74C6E64E1B863C9D0013B1BD /* TopicCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64D1B863C9D0013B1BD /* TopicCollectionViewController.swift */; };
 		74C6E6501B863E800013B1BD /* TopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64F1B863E800013B1BD /* TopicCollectionViewCell.swift */; };
 		74C6E6541B8670CD0013B1BD /* ArticlesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6531B8670CD0013B1BD /* ArticlesCollectionViewController.swift */; };
 		74C6E6561B86711D0013B1BD /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6551B86711D0013B1BD /* ArticleCollectionViewCell.swift */; };
 		74C6E6581B867D780013B1BD /* CreateLearnItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */; };
-		74D22E4D1B8B70BC0097D5BC /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D22E4C1B8B70BC0097D5BC /* Keys.plist */; };
-		74D293191B86997D0037EBA9 /* PocketAPISettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D293181B86997D0037EBA9 /* PocketAPISettable.swift */; };
-		74D2931B1B86999D0037EBA9 /* PocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2931A1B86999D0037EBA9 /* PocketAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7415CB7C1B8BCC9B008FB09B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74418D071B83DD1500BCDD79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7415CB701B8BCC9B008FB09B;
+			remoteInfo = LearnKit;
+		};
+		7415CB7E1B8BCC9B008FB09B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74418D071B83DD1500BCDD79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74418D0E1B83DD1500BCDD79;
+			remoteInfo = Learn;
+		};
+		7415CB841B8BCC9B008FB09B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74418D071B83DD1500BCDD79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7415CB701B8BCC9B008FB09B;
+			remoteInfo = LearnKit;
+		};
 		742D30291B8A4AEE002B8028 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 74418D071B83DD1500BCDD79 /* Project object */;
@@ -60,6 +93,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		7415CB8B1B8BCC9B008FB09B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7415CB871B8BCC9B008FB09B /* LearnKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		742D302F1B8A4AEE002B8028 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -74,6 +118,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		7415CB671B8BA764008FB09B /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
+		7415CB6A1B8BB4CD008FB09B /* KeychainAccess+LearnAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KeychainAccess+LearnAdditions.swift"; path = "../KeychainAccess+LearnAdditions.swift"; sourceTree = "<group>"; };
+		7415CB711B8BCC9B008FB09B /* LearnKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LearnKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7415CB731B8BCC9B008FB09B /* LearnKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LearnKit.h; sourceTree = "<group>"; };
+		7415CB751B8BCC9B008FB09B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7415CB7A1B8BCC9B008FB09B /* LearnKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7415CB811B8BCC9B008FB09B /* LearnKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnKitTests.swift; sourceTree = "<group>"; };
+		7415CB831B8BCC9B008FB09B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7415CB8F1B8BCD97008FB09B /* Share.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Share.entitlements; sourceTree = "<group>"; };
 		742D30211B8A4AEE002B8028 /* Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Share.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		742D30231B8A4AEE002B8028 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		742D30261B8A4AEE002B8028 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -93,8 +146,9 @@
 		74418D411B83DD5500BCDD79 /* LearnModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LearnModel.xcdatamodel; sourceTree = "<group>"; };
 		74418D441B83DF7400BCDD79 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		74418D461B83E2BF00BCDD79 /* LearnItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnItem.swift; sourceTree = "<group>"; };
-		74418D481B83E2E000BCDD79 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		74418D481B83E2E000BCDD79 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = ../Learn/CoreDataStack.swift; sourceTree = "<group>"; };
 		74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateTopicViewController.swift; path = Learn/CreateTopicViewController.swift; sourceTree = "<group>"; };
+		7469F2321B8CD62F00AB3A7C /* TopicConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicConfigTableViewController.swift; path = ../LearnKit/TopicConfigTableViewController.swift; sourceTree = "<group>"; };
 		74B7634C1B86AA97001140F5 /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
 		74C6E6491B862F7C0013B1BD /* LearnItemTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LearnItemTypeEnum.swift; path = Learn/LearnItemTypeEnum.swift; sourceTree = "<group>"; };
 		74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsCollectionDataSource.swift; sourceTree = "<group>"; };
@@ -103,17 +157,37 @@
 		74C6E6531B8670CD0013B1BD /* ArticlesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticlesCollectionViewController.swift; path = Learn/ArticlesCollectionViewController.swift; sourceTree = "<group>"; };
 		74C6E6551B86711D0013B1BD /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleCollectionViewCell.swift; path = Learn/ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
 		74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateLearnItemViewController.swift; path = Learn/CreateLearnItemViewController.swift; sourceTree = "<group>"; };
-		74D22E4C1B8B70BC0097D5BC /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
-		74D293181B86997D0037EBA9 /* PocketAPISettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAPISettable.swift; sourceTree = "<group>"; };
-		74D2931A1B86999D0037EBA9 /* PocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAPI.swift; sourceTree = "<group>"; };
+		74D22E4C1B8B70BC0097D5BC /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = ../Learn/Keys.plist; sourceTree = "<group>"; };
+		74D22E531B8BA2630097D5BC /* Learn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Learn.entitlements; sourceTree = "<group>"; };
+		74D293181B86997D0037EBA9 /* PocketAPISettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PocketAPISettable.swift; path = ../Learn/PocketAPISettable.swift; sourceTree = "<group>"; };
+		74D2931A1B86999D0037EBA9 /* PocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PocketAPI.swift; path = ../Learn/PocketAPI.swift; sourceTree = "<group>"; };
 		74D2931C1B869A910037EBA9 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7415CB6D1B8BCC9B008FB09B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7469F22D1B8CC39E00AB3A7C /* Alamofire.framework in Frameworks */,
+				7469F22E1B8CC39E00AB3A7C /* Argo.framework in Frameworks */,
+				7469F22F1B8CC39E00AB3A7C /* KeychainAccess.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7415CB771B8BCC9B008FB09B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7415CB7B1B8BCC9B008FB09B /* LearnKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		742D301E1B8A4AEE002B8028 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7415CB911B8BCEA5008FB09B /* LearnKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,8 +195,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7415CB861B8BCC9B008FB09B /* LearnKit.framework in Frameworks */,
 				74B7634D1B86AA97001140F5 /* Argo.framework in Frameworks */,
 				74B7634E1B86AB0A001140F5 /* Alamofire.framework in Frameworks */,
+				7415CB681B8BA764008FB09B /* KeychainAccess.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,9 +219,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7415CB721B8BCC9B008FB09B /* LearnKit */ = {
+			isa = PBXGroup;
+			children = (
+				74418D431B83DF5E00BCDD79 /* Models */,
+				74418D401B83DD5500BCDD79 /* LearnModel.xcdatamodeld */,
+				74D293181B86997D0037EBA9 /* PocketAPISettable.swift */,
+				74D2931A1B86999D0037EBA9 /* PocketAPI.swift */,
+				74418D481B83E2E000BCDD79 /* CoreDataStack.swift */,
+				7415CB731B8BCC9B008FB09B /* LearnKit.h */,
+				74D22E4C1B8B70BC0097D5BC /* Keys.plist */,
+				7415CB751B8BCC9B008FB09B /* Info.plist */,
+				7415CB6A1B8BB4CD008FB09B /* KeychainAccess+LearnAdditions.swift */,
+			);
+			path = LearnKit;
+			sourceTree = "<group>";
+		};
+		7415CB801B8BCC9B008FB09B /* LearnKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				7415CB811B8BCC9B008FB09B /* LearnKitTests.swift */,
+				7415CB831B8BCC9B008FB09B /* Info.plist */,
+			);
+			path = LearnKitTests;
+			sourceTree = "<group>";
+		};
 		742D30221B8A4AEE002B8028 /* Share */ = {
 			isa = PBXGroup;
 			children = (
+				7415CB8F1B8BCD97008FB09B /* Share.entitlements */,
+				7469F2321B8CD62F00AB3A7C /* TopicConfigTableViewController.swift */,
 				742D30231B8A4AEE002B8028 /* ShareViewController.swift */,
 				742D30251B8A4AEE002B8028 /* MainInterface.storyboard */,
 				742D30281B8A4AEE002B8028 /* Info.plist */,
@@ -156,15 +259,17 @@
 		74418D061B83DD1500BCDD79 = {
 			isa = PBXGroup;
 			children = (
+				7415CB671B8BA764008FB09B /* KeychainAccess.framework */,
 				74B7634C1B86AA97001140F5 /* Argo.framework */,
 				74D2931C1B869A910037EBA9 /* Alamofire.framework */,
 				74C6E6521B866F8E0013B1BD /* ArticlesView */,
 				74C6E6511B866F760013B1BD /* TopicsView */,
-				74418D431B83DF5E00BCDD79 /* Models */,
 				74418D111B83DD1500BCDD79 /* Learn */,
 				74418D261B83DD1500BCDD79 /* LearnTests */,
 				74418D311B83DD1500BCDD79 /* LearnUITests */,
 				742D30221B8A4AEE002B8028 /* Share */,
+				7415CB721B8BCC9B008FB09B /* LearnKit */,
+				7415CB801B8BCC9B008FB09B /* LearnKitTests */,
 				74418D101B83DD1500BCDD79 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -176,6 +281,8 @@
 				74418D231B83DD1500BCDD79 /* LearnTests.xctest */,
 				74418D2E1B83DD1500BCDD79 /* LearnUITests.xctest */,
 				742D30211B8A4AEE002B8028 /* Share.appex */,
+				7415CB711B8BCC9B008FB09B /* LearnKit.framework */,
+				7415CB7A1B8BCC9B008FB09B /* LearnKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -183,17 +290,13 @@
 		74418D111B83DD1500BCDD79 /* Learn */ = {
 			isa = PBXGroup;
 			children = (
+				74D22E531B8BA2630097D5BC /* Learn.entitlements */,
 				74418D121B83DD1500BCDD79 /* AppDelegate.swift */,
-				74418D481B83E2E000BCDD79 /* CoreDataStack.swift */,
-				74D293181B86997D0037EBA9 /* PocketAPISettable.swift */,
-				74D2931A1B86999D0037EBA9 /* PocketAPI.swift */,
-				74D22E4C1B8B70BC0097D5BC /* Keys.plist */,
 				74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */,
 				74418D161B83DD1500BCDD79 /* Main.storyboard */,
 				74418D191B83DD1500BCDD79 /* Assets.xcassets */,
 				74418D1B1B83DD1500BCDD79 /* LaunchScreen.storyboard */,
 				74418D1E1B83DD1500BCDD79 /* Info.plist */,
-				74418D401B83DD5500BCDD79 /* LearnModel.xcdatamodeld */,
 			);
 			path = Learn;
 			sourceTree = "<group>";
@@ -224,6 +327,7 @@
 				74418D461B83E2BF00BCDD79 /* LearnItem.swift */,
 			);
 			name = Models;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		74C6E6511B866F760013B1BD /* TopicsView */ = {
@@ -248,7 +352,56 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		7415CB6E1B8BCC9B008FB09B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7415CB741B8BCC9B008FB09B /* LearnKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		7415CB701B8BCC9B008FB09B /* LearnKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7415CB881B8BCC9B008FB09B /* Build configuration list for PBXNativeTarget "LearnKit" */;
+			buildPhases = (
+				7415CB6C1B8BCC9B008FB09B /* Sources */,
+				7415CB6D1B8BCC9B008FB09B /* Frameworks */,
+				7415CB6E1B8BCC9B008FB09B /* Headers */,
+				7415CB6F1B8BCC9B008FB09B /* Resources */,
+				7469F2301B8CC3BF00AB3A7C /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LearnKit;
+			productName = LearnKit;
+			productReference = 7415CB711B8BCC9B008FB09B /* LearnKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7415CB791B8BCC9B008FB09B /* LearnKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7415CB8C1B8BCC9B008FB09B /* Build configuration list for PBXNativeTarget "LearnKitTests" */;
+			buildPhases = (
+				7415CB761B8BCC9B008FB09B /* Sources */,
+				7415CB771B8BCC9B008FB09B /* Frameworks */,
+				7415CB781B8BCC9B008FB09B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7415CB7D1B8BCC9B008FB09B /* PBXTargetDependency */,
+				7415CB7F1B8BCC9B008FB09B /* PBXTargetDependency */,
+			);
+			name = LearnKitTests;
+			productName = LearnKitTests;
+			productReference = 7415CB7A1B8BCC9B008FB09B /* LearnKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		742D30201B8A4AEE002B8028 /* Share */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 742D302E1B8A4AEE002B8028 /* Build configuration list for PBXNativeTarget "Share" */;
@@ -275,11 +428,13 @@
 				74418D0D1B83DD1500BCDD79 /* Resources */,
 				74D293201B869AA70037EBA9 /* ShellScript */,
 				742D302F1B8A4AEE002B8028 /* Embed App Extensions */,
+				7415CB8B1B8BCC9B008FB09B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				742D302A1B8A4AEE002B8028 /* PBXTargetDependency */,
+				7415CB851B8BCC9B008FB09B /* PBXTargetDependency */,
 			);
 			name = Learn;
 			productName = Learn;
@@ -328,16 +483,41 @@
 		74418D071B83DD1500BCDD79 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Christopher Sullivan";
 				TargetAttributes = {
+					7415CB701B8BCC9B008FB09B = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = 6J8P5T8PZQ;
+					};
+					7415CB791B8BCC9B008FB09B = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = 74418D0E1B83DD1500BCDD79;
+					};
 					742D30201B8A4AEE002B8028 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 6J8P5T8PZQ;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					74418D0E1B83DD1500BCDD79 = {
 						CreatedOnToolsVersion = 7.0;
 						DevelopmentTeam = 6J8P5T8PZQ;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					74418D221B83DD1500BCDD79 = {
 						CreatedOnToolsVersion = 7.0;
@@ -366,11 +546,28 @@
 				74418D221B83DD1500BCDD79 /* LearnTests */,
 				74418D2D1B83DD1500BCDD79 /* LearnUITests */,
 				742D30201B8A4AEE002B8028 /* Share */,
+				7415CB701B8BCC9B008FB09B /* LearnKit */,
+				7415CB791B8BCC9B008FB09B /* LearnKitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7415CB6F1B8BCC9B008FB09B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7469F2351B8CF9B000AB3A7C /* Keys.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7415CB781B8BCC9B008FB09B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		742D301F1B8A4AEE002B8028 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -383,7 +580,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74D22E4D1B8B70BC0097D5BC /* Keys.plist in Resources */,
 				74418D1D1B83DD1500BCDD79 /* LaunchScreen.storyboard in Resources */,
 				74418D1A1B83DD1500BCDD79 /* Assets.xcassets in Resources */,
 				74418D181B83DD1500BCDD79 /* Main.storyboard in Resources */,
@@ -407,6 +603,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		7469F2301B8CC3BF00AB3A7C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Argo.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		74D293201B869AA70037EBA9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -415,6 +627,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Argo.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
 			);
 			outputPaths = (
 			);
@@ -425,11 +638,35 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7415CB6C1B8BCC9B008FB09B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7469F2311B8CC3FE00AB3A7C /* KeychainAccess+LearnAdditions.swift in Sources */,
+				7469F22C1B8CC21500AB3A7C /* PocketAPI.swift in Sources */,
+				7415CB951B8BCF32008FB09B /* CoreDataStack.swift in Sources */,
+				7415CB901B8BCE34008FB09B /* LearnModel.xcdatamodeld in Sources */,
+				7415CB931B8BCF14008FB09B /* LearnItemTypeEnum.swift in Sources */,
+				7415CB921B8BCF10008FB09B /* Topic.swift in Sources */,
+				7469F22B1B8CC21100AB3A7C /* PocketAPISettable.swift in Sources */,
+				7415CB941B8BCF18008FB09B /* LearnItem.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7415CB761B8BCC9B008FB09B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7415CB821B8BCC9B008FB09B /* LearnKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		742D301D1B8A4AEE002B8028 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				742D30241B8A4AEE002B8028 /* ShareViewController.swift in Sources */,
+				7469F2341B8CD79B00AB3A7C /* TopicConfigTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,14 +677,7 @@
 				74C6E6581B867D780013B1BD /* CreateLearnItemViewController.swift in Sources */,
 				74C6E64E1B863C9D0013B1BD /* TopicCollectionViewController.swift in Sources */,
 				74C6E6501B863E800013B1BD /* TopicCollectionViewCell.swift in Sources */,
-				74418D421B83DD5500BCDD79 /* LearnModel.xcdatamodeld in Sources */,
-				74418D451B83DF7400BCDD79 /* Topic.swift in Sources */,
-				74D2931B1B86999D0037EBA9 /* PocketAPI.swift in Sources */,
-				74C6E64A1B862F7C0013B1BD /* LearnItemTypeEnum.swift in Sources */,
-				74D293191B86997D0037EBA9 /* PocketAPISettable.swift in Sources */,
 				74418D531B84F47500BCDD79 /* CreateTopicViewController.swift in Sources */,
-				74418D491B83E2E000BCDD79 /* CoreDataStack.swift in Sources */,
-				74418D471B83E2BF00BCDD79 /* LearnItem.swift in Sources */,
 				74C6E6541B8670CD0013B1BD /* ArticlesCollectionViewController.swift in Sources */,
 				74C6E6561B86711D0013B1BD /* ArticleCollectionViewCell.swift in Sources */,
 				74418D131B83DD1500BCDD79 /* AppDelegate.swift in Sources */,
@@ -474,6 +704,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7415CB7D1B8BCC9B008FB09B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7415CB701B8BCC9B008FB09B /* LearnKit */;
+			targetProxy = 7415CB7C1B8BCC9B008FB09B /* PBXContainerItemProxy */;
+		};
+		7415CB7F1B8BCC9B008FB09B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74418D0E1B83DD1500BCDD79 /* Learn */;
+			targetProxy = 7415CB7E1B8BCC9B008FB09B /* PBXContainerItemProxy */;
+		};
+		7415CB851B8BCC9B008FB09B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7415CB701B8BCC9B008FB09B /* LearnKit */;
+			targetProxy = 7415CB841B8BCC9B008FB09B /* PBXContainerItemProxy */;
+		};
 		742D302A1B8A4AEE002B8028 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 742D30201B8A4AEE002B8028 /* Share */;
@@ -519,16 +764,92 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7415CB891B8BCC9B008FB09B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = LearnKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.LearnKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		7415CB8A1B8BCC9B008FB09B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = LearnKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.LearnKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7415CB8D1B8BCC9B008FB09B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = LearnKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.LearnKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Learn.app/Learn";
+			};
+			name = Debug;
+		};
+		7415CB8E1B8BCC9B008FB09B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = LearnKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.LearnKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Learn.app/Learn";
+			};
+			name = Release;
+		};
 		742D302C1B8A4AEE002B8028 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Share/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.Learn.Share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -537,12 +858,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Share/Share.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Share/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.Learn.Share;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -634,6 +957,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Learn/Learn.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -646,6 +971,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.Learn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -653,6 +980,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Learn/Learn.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
@@ -665,6 +994,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.Learn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
@@ -719,6 +1049,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7415CB881B8BCC9B008FB09B /* Build configuration list for PBXNativeTarget "LearnKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7415CB891B8BCC9B008FB09B /* Debug */,
+				7415CB8A1B8BCC9B008FB09B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7415CB8C1B8BCC9B008FB09B /* Build configuration list for PBXNativeTarget "LearnKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7415CB8D1B8BCC9B008FB09B /* Debug */,
+				7415CB8E1B8BCC9B008FB09B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		742D302E1B8A4AEE002B8028 /* Build configuration list for PBXNativeTarget "Share" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -773,7 +1121,8 @@
 				74418D411B83DD5500BCDD79 /* LearnModel.xcdatamodel */,
 			);
 			currentVersion = 74418D411B83DD5500BCDD79 /* LearnModel.xcdatamodel */;
-			path = LearnModel.xcdatamodeld;
+			name = LearnModel.xcdatamodeld;
+			path = ../Learn/LearnModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

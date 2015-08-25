@@ -16,7 +16,7 @@ private let ModelName = "LearnModel"
 public class ManagedObject: NSManagedObject {
 }
 
-protocol ManagedObjectContextSettable: class {
+public protocol ManagedObjectContextSettable: class {
     var managedObjectContext: NSManagedObjectContext! { get set }
 }
 
@@ -53,10 +53,10 @@ private func createCoordinator() -> NSPersistentStoreCoordinator {
 }
 
 private func storeURL() -> NSURL {
-    let fm = NSFileManager.defaultManager()
-    let documentDirURL = try! fm.URLForDirectory(.DocumentDirectory,
-        inDomain: .UserDomainMask, appropriateForURL: nil, create: true)
-    return documentDirURL
+    guard let directory = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.com.sullivan.j.chris.Learn")
+    else { fatalError("Could not get container URL for app group") }
+    
+    return directory
         .URLByAppendingPathComponent(ModelName)
         .URLByAppendingPathExtension("sqlite")
 }

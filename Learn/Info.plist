@@ -52,9 +52,11 @@
 			</array>
 		</dict>
 	</array>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>pocket-oauth-v1</string>
-    </array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>pocket-oauth-v1</string>
+	</array>
+	<key>AppIdentifierPrefix</key>
+	<string>$(AppIdentifierPrefix)</string>
 </dict>
 </plist>

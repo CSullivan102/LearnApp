@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import LearnKit
 
 class CreateLearnItemViewController: UIViewController, ManagedObjectContextSettable, PocketAPISettable {
     var managedObjectContext: NSManagedObjectContext!
@@ -47,7 +48,7 @@ class CreateLearnItemViewController: UIViewController, ManagedObjectContextSetta
             let learnItem: LearnItem = self.managedObjectContext.insertObject()
             learnItem.title = titleValue
             learnItem.url = url
-            learnItem.itemType = LearnItemType.Article
+            learnItem.itemType = .Article
             learnItem.read = false
             learnItem.dateAdded = NSDate()
             learnItem.topic = topic

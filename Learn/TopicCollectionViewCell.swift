@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LearnKit
 
 class TopicCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var topicNameLabel: UILabel!

@@ -10,13 +10,13 @@ import Foundation
 import CoreData
 
 public final class LearnItem: ManagedObject {
-    @NSManaged var title: String
-    @NSManaged var url: NSURL?
+    @NSManaged public var title: String
+    @NSManaged public var url: NSURL?
+    @NSManaged public var read: Bool
+    @NSManaged public var topic: Topic?
+    @NSManaged public var dateAdded: NSDate
     @NSManaged private var type: Int16
-    @NSManaged var read: Bool
-    @NSManaged var topic: Topic?
-    @NSManaged var dateAdded: NSDate
-    
+
     public var itemType: LearnItemType {
         get {
             guard let t = LearnItemType(rawValue: type) else {

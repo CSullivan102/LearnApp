@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol PocketAPISettable: class {
+public protocol PocketAPISettable: class {
     var pocketAPI: PocketAPI! { get set }
 }

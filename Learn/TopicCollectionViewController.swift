@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-
+import LearnKit
 
 class TopicCollectionViewController: UICollectionViewController, ManagedObjectContextSettable, PocketAPISettable {
     

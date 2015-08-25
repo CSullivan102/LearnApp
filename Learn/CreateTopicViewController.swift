@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import LearnKit
 
 class CreateTopicViewController: UIViewController, ManagedObjectContextSettable {
     var managedObjectContext: NSManagedObjectContext!

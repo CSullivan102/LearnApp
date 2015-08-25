@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LearnKit
 import CoreData
 import SafariServices
 
@@ -15,6 +16,7 @@ class ArticlesCollectionViewController: UICollectionViewController, ManagedObjec
     var pocketAPI: PocketAPI!
     var dataSource: UICollectionViewDataSource?
     var topic: Topic?
+    var selectedIndexPath: NSIndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +65,44 @@ class ArticlesCollectionViewController: UICollectionViewController, ManagedObjec
     
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
         controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func handleLongPress(sender: UILongPressGestureRecognizer) {
+        guard sender.state == .Began else { return }
+        guard let indexPath = collectionView?.indexPathForItemAtPoint(sender.locationInView(collectionView)),
+            cell = collectionView?.cellForItemAtIndexPath(indexPath)
+            else { return }
+        
+        selectedIndexPath = indexPath
+        
+        let menuItem = UIMenuItem(title: "Delete", action: "deleteArticle:")
+        
+        let mc = UIMenuController.sharedMenuController()
+        mc.menuItems = [menuItem]
+        mc.setTargetRect(cell.bounds, inView: cell)
+        mc.setMenuVisible(true, animated: false)
+    }
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
+        if action == "deleteArticle:" {
+            return true
+        }
+        return super.canPerformAction(action, withSender: sender)
+    }
+    
+    func deleteArticle(sender: AnyObject?) {
+        guard let indexPath = selectedIndexPath,
+            cv = collectionView,
+            cell = dataSource?.collectionView(cv, cellForItemAtIndexPath: indexPath) as? ArticleCollectionViewCell,
+            learnItem = cell.learnItem else { return }
+        managedObjectContext.performChanges {
+            self.managedObjectContext.deleteObject(learnItem)
+        }
+        selectedIndexPath = nil
     }
 }
 

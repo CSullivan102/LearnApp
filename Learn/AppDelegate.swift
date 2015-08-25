@@ -8,9 +8,10 @@
 
 import UIKit
 import CoreData
+import LearnKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, PocketAuthenticationDelegate {
 
     var window: UIWindow?
     var pocketAPI: PocketAPI?
@@ -33,21 +34,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     private func setupPocketAPI() {
-        var pocketAppID: String?
-        var pocketConsumerKey: String?
-        if let path = NSBundle.mainBundle().pathForResource("Keys", ofType: "plist") {
-            if let pocketKeys = NSDictionary(contentsOfFile: path) {
-                pocketAppID = pocketKeys["PocketAppId"] as? String
-                pocketConsumerKey = pocketKeys["PocketConsumerKey"] as? String
-            }
-        }
-        
-        pocketAPI = PocketAPI(appId: pocketAppID, andConsumerKey: pocketConsumerKey)
+        pocketAPI = PocketAPI(delegate: self)
     }
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
         guard let pocketAPI = pocketAPI else { fatalError("No Pocket API instance on oAuth callback") }
         pocketAPI.oAuthCallbackReceived()
         return true
+    }
+    
+    func promptOAuthUserAuthWithURL(URL: NSURL) {
+        if UIApplication.sharedApplication().canOpenURL(URL) {
+            UIApplication.sharedApplication().openURL(URL)
+        } else {
+            // SFViewController instance to do OAuth when pocket's not installed
+        }
     }
 }

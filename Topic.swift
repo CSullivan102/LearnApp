@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 public final class Topic: ManagedObject {
-    @NSManaged var name: String
-    @NSManaged var parent: Topic?
-    @NSManaged var childTopics: NSOrderedSet? //<Topic>
-    @NSManaged var learnItems: NSOrderedSet? //<LearnItem>
+    @NSManaged public var name: String
+    @NSManaged public var parent: Topic?
+    @NSManaged public var childTopics: NSOrderedSet? //<Topic>
+    @NSManaged public var learnItems: NSOrderedSet? //<LearnItem>
 }
 
 extension Topic: ManagedObjectType {

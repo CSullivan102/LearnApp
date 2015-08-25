@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LearnKit
 
 class ArticleCollectionViewCell: UICollectionViewCell {
 

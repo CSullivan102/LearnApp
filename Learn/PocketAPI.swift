@@ -10,50 +10,100 @@ import Foundation
 import UIKit
 import Alamofire
 import Argo
+//import KeychainAccess
 
-class PocketAPI {
+public protocol PocketAuthenticationDelegate {
+    func promptOAuthUserAuthWithURL(URL: NSURL)
+}
+
+public class PocketAPI {
     private var consumerKey: String?
     private var appId: String?
     private var requestToken: String?
-    // Need to get these 2 into the keychain
-    var accessToken: String? {
+//    private let keychain: Keychain
+    private let delegate: PocketAuthenticationDelegate
+    private let AccessTokenKeychainKey = "PocketAccessToken"
+    private let AuthUserKeychainKey = "PocketAuthUser"
+    
+    private var accessToken: String? {
         get {
-            let defaults = NSUserDefaults.standardUserDefaults()
-            let plist: AnyObject? = defaults.objectForKey("accessToken")
+            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn")
+                else { fatalError("Can't open user defaults") }
+            let plist: AnyObject? = defaults.objectForKey(AccessTokenKeychainKey)
             return plist as? String
+            // return keychain.getStringIfExists(AccessTokenKeychainKey)
         }
         set {
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(newValue, forKey: "accessToken")
+            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn")
+                else { fatalError("Can't open user defaults") }
+            defaults.setObject(newValue, forKey: AccessTokenKeychainKey)
             defaults.synchronize()
+            // keychain.setOrRemoveStringValue(newValue, forKey: AccessTokenKeychainKey)
         }
     }
-    var authenticatedUser: String? {
+
+    private var authenticatedUser: String? {
         get {
-            let defaults = NSUserDefaults.standardUserDefaults()
-            let plist: AnyObject? = defaults.objectForKey("authenticatedUser")
+            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn")
+                else { fatalError("Can't open user defaults") }
+            let plist: AnyObject? = defaults.objectForKey(AuthUserKeychainKey)
             return plist as? String
+            // return keychain.getStringIfExists(AuthUserKeychainKey)
         }
         set {
-            let defaults = NSUserDefaults.standardUserDefaults()
-            defaults.setObject(newValue, forKey: "authenticatedUser")
+            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn")
+                else { fatalError("Can't open user defaults") }
+            defaults.setObject(newValue, forKey: AuthUserKeychainKey)
             defaults.synchronize()
+            // keychain.setOrRemoveStringValue(newValue, forKey: AuthUserKeychainKey)
         }
     }
     
-    init(appId: String?, andConsumerKey consumerKey: String?) {
-        self.appId = appId
-        self.consumerKey = consumerKey
+    public init(delegate: PocketAuthenticationDelegate) {
+        guard let bundle = NSBundle(identifier: "com.sullivan.j.chris.LearnKit"),
+            path = bundle.pathForResource("Keys", ofType: "plist"),
+            pocketKeys = NSDictionary(contentsOfFile: path)
+        else { fatalError("Could not find Keys.plist in bundle") }
+        self.appId = pocketKeys["PocketAppId"] as? String
+        self.consumerKey = pocketKeys["PocketConsumerKey"] as? String
+        
+        self.delegate = delegate
+        
+        // let appIdPrefix = NSBundle.mainBundle().objectForInfoDictionaryKey("AppIdentifierPrefix") as! String
+        // keychain = Keychain(service: "com.sullivan.j.chris.Learn", accessGroup: "\(appIdPrefix)com.sullivan.j.chris.Learn")
     }
     
-    func isAuthenticated() -> Bool {
+    public func addURLToPocket(url: NSURL, completion: (PocketItem) -> ()) {
+        authenticateAndMakeRequest(.POST, urlAsString: "https://getpocket.com/v3/add", params: ["url": url.description]) { (result) -> () in
+            switch result {
+            case .Success(let JSON):
+                let decodedResponse: Decoded<PocketAddResponse> = decode(JSON)
+                
+                switch decodedResponse {
+                case .Success(let responseObj):
+                    completion(responseObj.item)
+                case .MissingKey(let s):
+                    print("JSON decoding failed for Add to Pocket, missing key \(s)")
+                case .TypeMismatch(let s):
+                    print("JSON decoding failed for Add to Pocket, type mismatch \(s)")
+                }
+            case .Failure(let data, let error):
+                print("Request failed with error: \(error)")
+                if let data = data {
+                    print("Response data: \(NSString(data: data, encoding: NSUTF8StringEncoding)!)")
+                }
+            }
+        }
+    }
+    
+    public func isAuthenticated() -> Bool {
         if accessToken != nil {
             return true
         }
         return false
     }
     
-    func authenticate(completion: (() -> ())?) {
+    public func authenticate(completion: (() -> ())?) {
         // Need to set up a closure on this object, something to come back to
         
         guard let consumerKey = consumerKey, appId = appId
@@ -74,46 +124,37 @@ class PocketAPI {
         }
     }
     
+    public func oAuthCallbackReceived() {
+        guard let consumerKey = consumerKey, requestToken = requestToken
+            else { return }
+        let userAuthRequestParams = ["consumer_key": consumerKey, "code": requestToken]
+        
+        Alamofire.request(.POST, "https://getpocket.com/v3/oauth/authorize", parameters: userAuthRequestParams, encoding: .JSON, headers: ["X-Accept": "application/json"])
+            .responseJSON { (_, _, result) -> Void in
+                switch result {
+                case .Success(let JSON):
+                    self.handleOAuthAuthorizeSuccess(JSON)
+                case .Failure(let data, let error):
+                    print("Request failed with error: \(error)")
+                    if let data = data {
+                        print("Response data: \(NSString(data: data, encoding: NSUTF8StringEncoding)!)")
+                    }
+                }
+        }
+    }
+    
     private func handleOAuthRequestSuccess(JSON: AnyObject) {
         let decodedResponse: Decoded<PocketOAuthResponse> = decode(JSON)
         switch decodedResponse {
         case .Success(let responseObj):
             self.requestToken = responseObj.code
-            self.promptOAuthUserAuth()
+            guard let requestToken = self.requestToken, appId = self.appId, URL = NSURL(string: "pocket-oauth-v1:///authorize?request_token=\(requestToken)&redirect_uri=pocketapp\(appId):authorizationFinished")
+            else { fatalError("Bad URL for pocket oauth") }
+            delegate.promptOAuthUserAuthWithURL(URL)
         case .MissingKey(let s):
             print("JSON decoding failed for OAuth Request, missing key \(s)")
         case .TypeMismatch(let s):
             print("JSON decoding failed for OAuth Request, type mismatch \(s)")
-        }
-    }
-    
-    private func promptOAuthUserAuth() {
-        guard let requestToken = self.requestToken, appId = self.appId, pocketURL = NSURL(string: "pocket-oauth-v1:///authorize?request_token=\(requestToken)&redirect_uri=pocketapp\(appId):authorizationFinished")
-        else { fatalError("Bad URL for pocket oauth") }
-        
-        if UIApplication.sharedApplication().canOpenURL(pocketURL) {
-            UIApplication.sharedApplication().openURL(pocketURL)
-        } else {
-            // SFViewController instance to do OAuth when pocket's not installed
-        }
-    }
-    
-    func oAuthCallbackReceived() {
-        guard let consumerKey = consumerKey, requestToken = requestToken
-        else { return }
-        let userAuthRequestParams = ["consumer_key": consumerKey, "code": requestToken]
-        
-        Alamofire.request(.POST, "https://getpocket.com/v3/oauth/authorize", parameters: userAuthRequestParams, encoding: .JSON, headers: ["X-Accept": "application/json"])
-        .responseJSON { (_, _, result) -> Void in
-            switch result {
-            case .Success(let JSON):
-                self.handleOAuthAuthorizeSuccess(JSON)
-            case .Failure(let data, let error):
-                print("Request failed with error: \(error)")
-                if let data = data {
-                    print("Response data: \(NSString(data: data, encoding: NSUTF8StringEncoding)!)")
-                }
-            }
         }
     }
     
@@ -124,7 +165,6 @@ class PocketAPI {
         case .Success(let responseObj):
             self.accessToken = responseObj.access_token
             self.authenticatedUser = responseObj.username
-            print("Success! \(self.authenticatedUser) \(self.accessToken)")
             // Need to have a closure available with the original request in it here
         case .MissingKey(let s):
             print("JSON decoding failed for OAuth Authorize, missing key \(s)")
@@ -153,29 +193,6 @@ class PocketAPI {
         
         Alamofire.request(method, urlAsString, parameters: newParams, encoding: .JSON, headers: ["X-Accept": "application/json"]).responseJSON { (_, _, result) -> Void in
             completion(result)
-        }
-    }
-    
-    func addURLToPocket(url: NSURL, completion: (PocketItem) -> ()) {
-        authenticateAndMakeRequest(.POST, urlAsString: "https://getpocket.com/v3/add", params: ["url": url.description]) { (result) -> () in
-            switch result {
-            case .Success(let JSON):
-                let decodedResponse: Decoded<PocketAddResponse> = decode(JSON)
-                
-                switch decodedResponse {
-                case .Success(let responseObj):
-                    completion(responseObj.item)
-                case .MissingKey(let s):
-                    print("JSON decoding failed for Add to Pocket, missing key \(s)")
-                case .TypeMismatch(let s):
-                    print("JSON decoding failed for Add to Pocket, type mismatch \(s)")
-                }
-            case .Failure(let data, let error):
-                print("Request failed with error: \(error)")
-                if let data = data {
-                    print("Response data: \(NSString(data: data, encoding: NSUTF8StringEncoding)!)")
-                }
-            }
         }
     }
 }
@@ -212,9 +229,9 @@ extension PocketUserAuthResponse: Decodable {
     }
 }
 
-struct PocketAddResponse {
-    let item: PocketItem
-    let status: Int
+public struct PocketAddResponse {
+    public let item: PocketItem
+    public let status: Int
 }
 
 extension PocketAddResponse: Decodable {
@@ -222,15 +239,15 @@ extension PocketAddResponse: Decodable {
         return PocketAddResponse(item: item, status: status)
     }
     
-    static func decode(json: JSON) -> Decoded<PocketAddResponse> {
+    public static func decode(json: JSON) -> Decoded<PocketAddResponse> {
         return create
             <^> json <| "item"
             <*> json <| "status"
     }
 }
 
-struct PocketItem {
-    let item_id: String
+public struct PocketItem {
+    public let item_id: String
 }
 
 extension PocketItem: Decodable {
@@ -238,7 +255,7 @@ extension PocketItem: Decodable {
         return PocketItem(item_id: item_id)
     }
     
-    static func decode(json: JSON) -> Decoded<PocketItem> {
+    public static func decode(json: JSON) -> Decoded<PocketItem> {
         return create
             <^> json <| "item_id"
     }
