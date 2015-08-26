@@ -23,7 +23,7 @@ class ArticlesCollectionViewController: UICollectionViewController, ManagedObjec
 
         guard let topic = topic else { fatalError("No topic found") }
         
-        navigationItem.title = topic.name
+        navigationItem.title = topic.iconAndName
         
         let request = LearnItem.sortedFetchRequest
         request.fetchBatchSize = 20

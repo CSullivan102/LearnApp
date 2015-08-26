@@ -9,14 +9,13 @@
 import Foundation
 import UIKit
 import CoreData
-import LearnKit
 
-class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataSourceDelegate>: NSObject, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
+public class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataSourceDelegate>: NSObject, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
     private let fetchedResultsController: NSFetchedResultsController
     private let collectionView: UICollectionView
     private let delegate: D
     
-    init(collectionView: UICollectionView, fetchedResultsController: NSFetchedResultsController, delegate: D) {
+    public init(collectionView: UICollectionView, fetchedResultsController: NSFetchedResultsController, delegate: D) {
         self.collectionView = collectionView
         self.fetchedResultsController = fetchedResultsController
         self.delegate = delegate
@@ -31,7 +30,7 @@ class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataSourceDe
     
     //MARK: NSFetchedResultsControllerDelegate
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
         case .Delete:
             guard let unwrappedIndexPath = indexPath
@@ -58,14 +57,14 @@ class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataSourceDe
     
     //MARK: UICollectionViewDataSource
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let sec = fetchedResultsController.sections?[section] else {
             return 0
         }
         return sec.numberOfObjects
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let obj = objectAtIndexPath(indexPath)
         let identifier = delegate.cellIdentifierForObject(obj)
         guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as? D.Cell else {
@@ -83,7 +82,7 @@ class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataSourceDe
     }
 }
 
-protocol FetchedResultsCollectionDataSourceDelegate {
+public protocol FetchedResultsCollectionDataSourceDelegate {
     typealias Object: ManagedObject
     typealias Cell: UICollectionViewCell
     

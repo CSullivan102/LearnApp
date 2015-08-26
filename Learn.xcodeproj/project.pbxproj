@@ -35,11 +35,12 @@
 		7469F22E1B8CC39E00AB3A7C /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B7634C1B86AA97001140F5 /* Argo.framework */; };
 		7469F22F1B8CC39E00AB3A7C /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7415CB671B8BA764008FB09B /* KeychainAccess.framework */; };
 		7469F2311B8CC3FE00AB3A7C /* KeychainAccess+LearnAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415CB6A1B8BB4CD008FB09B /* KeychainAccess+LearnAdditions.swift */; settings = {ASSET_TAGS = (); }; };
-		7469F2341B8CD79B00AB3A7C /* TopicConfigTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7469F2321B8CD62F00AB3A7C /* TopicConfigTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		7469F2351B8CF9B000AB3A7C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D22E4C1B8B70BC0097D5BC /* Keys.plist */; settings = {ASSET_TAGS = (); }; };
+		7469F2381B8D0C7C00AB3A7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74418D191B83DD1500BCDD79 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
+		7469F2391B8D0FF900AB3A7C /* FetchedResultsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		7469F23B1B8D130800AB3A7C /* TopicShareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7469F23A1B8D130800AB3A7C /* TopicShareCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		74B7634D1B86AA97001140F5 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B7634C1B86AA97001140F5 /* Argo.framework */; };
 		74B7634E1B86AB0A001140F5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D2931C1B869A910037EBA9 /* Alamofire.framework */; };
-		74C6E64C1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */; };
 		74C6E64E1B863C9D0013B1BD /* TopicCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64D1B863C9D0013B1BD /* TopicCollectionViewController.swift */; };
 		74C6E6501B863E800013B1BD /* TopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64F1B863E800013B1BD /* TopicCollectionViewCell.swift */; };
 		74C6E6541B8670CD0013B1BD /* ArticlesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6531B8670CD0013B1BD /* ArticlesCollectionViewController.swift */; };
@@ -148,10 +149,10 @@
 		74418D461B83E2BF00BCDD79 /* LearnItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnItem.swift; sourceTree = "<group>"; };
 		74418D481B83E2E000BCDD79 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = ../Learn/CoreDataStack.swift; sourceTree = "<group>"; };
 		74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateTopicViewController.swift; path = Learn/CreateTopicViewController.swift; sourceTree = "<group>"; };
-		7469F2321B8CD62F00AB3A7C /* TopicConfigTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicConfigTableViewController.swift; path = ../LearnKit/TopicConfigTableViewController.swift; sourceTree = "<group>"; };
+		7469F23A1B8D130800AB3A7C /* TopicShareCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicShareCollectionViewCell.swift; sourceTree = "<group>"; };
 		74B7634C1B86AA97001140F5 /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
 		74C6E6491B862F7C0013B1BD /* LearnItemTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LearnItemTypeEnum.swift; path = Learn/LearnItemTypeEnum.swift; sourceTree = "<group>"; };
-		74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsCollectionDataSource.swift; sourceTree = "<group>"; };
+		74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchedResultsCollectionDataSource.swift; path = ../Learn/FetchedResultsCollectionDataSource.swift; sourceTree = "<group>"; };
 		74C6E64D1B863C9D0013B1BD /* TopicCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicCollectionViewController.swift; path = Learn/TopicCollectionViewController.swift; sourceTree = "<group>"; };
 		74C6E64F1B863E800013B1BD /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicCollectionViewCell.swift; path = Learn/TopicCollectionViewCell.swift; sourceTree = "<group>"; };
 		74C6E6531B8670CD0013B1BD /* ArticlesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticlesCollectionViewController.swift; path = Learn/ArticlesCollectionViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +228,7 @@
 				74D293181B86997D0037EBA9 /* PocketAPISettable.swift */,
 				74D2931A1B86999D0037EBA9 /* PocketAPI.swift */,
 				74418D481B83E2E000BCDD79 /* CoreDataStack.swift */,
+				74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */,
 				7415CB731B8BCC9B008FB09B /* LearnKit.h */,
 				74D22E4C1B8B70BC0097D5BC /* Keys.plist */,
 				7415CB751B8BCC9B008FB09B /* Info.plist */,
@@ -248,8 +250,8 @@
 			isa = PBXGroup;
 			children = (
 				7415CB8F1B8BCD97008FB09B /* Share.entitlements */,
-				7469F2321B8CD62F00AB3A7C /* TopicConfigTableViewController.swift */,
 				742D30231B8A4AEE002B8028 /* ShareViewController.swift */,
+				7469F23A1B8D130800AB3A7C /* TopicShareCollectionViewCell.swift */,
 				742D30251B8A4AEE002B8028 /* MainInterface.storyboard */,
 				742D30281B8A4AEE002B8028 /* Info.plist */,
 			);
@@ -262,8 +264,6 @@
 				7415CB671B8BA764008FB09B /* KeychainAccess.framework */,
 				74B7634C1B86AA97001140F5 /* Argo.framework */,
 				74D2931C1B869A910037EBA9 /* Alamofire.framework */,
-				74C6E6521B866F8E0013B1BD /* ArticlesView */,
-				74C6E6511B866F760013B1BD /* TopicsView */,
 				74418D111B83DD1500BCDD79 /* Learn */,
 				74418D261B83DD1500BCDD79 /* LearnTests */,
 				74418D311B83DD1500BCDD79 /* LearnUITests */,
@@ -290,9 +290,10 @@
 		74418D111B83DD1500BCDD79 /* Learn */ = {
 			isa = PBXGroup;
 			children = (
+				74C6E6521B866F8E0013B1BD /* ArticlesView */,
+				74C6E6511B866F760013B1BD /* TopicsView */,
 				74D22E531B8BA2630097D5BC /* Learn.entitlements */,
 				74418D121B83DD1500BCDD79 /* AppDelegate.swift */,
-				74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */,
 				74418D161B83DD1500BCDD79 /* Main.storyboard */,
 				74418D191B83DD1500BCDD79 /* Assets.xcassets */,
 				74418D1B1B83DD1500BCDD79 /* LaunchScreen.storyboard */,
@@ -338,6 +339,7 @@
 				74C6E64D1B863C9D0013B1BD /* TopicCollectionViewController.swift */,
 			);
 			name = TopicsView;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		74C6E6521B866F8E0013B1BD /* ArticlesView */ = {
@@ -348,6 +350,7 @@
 				74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */,
 			);
 			name = ArticlesView;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -572,6 +575,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7469F2381B8D0C7C00AB3A7C /* Assets.xcassets in Resources */,
 				742D30271B8A4AEE002B8028 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -644,6 +648,7 @@
 			files = (
 				7469F2311B8CC3FE00AB3A7C /* KeychainAccess+LearnAdditions.swift in Sources */,
 				7469F22C1B8CC21500AB3A7C /* PocketAPI.swift in Sources */,
+				7469F2391B8D0FF900AB3A7C /* FetchedResultsCollectionDataSource.swift in Sources */,
 				7415CB951B8BCF32008FB09B /* CoreDataStack.swift in Sources */,
 				7415CB901B8BCE34008FB09B /* LearnModel.xcdatamodeld in Sources */,
 				7415CB931B8BCF14008FB09B /* LearnItemTypeEnum.swift in Sources */,
@@ -666,7 +671,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				742D30241B8A4AEE002B8028 /* ShareViewController.swift in Sources */,
-				7469F2341B8CD79B00AB3A7C /* TopicConfigTableViewController.swift in Sources */,
+				7469F23B1B8D130800AB3A7C /* TopicShareCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -681,7 +686,6 @@
 				74C6E6541B8670CD0013B1BD /* ArticlesCollectionViewController.swift in Sources */,
 				74C6E6561B86711D0013B1BD /* ArticleCollectionViewCell.swift in Sources */,
 				74418D131B83DD1500BCDD79 /* AppDelegate.swift in Sources */,
-				74C6E64C1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

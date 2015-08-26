@@ -11,9 +11,16 @@ import CoreData
 
 public final class Topic: ManagedObject {
     @NSManaged public var name: String
+    @NSManaged public var icon: String
     @NSManaged public var parent: Topic?
     @NSManaged public var childTopics: NSOrderedSet? //<Topic>
     @NSManaged public var learnItems: NSOrderedSet? //<LearnItem>
+
+    public var iconAndName: String {
+        get {
+            return "\(icon) \(name)"
+        }
+    }
 }
 
 extension Topic: ManagedObjectType {

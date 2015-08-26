@@ -11,13 +11,15 @@ import LearnKit
 
 class TopicCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var topicNameLabel: UILabel!
+    @IBOutlet weak var iconLabel: UILabel!
     
     var topic: Topic? {
         didSet {
-            guard let topicNameLabel = topicNameLabel else {
+            guard let topicNameLabel = topicNameLabel, iconLabel = iconLabel else {
                 return
             }
             topicNameLabel.text = topic?.name
+            iconLabel.text = topic?.icon
         }
     }
 }
