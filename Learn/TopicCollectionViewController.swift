@@ -15,7 +15,7 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
     var managedObjectContext: NSManagedObjectContext!
     var pocketAPI: PocketAPI!
     var dataSource: UICollectionViewDataSource?
-    var selectedIndexPath: NSIndexPath?
+    var indexPathForMenuController: NSIndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +23,17 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
         let request = Topic.sortedFetchRequest
         request.fetchBatchSize = 20
         let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        dataSource = FetchedResultsCollectionDataSource(collectionView: collectionView!, fetchedResultsController: frc, delegate: self)
+        dataSource = AddableFetchedResultsCollectionDataSource(collectionView: collectionView!, fetchedResultsController: frc, delegate: self)
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard let cell = dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? TopicCollectionViewCell,
-            topic = cell.topic else { return }
-        if let topics = topic.childTopics where topics.count > 0 {
-            // Sub topics exists
+        guard let cell = dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? TopicCollectionViewCell
+        else { return }
+
+        if cell.addableCell {
+            performSegueWithIdentifier(SegueIdentifier.ShowCreateTopic.rawValue, sender: nil)
         } else {
+            guard let topic = cell.topic else { return }
             performSegueWithIdentifier(SegueIdentifier.ShowArticles.rawValue, sender: topic)
         }
     }
@@ -46,6 +48,10 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
             guard let nc = segue.destinationViewController as? UINavigationController,
                 vc = nc.viewControllers.first as? CreateTopicViewController
             else { fatalError("Unexpected view controller for \(identifier) segue") }
+            
+            if let topic = sender as? Topic {
+                vc.topic = topic
+            }
             
             vc.managedObjectContext = managedObjectContext
         case .ShowArticles:
@@ -69,12 +75,13 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
             cell = collectionView?.cellForItemAtIndexPath(indexPath)
         else { return }
         
-        selectedIndexPath = indexPath
+        indexPathForMenuController = indexPath
         
-        let menuItem = UIMenuItem(title: "Delete", action: "deleteTopic:")
+        let editMenuItem = UIMenuItem(title: "Edit", action: "editTopic:")
+        let deleteMenuItem = UIMenuItem(title: "Delete", action: "deleteTopic:")
         
         let mc = UIMenuController.sharedMenuController()
-        mc.menuItems = [menuItem]
+        mc.menuItems = [editMenuItem, deleteMenuItem]
         mc.setTargetRect(cell.bounds, inView: cell)
         mc.setMenuVisible(true, animated: false)
     }
@@ -84,33 +91,51 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
     }
     
     override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
-        if action == "deleteTopic:" {
+        if action == "deleteTopic:" || action == "editTopic:" {
             return true
         }
         return super.canPerformAction(action, withSender: sender)
     }
     
+    func editTopic(sender: AnyObject?) {
+        guard let indexPath = indexPathForMenuController,
+            cv = collectionView,
+            cell = dataSource?.collectionView(cv, cellForItemAtIndexPath: indexPath) as? TopicCollectionViewCell,
+            topic = cell.topic else { return }
+        
+        performSegueWithIdentifier(SegueIdentifier.ShowCreateTopic.rawValue, sender: topic)
+    }
+    
     func deleteTopic(sender: AnyObject?) {
-        guard let indexPath = selectedIndexPath,
+        guard let indexPath = indexPathForMenuController,
             cv = collectionView,
             cell = dataSource?.collectionView(cv, cellForItemAtIndexPath: indexPath) as? TopicCollectionViewCell,
             topic = cell.topic else { return }
         managedObjectContext.performChanges {
             self.managedObjectContext.deleteObject(topic)
         }
-        selectedIndexPath = nil
+        indexPathForMenuController = nil
     }
 }
 
-extension TopicCollectionViewController: FetchedResultsCollectionDataSourceDelegate {
+extension TopicCollectionViewController: AddableFetchedResultsCollectionDataSourceDelegate {
     typealias Cell = TopicCollectionViewCell
     typealias Object = Topic
+    typealias AddableCell = TopicCollectionViewCell
 
     func cellIdentifierForObject(object: Object) -> String {
         return "TopicCollectionCell"
     }
     
+    func cellIdentifierForAddable() -> String {
+        return "TopicCollectionCell"
+    }
+    
     func configureCell(cell: Cell, object: Object) {
         cell.topic = object
+    }
+    
+    func configureAddableCell(cell: AddableCell) {
+        cell.addableCell = true
     }
 }

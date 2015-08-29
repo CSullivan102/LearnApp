@@ -39,6 +39,7 @@
 		7469F2381B8D0C7C00AB3A7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74418D191B83DD1500BCDD79 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
 		7469F2391B8D0FF900AB3A7C /* FetchedResultsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		7469F23B1B8D130800AB3A7C /* TopicShareCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7469F23A1B8D130800AB3A7C /* TopicShareCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		74A41DCC1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		74B7634D1B86AA97001140F5 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B7634C1B86AA97001140F5 /* Argo.framework */; };
 		74B7634E1B86AB0A001140F5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D2931C1B869A910037EBA9 /* Alamofire.framework */; };
 		74C6E64E1B863C9D0013B1BD /* TopicCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64D1B863C9D0013B1BD /* TopicCollectionViewController.swift */; };
@@ -150,6 +151,7 @@
 		74418D481B83E2E000BCDD79 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = ../Learn/CoreDataStack.swift; sourceTree = "<group>"; };
 		74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateTopicViewController.swift; path = Learn/CreateTopicViewController.swift; sourceTree = "<group>"; };
 		7469F23A1B8D130800AB3A7C /* TopicShareCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicShareCollectionViewCell.swift; sourceTree = "<group>"; };
+		74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddableFetchedResultsCollectionDataSource.swift; sourceTree = "<group>"; };
 		74B7634C1B86AA97001140F5 /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
 		74C6E6491B862F7C0013B1BD /* LearnItemTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LearnItemTypeEnum.swift; path = Learn/LearnItemTypeEnum.swift; sourceTree = "<group>"; };
 		74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchedResultsCollectionDataSource.swift; path = ../Learn/FetchedResultsCollectionDataSource.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				74D2931A1B86999D0037EBA9 /* PocketAPI.swift */,
 				74418D481B83E2E000BCDD79 /* CoreDataStack.swift */,
 				74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */,
+				74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */,
 				7415CB731B8BCC9B008FB09B /* LearnKit.h */,
 				74D22E4C1B8B70BC0097D5BC /* Keys.plist */,
 				7415CB751B8BCC9B008FB09B /* Info.plist */,
@@ -653,6 +656,7 @@
 				7415CB901B8BCE34008FB09B /* LearnModel.xcdatamodeld in Sources */,
 				7415CB931B8BCF14008FB09B /* LearnItemTypeEnum.swift in Sources */,
 				7415CB921B8BCF10008FB09B /* Topic.swift in Sources */,
+				74A41DCC1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift in Sources */,
 				7469F22B1B8CC21100AB3A7C /* PocketAPISettable.swift in Sources */,
 				7415CB941B8BCF18008FB09B /* LearnItem.swift in Sources */,
 			);

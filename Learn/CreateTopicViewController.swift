@@ -13,16 +13,29 @@ import LearnKit
 class CreateTopicViewController: UIViewController, ManagedObjectContextSettable, UITextFieldDelegate {
     var managedObjectContext: NSManagedObjectContext!
     
+    var topic: Topic?
+    
     let maxEmojiTextLength = 1
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var emojiTextField: UITextField!
+    @IBOutlet weak var doneBarButtonItem: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         nameTextField.becomeFirstResponder()
         emojiTextField.delegate = self
+        
+        if let topic = topic {
+            nameTextField.text = topic.name
+            emojiTextField.text = topic.icon
+            doneBarButtonItem.title = "Save"
+            self.navigationItem.title = "Edit Topic"
+        } else {
+            doneBarButtonItem.title = "Create"
+            self.navigationItem.title = "Create Topic"
+        }
     }
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
@@ -78,9 +91,14 @@ class CreateTopicViewController: UIViewController, ManagedObjectContextSettable,
             let emojiValue = emojiTextField?.text where emojiValue.characters.count > 0
         else { return }
         managedObjectContext.performChanges {
-            let topic: Topic = self.managedObjectContext.insertObject()
-            topic.name = nameValue
-            topic.icon = emojiValue
+            if let topic = self.topic {
+                topic.name = nameValue
+                topic.icon = emojiValue
+            } else {
+                let newTopic: Topic = self.managedObjectContext.insertObject()
+                newTopic.name = nameValue
+                newTopic.icon = emojiValue
+            }
         }
     }
     

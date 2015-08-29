@@ -66,6 +66,27 @@ class ShareViewController: UIViewController, UICollectionViewDelegate, PocketAut
         collectionView.delegate = self
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        shareModalView.transform = CGAffineTransformMakeTranslation(0, self.view.bounds.height)
+        
+        let initialAlphaVal = backdropView.alpha
+        backdropView.alpha = 0.0
+        
+        view.layoutIfNeeded()
+        UIView.animateWithDuration(0.5,
+            delay: 0.0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0,
+            options: UIViewAnimationOptions.CurveEaseOut,
+            animations: { () -> Void in
+                self.shareModalView.transform = CGAffineTransformIdentity
+                self.view.layoutIfNeeded()
+                self.backdropView.alpha = initialAlphaVal
+            }, completion: nil)
+    }
+    
     @IBAction func chooseTopicButtonPressed(sender: UIButton) {
         setCollectionViewHeight(175.0)
     }

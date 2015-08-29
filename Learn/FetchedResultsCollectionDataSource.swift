@@ -12,10 +12,10 @@ import CoreData
 
 public class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataSourceDelegate>: NSObject, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
     private let fetchedResultsController: NSFetchedResultsController
-    private let collectionView: UICollectionView
-    private let delegate: D
+    let collectionView: UICollectionView
+    let delegate: D
     
-    public init(collectionView: UICollectionView, fetchedResultsController: NSFetchedResultsController, delegate: D) {
+    public required init(collectionView: UICollectionView, fetchedResultsController: NSFetchedResultsController, delegate: D) {
         self.collectionView = collectionView
         self.fetchedResultsController = fetchedResultsController
         self.delegate = delegate
