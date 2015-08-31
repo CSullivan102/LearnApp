@@ -8,20 +8,19 @@
 
 import UIKit
 import CoreData
-import LearnKit
 
-class CreateTopicViewController: UIViewController, ManagedObjectContextSettable, UITextFieldDelegate {
-    var managedObjectContext: NSManagedObjectContext!
+public class CreateTopicViewController: UIViewController, ManagedObjectContextSettable, UITextFieldDelegate {
+    public var managedObjectContext: NSManagedObjectContext!
     
-    var topic: Topic?
+    public var topic: Topic?
     
     let maxEmojiTextLength = 1
     
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var emojiTextField: UITextField!
-    @IBOutlet weak var doneBarButtonItem: UIBarButtonItem!
+    @IBOutlet public weak var nameTextField: UITextField!
+    @IBOutlet public weak var emojiTextField: UITextField!
+    @IBOutlet public weak var doneButton: UIButton!
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         nameTextField.becomeFirstResponder()
@@ -30,15 +29,13 @@ class CreateTopicViewController: UIViewController, ManagedObjectContextSettable,
         if let topic = topic {
             nameTextField.text = topic.name
             emojiTextField.text = topic.icon
-            doneBarButtonItem.title = "Save"
-            self.navigationItem.title = "Edit Topic"
+            doneButton.titleLabel?.text = "Save"
         } else {
-            doneBarButtonItem.title = "Create"
-            self.navigationItem.title = "Create Topic"
+            doneButton.titleLabel?.text = "Create"
         }
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let newLength = stringLength(textField.text) + stringLength(string) - range.length
         
         if newLength > maxEmojiTextLength {
@@ -77,12 +74,13 @@ class CreateTopicViewController: UIViewController, ManagedObjectContextSettable,
         return true
     }
     
-    @IBAction func create(sender: UIBarButtonItem) {
+    @IBAction public func createTopic(sender: UIButton) {
         createTopic()
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+
     }
     
-    @IBAction func cancel(sender: UIBarButtonItem) {
+    @IBAction public func cancel(sender: UIButton) {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     

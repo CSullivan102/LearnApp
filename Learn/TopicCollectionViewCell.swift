@@ -7,27 +7,23 @@
 //
 
 import UIKit
-import LearnKit
 
-class TopicCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var topicNameLabel: UILabel!
-    @IBOutlet weak var iconLabel: UILabel!
-    @IBOutlet weak var iconBackgroundView: UIView!
+public class TopicCollectionViewCell: UICollectionViewCell {
     
-    var topic: Topic? {
+    @IBOutlet public weak var iconLabel: UILabel!
+    @IBOutlet public weak var iconBackgroundView: UIView!
+    
+    public var topic: Topic? {
         didSet {
-            guard let topicNameLabel = topicNameLabel, iconLabel = iconLabel else {
-                return
-            }
-            topicNameLabel.text = topic?.name
+            guard let iconLabel = iconLabel
+            else { return }
             iconLabel.text = topic?.icon
         }
     }
     
-    var addableCell = false {
+    public var addableCell = false {
         didSet {
             if addableCell {
-                topicNameLabel.text = nil
                 iconLabel.text = nil
                 guard let emojiHightlightColor = iconBackgroundView.backgroundColor else { return }
                 let bgBounds = iconBackgroundView.bounds
@@ -56,6 +52,24 @@ class TopicCollectionViewCell: UICollectionViewCell {
                 iconBackgroundView.layer.addSublayer(dashedBorder)
                 iconBackgroundView.layer.addSublayer(plusLayer)
             }
+        }
+    }
+    
+    override public func prepareForReuse() {
+        topic = nil
+        addableCell = false
+    }
+}
+
+public class LabeledTopicCollectionViewCell: TopicCollectionViewCell {
+    @IBOutlet weak var topicNameLabel: UILabel!
+    
+    override public var topic: Topic? {
+        didSet {
+            guard let topicNameLabel = topicNameLabel
+            else { return }
+
+            topicNameLabel.text = topic?.name
         }
     }
 }

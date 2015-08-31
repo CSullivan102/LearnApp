@@ -83,13 +83,26 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopicShareCell" id="w3u-wm-H1H" customClass="TopicShareCollectionViewCell" customModule="Share" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopicShareCell" id="w3u-wm-H1H" customClass="TopicCollectionViewCell" customModule="LearnKit">
                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ygt-bD-oUL">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                            <color key="backgroundColor" red="0.25882352939999997" green="0.83529411760000005" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="50" id="teO-X4-GZD"/>
+                                                                <constraint firstAttribute="height" constant="50" id="vQ2-Zc-Z6A"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="25"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🙈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNx-Xu-kj1">
                                                             <rect key="frame" x="13" y="11" width="25" height="29"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -99,18 +112,16 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </view>
-                                                <color key="backgroundColor" red="0.25882352941176467" green="0.83529411764705885" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
+                                                    <constraint firstItem="Ygt-bD-oUL" firstAttribute="centerX" secondItem="w3u-wm-H1H" secondAttribute="centerX" id="00Z-2n-hNo"/>
                                                     <constraint firstItem="WNx-Xu-kj1" firstAttribute="centerY" secondItem="w3u-wm-H1H" secondAttribute="centerY" id="Ur1-so-YHE"/>
                                                     <constraint firstItem="WNx-Xu-kj1" firstAttribute="centerX" secondItem="w3u-wm-H1H" secondAttribute="centerX" id="tpN-Bc-5f9"/>
+                                                    <constraint firstItem="Ygt-bD-oUL" firstAttribute="top" secondItem="w3u-wm-H1H" secondAttribute="top" id="uiT-ka-67D"/>
                                                 </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                        <integer key="value" value="25"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <outlet property="titleLabel" destination="WNx-Xu-kj1" id="9wm-KT-dSe"/>
+                                                    <outlet property="iconBackgroundView" destination="Ygt-bD-oUL" id="ALv-Ma-UNi"/>
+                                                    <outlet property="iconLabel" destination="WNx-Xu-kj1" id="f7Q-WQ-QTe"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>

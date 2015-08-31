@@ -61,7 +61,7 @@ class ShareViewController: UIViewController, UICollectionViewDelegate, PocketAut
         let request = Topic.sortedFetchRequest
         request.fetchBatchSize = 20
         let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
-        dataSource = FetchedResultsCollectionDataSource(collectionView: collectionView, fetchedResultsController: frc, delegate: self)
+        dataSource = AddableFetchedResultsCollectionDataSource(collectionView: collectionView, fetchedResultsController: frc, delegate: self)
         collectionView.dataSource = dataSource
         collectionView.delegate = self
     }
@@ -105,7 +105,7 @@ class ShareViewController: UIViewController, UICollectionViewDelegate, PocketAut
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard let cell = dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? TopicShareCollectionViewCell,
+        guard let cell = dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? Cell,
             topic = cell.topic
         else { return }
         
@@ -168,15 +168,24 @@ class ShareViewController: UIViewController, UICollectionViewDelegate, PocketAut
     }
 }
 
-extension ShareViewController: FetchedResultsCollectionDataSourceDelegate {
-    typealias Cell = TopicShareCollectionViewCell
+extension ShareViewController: AddableFetchedResultsCollectionDataSourceDelegate {
+    typealias Cell = TopicCollectionViewCell
     typealias Object = Topic
+    typealias AddableCell = TopicCollectionViewCell
     
     func cellIdentifierForObject(object: Object) -> String {
         return "TopicShareCell"
     }
     
+    func cellIdentifierForAddable() -> String {
+        return "TopicShareCell"
+    }
+    
     func configureCell(cell: Cell, object: Object) {
         cell.topic = object
+    }
+    
+    func configureAddableCell(cell: AddableCell) {
+        cell.addableCell = true
     }
 }

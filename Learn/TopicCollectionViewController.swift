@@ -17,6 +17,8 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
     var dataSource: UICollectionViewDataSource?
     var indexPathForMenuController: NSIndexPath?
     
+    let createTopicTransitioningDelegate = CreateTopicTransitioningDelegate()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +29,7 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard let cell = dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? TopicCollectionViewCell
+        guard let cell = dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? Cell
         else { return }
 
         if cell.addableCell {
@@ -45,15 +47,17 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
         
         switch segueIdentifier {
         case .ShowCreateTopic:
-            guard let nc = segue.destinationViewController as? UINavigationController,
-                vc = nc.viewControllers.first as? CreateTopicViewController
+            guard let vc = segue.destinationViewController as? CreateTopicViewController
             else { fatalError("Unexpected view controller for \(identifier) segue") }
             
             if let topic = sender as? Topic {
                 vc.topic = topic
             }
-            
+
             vc.managedObjectContext = managedObjectContext
+            
+            vc.transitioningDelegate = createTopicTransitioningDelegate
+            vc.modalPresentationStyle = .Custom
         case .ShowArticles:
             guard let vc = segue.destinationViewController as? ArticlesCollectionViewController
             else { fatalError("Unexpected view controller for \(identifier) segue") }
@@ -100,7 +104,7 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
     func editTopic(sender: AnyObject?) {
         guard let indexPath = indexPathForMenuController,
             cv = collectionView,
-            cell = dataSource?.collectionView(cv, cellForItemAtIndexPath: indexPath) as? TopicCollectionViewCell,
+            cell = dataSource?.collectionView(cv, cellForItemAtIndexPath: indexPath) as? Cell,
             topic = cell.topic else { return }
         
         performSegueWithIdentifier(SegueIdentifier.ShowCreateTopic.rawValue, sender: topic)
@@ -109,7 +113,7 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
     func deleteTopic(sender: AnyObject?) {
         guard let indexPath = indexPathForMenuController,
             cv = collectionView,
-            cell = dataSource?.collectionView(cv, cellForItemAtIndexPath: indexPath) as? TopicCollectionViewCell,
+            cell = dataSource?.collectionView(cv, cellForItemAtIndexPath: indexPath) as? Cell,
             topic = cell.topic else { return }
         managedObjectContext.performChanges {
             self.managedObjectContext.deleteObject(topic)
@@ -119,9 +123,9 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
 }
 
 extension TopicCollectionViewController: AddableFetchedResultsCollectionDataSourceDelegate {
-    typealias Cell = TopicCollectionViewCell
+    typealias Cell = LabeledTopicCollectionViewCell
     typealias Object = Topic
-    typealias AddableCell = TopicCollectionViewCell
+    typealias AddableCell = LabeledTopicCollectionViewCell
 
     func cellIdentifierForObject(object: Object) -> String {
         return "TopicCollectionCell"
