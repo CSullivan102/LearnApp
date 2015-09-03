@@ -35,7 +35,8 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
         if cell.addableCell {
             performSegueWithIdentifier(SegueIdentifier.ShowCreateTopic.rawValue, sender: nil)
         } else {
-            guard let topic = cell.topic else { return }
+            guard let topic = cell.topic
+            else { return }
             performSegueWithIdentifier(SegueIdentifier.ShowArticles.rawValue, sender: topic)
         }
     }
@@ -68,16 +69,16 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
         }
     }
     
-    enum SegueIdentifier: String {
-        case ShowCreateTopic = "ShowCreateTopic"
-        case ShowArticles = "ShowArticles"
-    }
-    
     @IBAction func handleLongPress(sender: UILongPressGestureRecognizer) {
-        guard sender.state == .Began else { return }
-        guard let indexPath = collectionView?.indexPathForItemAtPoint(sender.locationInView(collectionView)),
-            cell = collectionView?.cellForItemAtIndexPath(indexPath)
+        guard sender.state == .Began
         else { return }
+        guard let indexPath = collectionView?.indexPathForItemAtPoint(sender.locationInView(collectionView)),
+            cell = collectionView?.cellForItemAtIndexPath(indexPath) as? Cell
+        else { return }
+        
+        if cell.addableCell {
+            return
+        }
         
         indexPathForMenuController = indexPath
         
@@ -119,6 +120,11 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
             self.managedObjectContext.deleteObject(topic)
         }
         indexPathForMenuController = nil
+    }
+    
+    enum SegueIdentifier: String {
+        case ShowCreateTopic = "ShowCreateTopic"
+        case ShowArticles = "ShowArticles"
     }
 }
 

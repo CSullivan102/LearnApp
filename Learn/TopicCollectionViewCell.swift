@@ -13,6 +13,10 @@ public class TopicCollectionViewCell: UICollectionViewCell {
     @IBOutlet public weak var iconLabel: UILabel!
     @IBOutlet public weak var iconBackgroundView: UIView!
     
+    private var dashedBorder: CAShapeLayer?
+    private var plusLayer: CAShapeLayer?
+    private var originalColor = UIColor(red: 66, green: 213, blue: 81, alpha: 1)
+    
     public var topic: Topic? {
         didSet {
             guard let iconLabel = iconLabel
@@ -27,13 +31,17 @@ public class TopicCollectionViewCell: UICollectionViewCell {
                 iconLabel.text = nil
                 guard let emojiHightlightColor = iconBackgroundView.backgroundColor else { return }
                 let bgBounds = iconBackgroundView.bounds
-                let dashedBorder = CAShapeLayer()
                 let borderBounds = CGRect(x: bgBounds.origin.x + 1, y: bgBounds.origin.y + 1, width: bgBounds.width - 2, height: bgBounds.height - 2)
-                dashedBorder.path = UIBezierPath(roundedRect: borderBounds, cornerRadius: iconBackgroundView.layer.cornerRadius - 1).CGPath
-                dashedBorder.fillColor = UIColor.clearColor().CGColor
-                dashedBorder.strokeColor = emojiHightlightColor.CGColor
-                dashedBorder.lineWidth = 2.0
-                dashedBorder.lineDashPattern = [5, 3]
+                
+                dashedBorder = CAShapeLayer()
+                guard let dashed = dashedBorder
+                else { return }
+            
+                dashed.path = UIBezierPath(roundedRect: borderBounds, cornerRadius: iconBackgroundView.layer.cornerRadius - 1).CGPath
+                dashed.fillColor = UIColor.clearColor().CGColor
+                dashed.strokeColor = emojiHightlightColor.CGColor
+                dashed.lineWidth = 2.0
+                dashed.lineDashPattern = [5, 3]
                 
                 let plusLength = bgBounds.width * 0.4
                 let plusPath = UIBezierPath()
@@ -42,22 +50,32 @@ public class TopicCollectionViewCell: UICollectionViewCell {
                 plusPath.moveToPoint(CGPoint(x: bgBounds.width / 2, y: bgBounds.height / 2 - plusLength / 2))
                 plusPath.addLineToPoint(CGPoint(x: bgBounds.width / 2, y: bgBounds.height / 2 + plusLength / 2))
                 
-                let plusLayer = CAShapeLayer()
-                plusLayer.path = plusPath.CGPath
-                plusLayer.fillColor = UIColor.clearColor().CGColor
-                plusLayer.strokeColor = emojiHightlightColor.CGColor
-                plusLayer.lineWidth = 2.0
+                plusLayer = CAShapeLayer()
+                guard let plus = plusLayer
+                else { return }
+                
+                plus.path = plusPath.CGPath
+                plus.fillColor = UIColor.clearColor().CGColor
+                plus.strokeColor = emojiHightlightColor.CGColor
+                plus.lineWidth = 2.0
                 
                 iconBackgroundView.backgroundColor = UIColor.clearColor()
-                iconBackgroundView.layer.addSublayer(dashedBorder)
-                iconBackgroundView.layer.addSublayer(plusLayer)
+                iconBackgroundView.layer.addSublayer(dashed)
+                iconBackgroundView.layer.addSublayer(plus)
             }
         }
     }
     
     override public func prepareForReuse() {
+        super.prepareForReuse()
         topic = nil
         addableCell = false
+        dashedBorder?.removeFromSuperlayer()
+        plusLayer?.removeFromSuperlayer()
+        if iconBackgroundView != nil {
+            print("resetting background color")
+//            iconBackgroundView.backgroundColor = originalColor
+        }
     }
 }
 

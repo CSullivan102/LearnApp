@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateTopicAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+public class CreateTopicAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     private let duration: NSTimeInterval = 0.6
     private let damping: CGFloat = 0.9
@@ -16,11 +16,11 @@ class CreateTopicAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     private let delay: NSTimeInterval = 0.0
     private let animationOptions = UIViewAnimationOptions.CurveEaseOut
     
-    func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
+    public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
         return duration
     }
     
-    func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         guard let presentedView = transitionContext.viewForKey(UITransitionContextToViewKey)
         else { return }
         
@@ -47,9 +47,9 @@ class CreateTopicAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     }
 }
 
-class CreateTopicDismissalAnimator: CreateTopicAnimator {
+public class CreateTopicDismissalAnimator: CreateTopicAnimator {
     
-    override func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
+    override public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         guard let presentedView = transitionContext.viewForKey(UITransitionContextFromViewKey)
         else { return }
         

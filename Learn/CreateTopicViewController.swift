@@ -77,7 +77,6 @@ public class CreateTopicViewController: UIViewController, ManagedObjectContextSe
     @IBAction public func createTopic(sender: UIButton) {
         createTopic()
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-
     }
     
     @IBAction public func cancel(sender: UIButton) {
