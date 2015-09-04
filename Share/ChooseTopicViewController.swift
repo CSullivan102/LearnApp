@@ -12,6 +12,7 @@ import CoreData
 
 protocol ChooseTopicDelegate {
     func dismissChooseTopicController()
+    func getExtensionContextInfo(completion: (NSURL?, String?) -> Void)
 }
 
 class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, ManagedObjectContextSettable, UIViewControllerHeightRequestable {
@@ -35,7 +36,7 @@ class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, Man
         }
     }
     
-    let createTopicTransitioningDelegate = CreateTopicSlidingTransitioningDelegate()
+    let createTopicTransitioningDelegate = SmallModalTransitioningDelegate()
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -46,10 +47,13 @@ class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, Man
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        titleTextField.text = itemTitle
-        
-        collectionView.delegate = self
-        
+        delegate?.getExtensionContextInfo() {
+            url, itemTitle in
+            self.shareURL = url
+            self.itemTitle = itemTitle
+            self.titleTextField.text = itemTitle
+        }
+
         collectionViewHeightConstraint.constant = 0.0
         
         let request = Topic.sortedFetchRequest
@@ -81,7 +85,7 @@ class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, Man
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let identifier = segue.identifier,
             segueIdentifier = SegueIdentifier(rawValue: identifier)
-            else { fatalError("Invalid segue identifier \(segue.identifier)") }
+        else { fatalError("Invalid segue identifier \(segue.identifier)") }
         
         switch segueIdentifier {
         case .ShowCreateTopic:
@@ -91,6 +95,7 @@ class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, Man
             vc.managedObjectContext = managedObjectContext
             vc.transitioningDelegate = createTopicTransitioningDelegate
             vc.modalPresentationStyle = .Custom
+            vc.createTopicDelegate = self
         }
     }
     
@@ -151,9 +156,9 @@ class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, Man
     }
 }
 
-extension ChooseTopicViewController: SlidingTransitionViewController {
-    func slidingViewForTransition() -> UIView {
-        return chooseTopicContainerView
+extension ChooseTopicViewController: CreateTopicDelegate {
+    func didCreateTopic(topic: Topic) {
+        selectedTopic = topic
     }
 }
 

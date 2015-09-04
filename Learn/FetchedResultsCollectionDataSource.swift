@@ -28,6 +28,11 @@ public class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataS
         collectionView.reloadData()
     }
     
+    public func refreshData() {
+        try! fetchedResultsController.performFetch()
+        collectionView.reloadData()
+    }
+    
     //MARK: NSFetchedResultsControllerDelegate
     
     public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {

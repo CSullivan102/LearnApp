@@ -6,10 +6,10 @@
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--Share View Controller-->
+        <!--Share Presentation View Controller-->
         <scene sceneID="ceB-am-kn3">
             <objects>
-                <viewController id="j1y-V4-xli" customClass="ShareViewController" customModule="Share" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="j1y-V4-xli" customClass="SharePresentationViewController" customModule="Share" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8bI-gs-bmD"/>
                         <viewControllerLayoutGuide type="bottom" id="d5i-Ba-RvD"/>
@@ -182,6 +182,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xHp-F2-TMJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="j5t-69-dvE" customClass="SmallModalTransitioningDelegate" customModule="LearnKit"/>
             </objects>
             <point key="canvasLocation" x="1236" y="97"/>
         </scene>

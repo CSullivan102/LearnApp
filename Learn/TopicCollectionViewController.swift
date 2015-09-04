@@ -16,16 +16,35 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
     var pocketAPI: PocketAPI!
     var dataSource: UICollectionViewDataSource?
     var indexPathForMenuController: NSIndexPath?
+    var frc: NSFetchedResultsController?
+    var notif: NSObjectProtocol?
     
-    let createTopicTransitioningDelegate = CreateTopicTransitioningDelegate()
+    let createTopicTransitioningDelegate = SmallModalTransitioningDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let request = Topic.sortedFetchRequest
         request.fetchBatchSize = 20
-        let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        dataSource = AddableFetchedResultsCollectionDataSource(collectionView: collectionView!, fetchedResultsController: frc, delegate: self)
+        frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        dataSource = AddableFetchedResultsCollectionDataSource(collectionView: collectionView!, fetchedResultsController: frc!, delegate: self)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        notif = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: nil) {
+            [unowned self] (_) -> Void in
+            if let dataSource = self.dataSource as? FetchedResultsCollectionDataSource<TopicCollectionViewController> {
+                dataSource.refreshData()
+            }
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let notif = notif
+        else { return }
+        NSNotificationCenter.defaultCenter().removeObserver(notif)
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

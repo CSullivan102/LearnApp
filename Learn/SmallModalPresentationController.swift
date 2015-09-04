@@ -1,5 +1,5 @@
 //
-//  CreateTopicPresentationController.swift
+//  SmallModalPresentationController.swift
 //  Learn
 //
 //  Created by Christopher Sullivan on 8/31/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CreateTopicPresentationController: UIPresentationController {
+public class SmallModalPresentationController: UIPresentationController {
     
     private let dimmingView = UIView()
     

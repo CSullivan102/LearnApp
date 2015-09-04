@@ -17,6 +17,7 @@ class ArticlesCollectionViewController: UICollectionViewController, ManagedObjec
     var dataSource: UICollectionViewDataSource?
     var topic: Topic?
     var selectedIndexPath: NSIndexPath?
+    var notif: NSObjectProtocol?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,23 @@ class ArticlesCollectionViewController: UICollectionViewController, ManagedObjec
         request.predicate = NSPredicate(format: "topic = %@", topic)
         let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         dataSource = FetchedResultsCollectionDataSource(collectionView: collectionView!, fetchedResultsController: frc, delegate: self)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        notif = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: nil) {
+            [unowned self] (_) -> Void in
+            if let dataSource = self.dataSource as? FetchedResultsCollectionDataSource<ArticlesCollectionViewController> {
+                dataSource.refreshData()
+            }
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let notif = notif
+            else { return }
+        NSNotificationCenter.defaultCenter().removeObserver(notif)
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

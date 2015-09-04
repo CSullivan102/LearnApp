@@ -1,5 +1,5 @@
 //
-//  APISettable.swift
+//  PocketAPISettable.swift
 //  Learn
 //
 //  Created by Christopher Sullivan on 8/20/15.

@@ -1,5 +1,5 @@
 //
-//  CreateTopicTransitioningDelegate.swift
+//  SmallModalTransitioningDelegate.swift
 //  Learn
 //
 //  Created by Christopher Sullivan on 8/31/15.
@@ -8,17 +8,17 @@
 
 import UIKit
 
-public class CreateTopicTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
+public class SmallModalTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
     
     public func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
-        return CreateTopicPresentationController(presentedViewController: presented, presentingViewController: presenting)
+        return SmallModalPresentationController(presentedViewController: presented, presentingViewController: presenting)
     }
     
     public func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CreateTopicAnimator()
+        return SmallModalAnimator()
     }
     
     public func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CreateTopicDismissalAnimator()
+        return SmallModalDismissalAnimator()
     }
 }

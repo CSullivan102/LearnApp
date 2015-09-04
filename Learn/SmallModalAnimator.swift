@@ -1,5 +1,5 @@
 //
-//  CreateTopicAnimator.swift
+//  SmallModalAnimator.swift
 //  Learn
 //
 //  Created by Christopher Sullivan on 8/31/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class CreateTopicAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+public class SmallModalAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     private let duration: NSTimeInterval = 0.6
     private let damping: CGFloat = 0.9
@@ -47,7 +47,7 @@ public class CreateTopicAnimator: NSObject, UIViewControllerAnimatedTransitionin
     }
 }
 
-public class CreateTopicDismissalAnimator: CreateTopicAnimator {
+public class SmallModalDismissalAnimator: SmallModalAnimator {
     
     override public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         guard let presentedView = transitionContext.viewForKey(UITransitionContextFromViewKey)

@@ -1,5 +1,5 @@
 //
-//  ShareViewController.swift
+//  SharePresentationViewController.swift
 //  Share
 //
 //  Created by Christopher Sullivan on 8/23/15.
@@ -7,35 +7,20 @@
 //
 
 import UIKit
-import Social
-import MobileCoreServices
 import LearnKit
+import MobileCoreServices
 import CoreData
 
-class ShareViewController: UIViewController, ChooseTopicDelegate {
+class SharePresentationViewController: UIViewController, ChooseTopicDelegate {
     var managedObjectContext: NSManagedObjectContext?
-    var shareURL: NSURL?
-    var itemTitle: String?
-    let createTopicTransitionDelegate = CreateTopicTransitioningDelegate()
+    let createTopicTransitionDelegate = SmallModalTransitioningDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let item = self.extensionContext?.inputItems.first as? NSExtensionItem,
-            attachment = item.attachments?.first as? NSItemProvider
-            else { return }
-        
-        if attachment.hasItemConformingToTypeIdentifier(kUTTypeURL as String) {
-            attachment.loadItemForTypeIdentifier(kUTTypeURL as String, options: nil, completionHandler: { (urlProvider, error) -> Void in
-                if let url = urlProvider as? NSURL {
-                    self.shareURL = url
-                    self.itemTitle = item.attributedContentText?.string
-                }
-            })
-        }
         
         managedObjectContext = createMainContext()
         
-        performSegueWithIdentifier(SegueIdentifier.ShowChooseTopicModal.rawValue, sender: self)
+        self.performSegueWithIdentifier(SegueIdentifier.ShowChooseTopicModal.rawValue, sender: self)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -51,14 +36,30 @@ class ShareViewController: UIViewController, ChooseTopicDelegate {
             
             vc.managedObjectContext = managedObjectContext
             vc.delegate = self
-            vc.shareURL = shareURL
-            vc.itemTitle = itemTitle
         }
     }
     
     func dismissChooseTopicController() {
         dismissViewControllerAnimated(true) {
             self.extensionContext?.completeRequestReturningItems([], completionHandler: nil)
+        }
+    }
+    
+    func getExtensionContextInfo(completion: (NSURL?, String?) -> Void) {
+        guard let item = self.extensionContext?.inputItems.first as? NSExtensionItem,
+            attachment = item.attachments?.first as? NSItemProvider
+            else { return }
+        
+        if attachment.hasItemConformingToTypeIdentifier(kUTTypeURL as String) {
+            attachment.loadItemForTypeIdentifier(kUTTypeURL as String, options: nil, completionHandler: { (urlProvider, error) -> Void in
+                if let url = urlProvider as? NSURL {
+                    completion(url, item.attributedContentText?.string)
+                } else {
+                    completion(nil, nil)
+                }
+            })
+        } else {
+            completion(nil, nil)
         }
     }
     

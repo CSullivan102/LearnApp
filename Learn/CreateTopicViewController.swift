@@ -9,9 +9,14 @@
 import UIKit
 import CoreData
 
+public protocol CreateTopicDelegate {
+    func didCreateTopic(topic: Topic)
+}
+
 public class CreateTopicViewController: UIViewController, ManagedObjectContextSettable, UITextFieldDelegate {
     public var managedObjectContext: NSManagedObjectContext!
     
+    public var createTopicDelegate: CreateTopicDelegate?
     public var topic: Topic?
     
     let maxEmojiTextLength = 1
@@ -95,6 +100,7 @@ public class CreateTopicViewController: UIViewController, ManagedObjectContextSe
                 let newTopic: Topic = self.managedObjectContext.insertObject()
                 newTopic.name = nameValue
                 newTopic.icon = emojiValue
+                self.createTopicDelegate?.didCreateTopic(newTopic)
             }
         }
     }

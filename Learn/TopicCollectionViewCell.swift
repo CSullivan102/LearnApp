@@ -15,7 +15,6 @@ public class TopicCollectionViewCell: UICollectionViewCell {
     
     private var dashedBorder: CAShapeLayer?
     private var plusLayer: CAShapeLayer?
-    private var originalColor = UIColor(red: 66, green: 213, blue: 81, alpha: 1)
     
     public var topic: Topic? {
         didSet {
@@ -72,10 +71,7 @@ public class TopicCollectionViewCell: UICollectionViewCell {
         addableCell = false
         dashedBorder?.removeFromSuperlayer()
         plusLayer?.removeFromSuperlayer()
-        if iconBackgroundView != nil {
-            print("resetting background color")
-//            iconBackgroundView.backgroundColor = originalColor
-        }
+        iconBackgroundView.backgroundColor = UIColor(red: 66.0 / 255.0, green: 213.0 / 255.0, blue: 81.0 / 255.0, alpha: 1.0)
     }
 }
 
@@ -89,5 +85,21 @@ public class LabeledTopicCollectionViewCell: TopicCollectionViewCell {
 
             topicNameLabel.text = topic?.name
         }
+    }
+    
+    override public var addableCell: Bool {
+        didSet {
+            if addableCell {
+                guard let topicNameLabel = topicNameLabel
+                else { return }
+                
+                topicNameLabel.text = nil
+            }
+        }
+    }
+    
+    override public func prepareForReuse() {
+        super.prepareForReuse()
+        topicNameLabel.text = nil
     }
 }
