@@ -1,5 +1,5 @@
 //
-//  ArticlesCollectionViewController.swift
+//  ArticlesTableViewController.swift
 //  Learn
 //
 //  Created by Christopher Sullivan on 8/20/15.

@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import Alamofire
 import Argo
-//import KeychainAccess
 
 public protocol PocketAuthenticationDelegate {
     func promptOAuthUserAuthWithURL(URL: NSURL)
@@ -20,7 +19,6 @@ public class PocketAPI {
     private var consumerKey: String?
     private var appId: String?
     private var requestToken: String?
-//    private let keychain: Keychain
     private let delegate: PocketAuthenticationDelegate
     private let AccessTokenKeychainKey = "PocketAccessToken"
     private let AuthUserKeychainKey = "PocketAuthUser"
@@ -31,14 +29,12 @@ public class PocketAPI {
                 else { fatalError("Can't open user defaults") }
             let plist: AnyObject? = defaults.objectForKey(AccessTokenKeychainKey)
             return plist as? String
-            // return keychain.getStringIfExists(AccessTokenKeychainKey)
         }
         set {
             guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn")
                 else { fatalError("Can't open user defaults") }
             defaults.setObject(newValue, forKey: AccessTokenKeychainKey)
             defaults.synchronize()
-            // keychain.setOrRemoveStringValue(newValue, forKey: AccessTokenKeychainKey)
         }
     }
 
@@ -48,14 +44,12 @@ public class PocketAPI {
                 else { fatalError("Can't open user defaults") }
             let plist: AnyObject? = defaults.objectForKey(AuthUserKeychainKey)
             return plist as? String
-            // return keychain.getStringIfExists(AuthUserKeychainKey)
         }
         set {
             guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn")
                 else { fatalError("Can't open user defaults") }
             defaults.setObject(newValue, forKey: AuthUserKeychainKey)
             defaults.synchronize()
-            // keychain.setOrRemoveStringValue(newValue, forKey: AuthUserKeychainKey)
         }
     }
     
@@ -68,9 +62,6 @@ public class PocketAPI {
         self.consumerKey = pocketKeys["PocketConsumerKey"] as? String
         
         self.delegate = delegate
-        
-        // let appIdPrefix = NSBundle.mainBundle().objectForInfoDictionaryKey("AppIdentifierPrefix") as! String
-        // keychain = Keychain(service: "com.sullivan.j.chris.Learn", accessGroup: "\(appIdPrefix)com.sullivan.j.chris.Learn")
     }
     
     public func addURLToPocket(url: NSURL, completion: (PocketItem) -> ()) {

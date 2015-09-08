@@ -1,3 +1,4 @@
-github "Alamofire/Alamofire" "2f94c11bb039bd7e3e43b925e20c8e536c9be757"
-github "thoughtbot/Argo" "b2be8edc080d937bbdc6c43b29a9d1e5084c312c"
-github "kishikawakatsumi/KeychainAccess" "561e03d38cb17227051b6dccad1fcc33599fa509"
+github "Alamofire/Alamofire" "1108ae4461baa99d9c4898c213ec3e2e2956fab3"
+github "thoughtbot/Argo" "70461918a0cb3e862c38c99764f09827e607f008"
+github "meteochu/HanekeSwift" "dde8ca99d2be5a19e50fad83b86753f62c1fe6eb"
+github "kishikawakatsumi/KeychainAccess" "d1799b703b6b58e2d6ad7becb3cde620a20fcce2"
