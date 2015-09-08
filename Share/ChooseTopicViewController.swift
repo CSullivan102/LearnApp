@@ -150,30 +150,35 @@ class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, Man
             else { return }
         
         if let shareURL = shareURL {
-            let pocketAPI = PocketAPI(delegate: self)
-            pocketAPI.addURLToPocket(shareURL) { pocketItem in
-                print("\(pocketItem)")
-                managedObjectContext.performChanges {
-                    let learnItem: LearnItem = managedObjectContext.insertObject()
-                    learnItem.title = title
-                    learnItem.url = self.shareURL
-                    learnItem.itemType = .Article
-                    learnItem.read = false
-                    learnItem.dateAdded = NSDate()
-                    learnItem.topic = topic
-                    learnItem.excerpt = pocketItem.excerpt
-                    if let itemID = Int32(pocketItem.item_id) {
-                        learnItem.pocketItemID = NSNumber(int: itemID)
+            managedObjectContext.performChanges {
+                let learnItem: LearnItem = managedObjectContext.insertObject()
+                learnItem.title = title
+                learnItem.url = self.shareURL
+                learnItem.itemType = .Article
+                learnItem.read = false
+                learnItem.dateAdded = NSDate()
+                learnItem.topic = topic
+                let pocketAPI = PocketAPI(delegate: self)
+                if pocketAPI.isAuthenticated() {
+                    pocketAPI.addURLToPocket(shareURL) { pocketItem in
+                        managedObjectContext.performChanges {
+                            learnItem.excerpt = pocketItem.excerpt
+                            if let itemID = Int32(pocketItem.item_id) {
+                                learnItem.pocketItemID = NSNumber(int: itemID)
+                            }
+                            if let images = pocketItem.images,
+                                (_, firstImage) = images.first {
+                                learnItem.imageURL = NSURL(string: firstImage.src)
+                            }
+                            if let wordCount = Int32(pocketItem.word_count) {
+                                learnItem.wordCount = NSNumber(int: wordCount)
+                            }
+                            self.delegate?.dismissChooseTopicController()
+                        }
                     }
-                    if let imageSrc = pocketItem.imageItem?.src {
-                        learnItem.imageURL = NSURL(string: imageSrc)
-                    }
-                    if let wordCount = Int32(pocketItem.word_count) {
-                        learnItem.wordCount = NSNumber(int: wordCount)
-                    }
+                } else {
+                    self.delegate?.dismissChooseTopicController()
                 }
-                
-                self.delegate?.dismissChooseTopicController()
             }
         }
     }

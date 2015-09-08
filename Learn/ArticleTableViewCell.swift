@@ -21,11 +21,30 @@ class ArticleTableViewCell: UITableViewCell {
         didSet {
             guard let titleLabel = titleLabel, urlLabel = urlLabel, excerptLabel = excerptLabel, articleImageView = articleImageView
             else { return }
-            titleLabel.text = learnItem?.title
+            titleLabel.text = learnItem?.title ?? ""
             urlLabel.text = learnItem?.url?.host
             excerptLabel.text = learnItem?.excerpt
             
             if let imageURL = learnItem?.imageURL {
+                articleImageView.hnk_setImageFromURL(imageURL)
+            } else {
+                articleImageView.hidden = true
+            }
+        }
+    }
+    
+    var pocketItem: PocketItem? {
+        didSet {
+            guard let titleLabel = titleLabel, urlLabel = urlLabel, excerptLabel = excerptLabel, articleImageView = articleImageView
+            else { return }
+
+            titleLabel.text = pocketItem?.resolved_title ?? ""
+            urlLabel.text = pocketItem?.given_url ?? ""
+            excerptLabel.text = pocketItem?.excerpt
+            
+            if let images = pocketItem?.images,
+                (_, firstImage) = images.first,
+                imageURL = NSURL(string: firstImage.src) {
                 articleImageView.hnk_setImageFromURL(imageURL)
             } else {
                 articleImageView.hidden = true

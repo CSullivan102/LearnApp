@@ -52,6 +52,9 @@
 		74C6E6561B86711D0013B1BD /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6551B86711D0013B1BD /* ArticleTableViewCell.swift */; };
 		74C6E6581B867D780013B1BD /* CreateLearnItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */; };
 		74CDD1A71B9F38920022D116 /* Haneke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CDD1A61B9F38920022D116 /* Haneke.framework */; };
+		74CDD1AA1B9F5ED70022D116 /* PocketImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CDD1A91B9F5ED70022D116 /* PocketImportController.swift */; settings = {ASSET_TAGS = (); }; };
+		74CDD1AC1B9F84870022D116 /* PocketAuthModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CDD1AB1B9F84870022D116 /* PocketAuthModalController.swift */; settings = {ASSET_TAGS = (); }; };
+		74CDD1AE1B9F8AE20022D116 /* Argo+Dictionaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CDD1AD1B9F8AE20022D116 /* Argo+Dictionaries.swift */; settings = {ASSET_TAGS = (); }; };
 		74D438601B98992400F3838D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74418D191B83DD1500BCDD79 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
 		74DC60751B95319E00C53D13 /* CreateTopic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74DC60741B95319E00C53D13 /* CreateTopic.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
@@ -172,6 +175,9 @@
 		74C6E6551B86711D0013B1BD /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleTableViewCell.swift; path = Learn/ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateLearnItemViewController.swift; path = Learn/CreateLearnItemViewController.swift; sourceTree = "<group>"; };
 		74CDD1A61B9F38920022D116 /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = Carthage/Build/iOS/Haneke.framework; sourceTree = "<group>"; };
+		74CDD1A91B9F5ED70022D116 /* PocketImportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketImportController.swift; sourceTree = "<group>"; };
+		74CDD1AB1B9F84870022D116 /* PocketAuthModalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAuthModalController.swift; sourceTree = "<group>"; };
+		74CDD1AD1B9F8AE20022D116 /* Argo+Dictionaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Argo+Dictionaries.swift"; sourceTree = "<group>"; };
 		74D22E4C1B8B70BC0097D5BC /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = ../Learn/Keys.plist; sourceTree = "<group>"; };
 		74D22E531B8BA2630097D5BC /* Learn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Learn.entitlements; sourceTree = "<group>"; };
 		74D293181B86997D0037EBA9 /* PocketAPISettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PocketAPISettable.swift; path = ../Learn/PocketAPISettable.swift; sourceTree = "<group>"; };
@@ -245,6 +251,7 @@
 				74D293181B86997D0037EBA9 /* PocketAPISettable.swift */,
 				74D2931A1B86999D0037EBA9 /* PocketAPI.swift */,
 				74418D481B83E2E000BCDD79 /* CoreDataStack.swift */,
+				74CDD1AD1B9F8AE20022D116 /* Argo+Dictionaries.swift */,
 				744B1E621B9E9A51001B5263 /* FetchedResultsTableDataSource.swift */,
 				74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */,
 				74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */,
@@ -312,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				74C6E6521B866F8E0013B1BD /* ArticlesView */,
+				74CDD1A81B9F5EBB0022D116 /* PocketImport */,
 				74C6E6511B866F760013B1BD /* TopicsView */,
 				74D22E531B8BA2630097D5BC /* Learn.entitlements */,
 				74418D121B83DD1500BCDD79 /* AppDelegate.swift */,
@@ -383,6 +391,15 @@
 			);
 			name = ArticlesView;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		74CDD1A81B9F5EBB0022D116 /* PocketImport */ = {
+			isa = PBXGroup;
+			children = (
+				74CDD1A91B9F5ED70022D116 /* PocketImportController.swift */,
+				74CDD1AB1B9F84870022D116 /* PocketAuthModalController.swift */,
+			);
+			name = PocketImport;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -697,6 +714,7 @@
 				74A41DCC1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift in Sources */,
 				7469F22B1B8CC21100AB3A7C /* PocketAPISettable.swift in Sources */,
 				7415CB941B8BCF18008FB09B /* LearnItem.swift in Sources */,
+				74CDD1AE1B9F8AE20022D116 /* Argo+Dictionaries.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,8 +741,10 @@
 			files = (
 				74C6E6581B867D780013B1BD /* CreateLearnItemViewController.swift in Sources */,
 				74C6E64E1B863C9D0013B1BD /* TopicCollectionViewController.swift in Sources */,
+				74CDD1AA1B9F5ED70022D116 /* PocketImportController.swift in Sources */,
 				74C6E6541B8670CD0013B1BD /* ArticlesTableViewController.swift in Sources */,
 				74C6E6561B86711D0013B1BD /* ArticleTableViewCell.swift in Sources */,
+				74CDD1AC1B9F84870022D116 /* PocketAuthModalController.swift in Sources */,
 				74418D131B83DD1500BCDD79 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -38,7 +38,7 @@ public class PocketAPI {
         }
     }
 
-    private var authenticatedUser: String? {
+    public var authenticatedUser: String? {
         get {
             guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn")
                 else { fatalError("Can't open user defaults") }
@@ -65,24 +65,47 @@ public class PocketAPI {
     }
     
     public func addURLToPocket(url: NSURL, completion: (PocketItem) -> ()) {
-        authenticateAndMakeRequest(.POST, urlAsString: "https://getpocket.com/v3/add", params: ["url": url.description]) { (result) -> () in
+        authenticateAndMakeRequest(.POST, urlAsString: "https://getpocket.com/v3/add", params: ["url": url.description]) {
+            result in
             switch result {
             case .Success(let JSON):
                 let decodedResponse: Decoded<PocketAddResponse> = decode(JSON)
-                print(JSON)
                 switch decodedResponse {
-                case .Success(var responseObj):
+                case .Success(let responseObj):
                     // try and decode the images, which can't use argo b/c of the property names
-                    if let item = JSON["item"] as? NSDictionary,
-                        let images = item["images"] as? NSDictionary,
-                        let image1 = images["1"] as? NSDictionary,
-                        let imageURL = image1["src"] as? String {
-                            print(imageURL)
-                            responseObj.item.imageItem = PocketImageItem(src: imageURL)
-                    }
+//                    if let item = JSON["item"] as? NSDictionary,
+//                        let images = item["images"] as? NSDictionary,
+//                        let image1 = images["1"] as? NSDictionary,
+//                        let imageURL = image1["src"] as? String {
+//                            print(imageURL)
+//                            responseObj.item.imageItem = PocketImageItem(src: imageURL)
+//                    }
                     
                     
                     completion(responseObj.item)
+                case .MissingKey(let s):
+                    print("JSON decoding failed for Add to Pocket, missing key \(s)")
+                case .TypeMismatch(let s):
+                    print("JSON decoding failed for Add to Pocket, type mismatch \(s)")
+                }
+            case .Failure(let data, let error):
+                print("Request failed with error: \(error)")
+                if let data = data {
+                    print("Response data: \(NSString(data: data, encoding: NSUTF8StringEncoding)!)")
+                }
+            }
+        }
+    }
+    
+    public func getPocketItems(count: Int, completion: ([PocketItem]) -> ()) {
+        authenticateAndMakeRequest(.POST, urlAsString: "https://getpocket.com/v3/get", params: ["count": "\(count)", "detailType": "complete"]) {
+            result in
+            switch result {
+            case .Success(let JSON):
+                let decodedResponse: Decoded<PocketRetrieveResponse> = decode(JSON)
+                switch decodedResponse {
+                case .Success(let responseObj):
+                    completion(Array(responseObj.list.values))
                 case .MissingKey(let s):
                     print("JSON decoding failed for Add to Pocket, missing key \(s)")
                 case .TypeMismatch(let s):
@@ -247,32 +270,47 @@ extension PocketAddResponse: Decodable {
     }
 }
 
-public struct PocketItem: CustomStringConvertible {
-    public let item_id: String
-    public let title: String
-    public let excerpt: String
-    public let word_count: String
-    public var imageItem: PocketImageItem?
+public struct PocketRetrieveResponse {
+    public let status: Int
+    public let list: [String: PocketItem]
+}
+
+extension PocketRetrieveResponse: Decodable {
+    static func create(status: Int)(list: [String: PocketItem]) -> PocketRetrieveResponse {
+        return PocketRetrieveResponse(status: status, list: list)
+    }
     
-    public var description: String {
-        get {
-            return "\(item_id) \(title) \(excerpt) \(word_count)"
-        }
+    public static func decode(json: JSON) -> Decoded<PocketRetrieveResponse> {
+        return create
+            <^> json <| "status"
+            <*> json <|~ "list"
     }
 }
 
+public struct PocketItem {
+    public let item_id: String
+    public let title: String?
+    public let resolved_title: String?
+    public let given_url: String?
+    public let excerpt: String
+    public let word_count: String
+    public let images: [String: PocketImageItem]?
+}
+
 extension PocketItem: Decodable {
-    static func create(item_id: String)(title: String)(excerpt: String)(word_count: String)(imageItem: PocketImageItem?) -> PocketItem {
-        return PocketItem(item_id: item_id, title: title, excerpt: excerpt, word_count: word_count, imageItem: imageItem)
+    static func create(item_id: String)(title: String?)(resolved_title: String?)(given_url: String?)(excerpt: String)(word_count: String)(images: [String: PocketImageItem]?) -> PocketItem {
+        return PocketItem(item_id: item_id, title: title, resolved_title: resolved_title, given_url: given_url, excerpt: excerpt, word_count: word_count, images: images)
     }
     
     public static func decode(json: JSON) -> Decoded<PocketItem> {
         return create
             <^> json <| "item_id"
-            <*> json <| "title"
+            <*> json <|? "title"
+            <*> json <|? "resolved_title"
+            <*> json <|? "given_url"
             <*> json <| "excerpt"
             <*> json <| "word_count"
-            <*> json <|? "imageItem"
+            <*> json <|~? "images"
     }
 }
 

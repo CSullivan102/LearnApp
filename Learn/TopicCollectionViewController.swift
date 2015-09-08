@@ -117,6 +117,15 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
             vc.managedObjectContext = managedObjectContext
             vc.parentTopic = topic
             vc.pocketAPI = pocketAPI
+        case .ShowPocketImport:
+            guard let vc = segue.destinationViewController as? PocketImportController
+            else { fatalError("Unexpected view controller for \(identifier) segue") }
+            
+            vc.managedObjectContext = managedObjectContext
+            vc.pocketAPI = pocketAPI
+            
+            vc.transitioningDelegate = createTopicTransitioningDelegate
+            vc.modalPresentationStyle = .Custom
         }
     }
     
@@ -177,6 +186,7 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
         case ShowCreateTopic = "ShowCreateTopic"
         case ShowArticles = "ShowArticles"
         case ShowTopicView = "ShowTopicView"
+        case ShowPocketImport = "ShowPocketImport"
     }
 }
 

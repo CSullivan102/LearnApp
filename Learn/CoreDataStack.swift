@@ -94,7 +94,7 @@ extension NSManagedObjectContext {
     }
     
     public func performChanges(block: () -> ()) {
-        performBlock{
+        performBlock {
             block()
             self.saveOrRollback()
         }
