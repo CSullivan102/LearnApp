@@ -52,16 +52,23 @@
                                     <action selector="cancelButtonPressed:" destination="iHY-YO-3p3" eventType="touchUpInside" id="jEX-df-D4h"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-gv-wo9">
-                                <rect key="frame" x="75" y="74" width="450" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
-                            </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NO8-oe-Yhs">
-                                <rect key="frame" x="75" y="112" width="450" height="163"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7O-o0-OLF">
+                                <rect key="frame" x="546" y="28" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="iHY-YO-3p3" eventType="touchUpInside" id="zdK-Oe-g5L"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="K9n-LS-1Dd">
+                                <rect key="frame" x="75" y="74" width="450" height="68"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ss3-bF-zSC">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-gv-wo9">
                                         <rect key="frame" x="0.0" y="0.0" width="450" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ss3-bF-zSC">
+                                        <rect key="frame" x="0.0" y="38" width="450" height="30"/>
                                         <color key="backgroundColor" red="0.25882352939999997" green="0.83529411760000005" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Choose Topic">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -75,17 +82,32 @@
                                             <action selector="chooseTopicButtonPressed:" destination="iHY-YO-3p3" eventType="touchUpInside" id="NTd-79-Gg8"/>
                                         </connections>
                                     </button>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mkN-1v-IB6">
-                                        <rect key="frame" x="0.0" y="38" width="450" height="125"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZB-bI-E81">
+                                        <rect key="frame" x="0.0" y="72" width="450" height="0.0"/>
+                                        <color key="backgroundColor" red="0.25882352939999997" green="0.83529411760000005" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Choose Subtopic">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="chooseSubtopicButtonPressed:" destination="iHY-YO-3p3" eventType="touchUpInside" id="Osi-WR-n8Q"/>
+                                        </connections>
+                                    </button>
+                                    <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mkN-1v-IB6">
+                                        <rect key="frame" x="0.0" y="72" width="450" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="125" id="lZM-jD-hQ8"/>
+                                            <constraint firstAttribute="height" priority="750" constant="125" id="fjM-qj-vaf"/>
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0sA-VF-baR">
                                             <size key="itemSize" width="50" height="50"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                            <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopicShareCell" id="w3u-wm-H1H" customClass="TopicCollectionViewCell" customModule="LearnKit">
@@ -132,39 +154,19 @@
                                         </cells>
                                     </collectionView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="mkN-1v-IB6" firstAttribute="leading" secondItem="NO8-oe-Yhs" secondAttribute="leading" id="2Q2-pm-06y"/>
-                                    <constraint firstItem="Ss3-bF-zSC" firstAttribute="leading" secondItem="NO8-oe-Yhs" secondAttribute="leading" id="8fx-O9-RXF"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ss3-bF-zSC" secondAttribute="trailing" id="I2g-fn-WPv"/>
-                                    <constraint firstItem="Ss3-bF-zSC" firstAttribute="top" secondItem="NO8-oe-Yhs" secondAttribute="top" id="bxU-jZ-HBW"/>
-                                    <constraint firstAttribute="trailing" secondItem="mkN-1v-IB6" secondAttribute="trailing" id="dyv-mH-0dy"/>
-                                    <constraint firstAttribute="bottom" secondItem="mkN-1v-IB6" secondAttribute="bottom" id="eX8-EG-fvr"/>
-                                    <constraint firstItem="mkN-1v-IB6" firstAttribute="top" secondItem="Ss3-bF-zSC" secondAttribute="bottom" constant="8" symbolic="YES" id="lqr-pa-YiT"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7O-o0-OLF">
-                                <rect key="frame" x="546" y="28" width="34" height="30"/>
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="saveButtonPressed:" destination="iHY-YO-3p3" eventType="touchUpInside" id="zdK-Oe-g5L"/>
-                                </connections>
-                            </button>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="alI-Ve-sag" firstAttribute="baseline" secondItem="k7O-o0-OLF" secondAttribute="baseline" id="1E8-2L-ZfU"/>
-                            <constraint firstItem="NO8-oe-Yhs" firstAttribute="centerX" secondItem="HQo-w4-NaF" secondAttribute="centerX" id="7gf-WW-8QS"/>
-                            <constraint firstItem="aqK-gv-wo9" firstAttribute="centerX" secondItem="HQo-w4-NaF" secondAttribute="centerX" id="CvT-h5-xZM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="k7O-o0-OLF" secondAttribute="trailing" id="EhJ-VA-ZmA"/>
-                            <constraint firstItem="aqK-gv-wo9" firstAttribute="width" secondItem="HQo-w4-NaF" secondAttribute="width" multiplier="0.75" id="RBs-Mn-lgo"/>
+                            <constraint firstItem="K9n-LS-1Dd" firstAttribute="centerX" secondItem="HQo-w4-NaF" secondAttribute="centerX" id="R00-zP-osT"/>
                             <constraint firstAttribute="leadingMargin" secondItem="alI-Ve-sag" secondAttribute="leading" id="Yl9-sw-xfC"/>
                             <constraint firstItem="alI-Ve-sag" firstAttribute="top" secondItem="McH-kg-mYN" secondAttribute="bottom" constant="8" symbolic="YES" id="cK4-S0-RFT"/>
                             <constraint firstItem="6gY-3o-ZVv" firstAttribute="top" secondItem="McH-kg-mYN" secondAttribute="bottom" id="g4P-yv-Jmk"/>
-                            <constraint firstItem="aqK-gv-wo9" firstAttribute="top" secondItem="6gY-3o-ZVv" secondAttribute="bottom" constant="8" symbolic="YES" id="hc8-OG-kbr"/>
+                            <constraint firstItem="K9n-LS-1Dd" firstAttribute="top" secondItem="6gY-3o-ZVv" secondAttribute="bottom" constant="8" symbolic="YES" id="hba-y9-Hk2"/>
                             <constraint firstItem="6gY-3o-ZVv" firstAttribute="centerX" secondItem="HQo-w4-NaF" secondAttribute="centerX" id="ikP-RJ-Gzd"/>
-                            <constraint firstItem="NO8-oe-Yhs" firstAttribute="top" secondItem="aqK-gv-wo9" secondAttribute="bottom" constant="8" symbolic="YES" id="ttc-jn-vIf"/>
-                            <constraint firstItem="NO8-oe-Yhs" firstAttribute="width" secondItem="aqK-gv-wo9" secondAttribute="width" id="uCp-c1-Kxu"/>
+                            <constraint firstItem="K9n-LS-1Dd" firstAttribute="width" secondItem="HQo-w4-NaF" secondAttribute="width" multiplier="0.75" id="zs5-VK-x1r"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -173,11 +175,11 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="chooseSubTopicButton" destination="hZB-bI-E81" id="eqv-rU-N0k"/>
                         <outlet property="chooseTopicButton" destination="Ss3-bF-zSC" id="UcO-3m-fHF"/>
-                        <outlet property="chooseTopicContainerView" destination="NO8-oe-Yhs" id="TjQ-Jg-4Ir"/>
                         <outlet property="collectionView" destination="mkN-1v-IB6" id="MZJ-uc-enK"/>
-                        <outlet property="collectionViewHeightConstraint" destination="lZM-jD-hQ8" id="O8v-j6-sjB"/>
                         <outlet property="titleTextField" destination="aqK-gv-wo9" id="5HO-X3-1vi"/>
+                        <outlet property="topicStackView" destination="K9n-LS-1Dd" id="P5c-hk-oBJ"/>
                         <segue destination="4cW-Wp-z07" kind="presentation" identifier="ShowCreateTopic" id="881-sC-giq"/>
                     </connections>
                 </viewController>

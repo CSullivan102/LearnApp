@@ -10,24 +10,40 @@ import UIKit
 import CoreData
 import LearnKit
 
-class TopicCollectionViewController: UICollectionViewController, ManagedObjectContextSettable, PocketAPISettable {
+class TopicCollectionViewController: UICollectionViewController, ManagedObjectContextSettable, PocketAPISettable, TopicCollectionControllable {
     
     var managedObjectContext: NSManagedObjectContext!
     var pocketAPI: PocketAPI!
     var dataSource: UICollectionViewDataSource?
     var indexPathForMenuController: NSIndexPath?
-    var frc: NSFetchedResultsController?
     var notif: NSObjectProtocol?
+    var parentTopic: Topic?
     
     let createTopicTransitioningDelegate = SmallModalTransitioningDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let request = Topic.sortedFetchRequest
-        request.fetchBatchSize = 20
-        frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        dataSource = AddableFetchedResultsCollectionDataSource(collectionView: collectionView!, fetchedResultsController: frc!, delegate: self)
+        setupParentTopic {
+            self.setupFetchedResultsController()
+        }
+        
+        setupNavigationItem()
+    }
+    
+    private func setupNavigationItem() {
+        if let parentTopic = parentTopic where parentTopic.baseTopic == false {
+            navigationItem.titleView = nil
+            navigationItem.title = parentTopic.iconAndName
+        }
+    }
+    
+    private func setupFetchedResultsController() {
+        guard let topic = parentTopic
+        else { fatalError("Tried to set up topic collection VC without a parent") }
+        
+        let frc = getFetchedResultsControllerForTopic(topic)
+        dataSource = AddableFetchedResultsCollectionDataSource(collectionView: collectionView!, fetchedResultsController: frc, delegate: self)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -54,9 +70,15 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
         if cell.addableCell {
             performSegueWithIdentifier(SegueIdentifier.ShowCreateTopic.rawValue, sender: nil)
         } else {
-            guard let topic = cell.topic
-            else { return }
-            performSegueWithIdentifier(SegueIdentifier.ShowArticles.rawValue, sender: topic)
+            guard let parentTopic = parentTopic,
+                topic = cell.topic
+            else { fatalError("Missing topic or parent topic when segue-ing on topic view controller") }
+            
+            if parentTopic.baseTopic {
+                performSegueWithIdentifier(SegueIdentifier.ShowTopicView.rawValue, sender: topic)
+            } else {
+                performSegueWithIdentifier(SegueIdentifier.ShowArticles.rawValue, sender: topic)
+            }
         }
     }
 
@@ -74,6 +96,7 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
                 vc.topic = topic
             }
 
+            vc.parentTopic = parentTopic
             vc.managedObjectContext = managedObjectContext
             
             vc.transitioningDelegate = createTopicTransitioningDelegate
@@ -81,9 +104,18 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
         case .ShowArticles:
             guard let vc = segue.destinationViewController as? ArticlesCollectionViewController
             else { fatalError("Unexpected view controller for \(identifier) segue") }
-            guard let topic = sender as? Topic else { fatalError("Missing topic for \(identifier) segue") }
+            guard let topic = sender as? Topic
+            else { fatalError("Missing topic for \(identifier) segue") }
             vc.managedObjectContext = managedObjectContext
             vc.topic = topic
+            vc.pocketAPI = pocketAPI
+        case .ShowTopicView:
+            guard let vc = segue.destinationViewController as? TopicCollectionViewController
+            else { fatalError("Unexpected view controller for \(identifier) segue") }
+            guard let topic = sender as? Topic
+            else { fatalError("Missing topic for \(identifier) segue") }
+            vc.managedObjectContext = managedObjectContext
+            vc.parentTopic = topic
             vc.pocketAPI = pocketAPI
         }
     }
@@ -144,6 +176,7 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
     enum SegueIdentifier: String {
         case ShowCreateTopic = "ShowCreateTopic"
         case ShowArticles = "ShowArticles"
+        case ShowTopicView = "ShowTopicView"
     }
 }
 

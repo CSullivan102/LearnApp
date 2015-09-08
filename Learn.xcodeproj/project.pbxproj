@@ -28,6 +28,7 @@
 		74418D1D1B83DD1500BCDD79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74418D1B1B83DD1500BCDD79 /* LaunchScreen.storyboard */; };
 		74418D281B83DD1500BCDD79 /* LearnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D271B83DD1500BCDD79 /* LearnTests.swift */; };
 		74418D331B83DD1500BCDD79 /* LearnUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D321B83DD1500BCDD79 /* LearnUITests.swift */; };
+		744B1E611B9E009A001B5263 /* TopicCollectionControllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B1E601B9E009A001B5263 /* TopicCollectionControllable.swift */; settings = {ASSET_TAGS = (); }; };
 		7469F22B1B8CC21100AB3A7C /* PocketAPISettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D293181B86997D0037EBA9 /* PocketAPISettable.swift */; settings = {ASSET_TAGS = (); }; };
 		7469F22C1B8CC21500AB3A7C /* PocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2931A1B86999D0037EBA9 /* PocketAPI.swift */; settings = {ASSET_TAGS = (); }; };
 		7469F22D1B8CC39E00AB3A7C /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D2931C1B869A910037EBA9 /* Alamofire.framework */; };
@@ -155,6 +156,7 @@
 		74418D461B83E2BF00BCDD79 /* LearnItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnItem.swift; sourceTree = "<group>"; };
 		74418D481B83E2E000BCDD79 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = ../Learn/CoreDataStack.swift; sourceTree = "<group>"; };
 		74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicViewController.swift; sourceTree = "<group>"; };
+		744B1E601B9E009A001B5263 /* TopicCollectionControllable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionControllable.swift; sourceTree = "<group>"; };
 		749B07CA1B94FFB600E668BF /* ChooseTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTopicViewController.swift; sourceTree = "<group>"; };
 		74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddableFetchedResultsCollectionDataSource.swift; sourceTree = "<group>"; };
 		74A911CB1B94C26000B695B5 /* SmallModalTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallModalTransitioningDelegate.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				74418D481B83E2E000BCDD79 /* CoreDataStack.swift */,
 				74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */,
 				74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */,
+				744B1E601B9E009A001B5263 /* TopicCollectionControllable.swift */,
 				74C6E64F1B863E800013B1BD /* TopicCollectionViewCell.swift */,
 				7415CB731B8BCC9B008FB09B /* LearnKit.h */,
 				74D22E4C1B8B70BC0097D5BC /* Keys.plist */,
@@ -684,6 +687,7 @@
 				7415CB901B8BCE34008FB09B /* LearnModel.xcdatamodeld in Sources */,
 				7415CB931B8BCF14008FB09B /* LearnItemTypeEnum.swift in Sources */,
 				749B07C31B94F18300E668BF /* TopicCollectionViewCell.swift in Sources */,
+				744B1E611B9E009A001B5263 /* TopicCollectionControllable.swift in Sources */,
 				7415CB921B8BCF10008FB09B /* Topic.swift in Sources */,
 				74A41DCC1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift in Sources */,
 				7469F22B1B8CC21100AB3A7C /* PocketAPISettable.swift in Sources */,

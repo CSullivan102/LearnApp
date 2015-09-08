@@ -17,6 +17,7 @@ public class CreateTopicViewController: UIViewController, ManagedObjectContextSe
     public var managedObjectContext: NSManagedObjectContext!
     
     public var createTopicDelegate: CreateTopicDelegate?
+    public var parentTopic: Topic?
     public var topic: Topic?
     
     let maxEmojiTextLength = 1
@@ -89,6 +90,9 @@ public class CreateTopicViewController: UIViewController, ManagedObjectContextSe
     }
     
     private func createTopic() {
+        guard let parentTopic = parentTopic
+        else { fatalError("Trying to create/edit topic without parent") }
+        
         guard let nameValue = nameTextField?.text where nameValue.characters.count > 0,
             let emojiValue = emojiTextField?.text where emojiValue.characters.count > 0
         else { return }
@@ -98,6 +102,7 @@ public class CreateTopicViewController: UIViewController, ManagedObjectContextSe
                 topic.icon = emojiValue
             } else {
                 let newTopic: Topic = self.managedObjectContext.insertObject()
+                newTopic.parent = parentTopic
                 newTopic.name = nameValue
                 newTopic.icon = emojiValue
                 self.createTopicDelegate?.didCreateTopic(newTopic)

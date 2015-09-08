@@ -9,6 +9,7 @@
         <relationship name="topic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Topic" inverseName="learnItems" inverseEntity="Topic" syncable="YES"/>
     </entity>
     <entity name="Topic" representedClassName=".Topic" syncable="YES">
+        <attribute name="baseTopic" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="icon" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="childTopics" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Topic" inverseName="parent" inverseEntity="Topic" syncable="YES"/>
@@ -17,6 +18,6 @@
     </entity>
     <elements>
         <element name="LearnItem" positionX="-45" positionY="27" width="128" height="135"/>
-        <element name="Topic" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="Topic" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

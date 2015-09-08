@@ -15,34 +15,24 @@ protocol ChooseTopicDelegate {
     func getExtensionContextInfo(completion: (NSURL?, String?) -> Void)
 }
 
-class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, ManagedObjectContextSettable, UIViewControllerHeightRequestable {
+class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, ManagedObjectContextSettable, UIViewControllerHeightRequestable, TopicCollectionControllable {
     var managedObjectContext: NSManagedObjectContext!
-    var dataSource: UICollectionViewDataSource?
+    var currentDataSource: UICollectionViewDataSource?
+    var parentTopic: Topic?
     var delegate: ChooseTopicDelegate?
     var shareURL: NSURL?
     var itemTitle: String?
-    var selectedTopic: Topic? {
-        didSet {
-            guard let chooseTopicButton = chooseTopicButton else {
-                return
-            }
-            
-            guard let topic = selectedTopic else {
-                chooseTopicButton.setTitle("Choose Topic", forState: .Normal)
-                return
-            }
-            
-            chooseTopicButton.setTitle(topic.iconAndName, forState: .Normal)
-        }
-    }
+    var selectedTopic: Topic?
+    var selectedSubtopic: Topic?
+    var topicPickingState: TopicPickingState = .None
     
     let createTopicTransitioningDelegate = SmallModalTransitioningDelegate()
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var chooseTopicButton: UIButton!
-    @IBOutlet weak var chooseTopicContainerView: UIView!
-    @IBOutlet weak var collectionViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var chooseSubTopicButton: UIButton!
+    @IBOutlet weak var topicStackView: UIStackView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,23 +43,30 @@ class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, Man
             self.itemTitle = itemTitle
             self.titleTextField.text = itemTitle
         }
-
-        collectionViewHeightConstraint.constant = 0.0
         
-        let request = Topic.sortedFetchRequest
-        request.fetchBatchSize = 20
-        let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
-        dataSource = AddableFetchedResultsCollectionDataSource(collectionView: collectionView, fetchedResultsController: frc, delegate: self)
-        collectionView.dataSource = dataSource
+        setupParentTopic {
+            self.setupInitialFetchedResultsController()
+        }
+        
         collectionView.delegate = self
     }
     
     @IBAction func chooseTopicButtonPressed(sender: UIButton) {
-        setCollectionViewHeight(125.0)
+        selectedTopic = nil
+        selectedSubtopic = nil
+        topicPickingState = .Topic
+        setupInitialFetchedResultsController()
+        animateViewStateChange()
+    }
+    
+    @IBAction func chooseSubtopicButtonPressed(sender: UIButton) {
+        selectedSubtopic = nil
+        topicPickingState = .Subtopic
+        animateViewStateChange()
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard let cell = dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? Cell
+        guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? Cell
         else { return }
         
         if cell.addableCell {
@@ -77,9 +74,48 @@ class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, Man
         } else {
             guard let topic = cell.topic
             else { return }
-            selectedTopic = topic
-            setCollectionViewHeight(0)
+
+            switch topicPickingState {
+            case .Topic:
+                didPickTopic(topic)
+            case .Subtopic:
+                didPickSubtopic(topic)
+            case .None:
+                return
+            }
         }
+    }
+    
+    private func didPickTopic(topic: Topic) {
+        selectedTopic = topic
+        topicPickingState = .Subtopic
+        setupSubtopicDataSourceForTopic(topic)
+        
+        animateViewStateChange()
+    }
+    
+    private func didPickSubtopic(subtopic: Topic) {
+        selectedSubtopic = subtopic
+        topicPickingState = .None
+        
+        animateViewStateChange()
+    }
+    
+    private func setupInitialFetchedResultsController() {
+        guard let topic = self.parentTopic
+        else { fatalError("Tried to set up choose topic controller without parent") }
+        
+        let frc = getFetchedResultsControllerForTopic(topic)
+        currentDataSource = AddableFetchedResultsCollectionDataSource(collectionView: collectionView, fetchedResultsController: frc, delegate: self)
+        collectionView.dataSource = currentDataSource
+        collectionView.reloadData()
+    }
+    
+    private func setupSubtopicDataSourceForTopic(topic: Topic) {
+        let frc = getFetchedResultsControllerForTopic(topic)
+        currentDataSource = AddableFetchedResultsCollectionDataSource(collectionView: collectionView, fetchedResultsController: frc, delegate: self)
+        collectionView.dataSource = currentDataSource
+        collectionView.reloadData()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -92,6 +128,13 @@ class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, Man
             guard let vc = segue.destinationViewController as? CreateTopicViewController
                 else { fatalError("Unexpected view controller for \(identifier) segue") }
             
+            switch topicPickingState {
+            case .Subtopic:
+                vc.parentTopic = selectedTopic
+            default:
+                vc.parentTopic = parentTopic
+            }
+            
             vc.managedObjectContext = managedObjectContext
             vc.transitioningDelegate = createTopicTransitioningDelegate
             vc.modalPresentationStyle = .Custom
@@ -99,25 +142,11 @@ class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, Man
         }
     }
     
-    private func setCollectionViewHeight(height: CGFloat) {
-        self.view.layoutIfNeeded()
-        UIView.animateWithDuration(0.5,
-            delay: 0.0,
-            usingSpringWithDamping: 0.7,
-            initialSpringVelocity: 0,
-            options: UIViewAnimationOptions.CurveEaseOut,
-            animations: { () -> Void in
-                self.collectionViewHeightConstraint.constant = height
-                self.presentationController?.containerViewWillLayoutSubviews()
-                self.view.layoutIfNeeded()
-            }, completion: nil)
-    }
-    
     @IBAction func saveButtonPressed(sender: UIButton) {
         guard let managedObjectContext = managedObjectContext
             else { fatalError("Tried to post article without MOC") }
         
-        guard let topic = selectedTopic, title = titleTextField.text where title.characters.count > 0
+        guard let topic = selectedSubtopic, title = titleTextField.text where title.characters.count > 0
             else { return }
         
         if let shareURL = shareURL {
@@ -143,22 +172,88 @@ class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, Man
         delegate?.dismissChooseTopicController()
     }
     
-    func preferredHeight() -> CGFloat {
-        let baseHeight: CGFloat = 150.0
-        if collectionViewHeightConstraint != nil {
-            return baseHeight + collectionViewHeightConstraint.constant
+    private func animateViewStateChange() {
+        updateButtonTitlesForCurrentState()
+        view.layoutIfNeeded()
+        UIView.animateWithDuration(0.5,
+            delay: 0.0,
+            usingSpringWithDamping: 0.7,
+            initialSpringVelocity: 0,
+            options: UIViewAnimationOptions.CurveEaseOut,
+            animations: { () -> Void in
+                self.updateModalLayoutForCurrentState()
+                self.view.layoutIfNeeded()
+                // Set the superview to need layout so that PresentationControllers can adjust
+                self.view.superview?.setNeedsLayout()
+                self.view.superview?.layoutIfNeeded()
+            }, completion: { _ in
+                
+        })
+    }
+    
+    private func updateButtonTitlesForCurrentState() {
+        var topicButtonTitle: String
+        var subtopicButtonTitle: String
+        if let topic = selectedTopic {
+            topicButtonTitle = topic.iconAndName
+        } else {
+            topicButtonTitle = "Choose Topic"
         }
-        return baseHeight
+        
+        if let subtopic = selectedSubtopic {
+            subtopicButtonTitle = subtopic.iconAndName
+        } else {
+            subtopicButtonTitle = "Choose Subtopic"
+        }
+        
+        chooseTopicButton.setTitle(topicButtonTitle, forState: .Normal)
+        chooseSubTopicButton.setTitle(subtopicButtonTitle, forState: .Normal)
+    }
+    
+    private func updateModalLayoutForCurrentState() {
+        var subtopicButtonHidden: Bool
+        var collectionViewHidden: Bool
+        
+        subtopicButtonHidden = (selectedTopic == nil)
+        
+        switch topicPickingState {
+        case .Subtopic, .Topic:
+            collectionViewHidden = false
+        case .None:
+            collectionViewHidden = true
+        }
+        
+        chooseSubTopicButton.hidden = subtopicButtonHidden
+        collectionView.hidden = collectionViewHidden
+    }
+    
+    func preferredHeight() -> CGFloat {
+        let baseHeight = topicStackView.frame.origin.y
+        let margin: CGFloat = 16
+        return baseHeight + topicStackView.frame.height + margin
     }
     
     enum SegueIdentifier: String {
         case ShowCreateTopic = "ShowCreateTopic"
     }
+    
+    enum TopicPickingState {
+        case None
+        case Topic
+        case Subtopic
+    }
 }
 
 extension ChooseTopicViewController: CreateTopicDelegate {
     func didCreateTopic(topic: Topic) {
-        selectedTopic = topic
+        switch topicPickingState {
+        case .Topic:
+            didPickTopic(topic)
+        case .Subtopic:
+            didPickSubtopic(topic)
+        case .None:
+            return
+        }
     }
 }
 

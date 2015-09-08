@@ -187,6 +187,16 @@
                                 <constraint firstItem="dtE-ra-z59" firstAttribute="leading" secondItem="zpE-KK-Atk" secondAttribute="leading" id="sgC-D6-2LN"/>
                             </constraints>
                         </view>
+                        <barButtonItem key="rightBarButtonItem" style="done" id="xf7-n2-8TR">
+                            <button key="customView" hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="d1M-wy-Bhe">
+                                <rect key="frame" x="447" y="7" width="133" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Hidden"/>
+                                <connections>
+                                    <segue destination="eNQ-9F-YH8" kind="show" identifier="ShowTopicView" id="vAQ-St-H6v"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="V88-ql-iBl" kind="show" identifier="ShowArticles" id="Tbh-dZ-DCi"/>
@@ -212,43 +222,54 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="fHe-P0-wX3">
-                            <size key="itemSize" width="350" height="100"/>
+                            <size key="itemSize" width="350" height="83"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ArticleCollectionCell" id="uGk-qv-4B2" customClass="ArticleCollectionViewCell" customModule="Learn" customModuleProvider="target">
-                                <rect key="frame" x="125" y="74" width="350" height="100"/>
+                                <rect key="frame" x="125" y="74" width="350" height="83"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="350" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="350" height="83"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Vu-92-ly5">
-                                            <rect key="frame" x="154" y="40" width="42" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some Article Title That Will Take Up 2 Lines So I Can See How That Looks" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Vu-92-ly5">
+                                            <rect key="frame" x="8" y="8" width="334" height="41"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FcF-pn-waH">
+                                            <rect key="frame" x="8" y="55" width="334" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="1" green="0.74447942242008769" blue="0.091439982543526699" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.83529411760000005" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="3Vu-92-ly5" firstAttribute="centerY" secondItem="uGk-qv-4B2" secondAttribute="centerY" id="4Im-1z-Uad"/>
-                                    <constraint firstItem="3Vu-92-ly5" firstAttribute="centerY" secondItem="uGk-qv-4B2" secondAttribute="centerY" id="EpN-iY-Pvg"/>
-                                    <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="3Vu-92-ly5" secondAttribute="trailing" id="Iz2-bK-ixl"/>
-                                    <constraint firstItem="3Vu-92-ly5" firstAttribute="centerX" secondItem="uGk-qv-4B2" secondAttribute="centerX" id="N08-sJ-R0D"/>
-                                    <constraint firstItem="3Vu-92-ly5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="uGk-qv-4B2" secondAttribute="leadingMargin" id="vHp-Ke-5vJ"/>
+                                    <constraint firstAttribute="leadingMargin" secondItem="3Vu-92-ly5" secondAttribute="leading" id="1gB-27-5PK"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="FcF-pn-waH" secondAttribute="bottom" id="8n2-R1-DqS"/>
+                                    <constraint firstAttribute="topMargin" secondItem="3Vu-92-ly5" secondAttribute="top" id="E5r-tR-0ib"/>
+                                    <constraint firstAttribute="leadingMargin" secondItem="FcF-pn-waH" secondAttribute="leading" id="M26-ad-pir"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="3Vu-92-ly5" secondAttribute="trailing" id="fFC-2B-VBA"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="FcF-pn-waH" secondAttribute="trailing" id="hpi-tI-n8P"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="titleLabel" destination="3Vu-92-ly5" id="VWA-fI-JW5"/>
+                                    <outlet property="urlLabel" destination="FcF-pn-waH" id="KEo-6c-RQh"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -305,4 +326,7 @@
     <resources>
         <image name="LearnIconInverted" width="400" height="400"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Jm7-Ka-kXL"/>
+    </inferredMetricsTieBreakers>
 </document>
