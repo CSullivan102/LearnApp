@@ -11,10 +11,10 @@ import LearnKit
 import CoreData
 import SafariServices
 
-class ArticlesCollectionViewController: UICollectionViewController, ManagedObjectContextSettable, PocketAPISettable, SFSafariViewControllerDelegate {
+class ArticlesTableViewController: UITableViewController, ManagedObjectContextSettable, PocketAPISettable, SFSafariViewControllerDelegate {
     var managedObjectContext: NSManagedObjectContext!
     var pocketAPI: PocketAPI!
-    var dataSource: UICollectionViewDataSource?
+    var dataSource: UITableViewDataSource?
     var topic: Topic?
     var selectedIndexPath: NSIndexPath?
     var notif: NSObjectProtocol?
@@ -30,14 +30,14 @@ class ArticlesCollectionViewController: UICollectionViewController, ManagedObjec
         request.fetchBatchSize = 20
         request.predicate = NSPredicate(format: "topic = %@", topic)
         let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        dataSource = FetchedResultsCollectionDataSource(collectionView: collectionView!, fetchedResultsController: frc, delegate: self)
+        dataSource = FetchedResultsTableDataSource(tableView: tableView, fetchedResultsController: frc, delegate: self)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         notif = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: nil) {
             [unowned self] (_) -> Void in
-            if let dataSource = self.dataSource as? FetchedResultsCollectionDataSource<ArticlesCollectionViewController> {
+            if let dataSource = self.dataSource as? FetchedResultsTableDataSource<ArticlesTableViewController> {
                 dataSource.refreshData()
             }
         }
@@ -50,11 +50,12 @@ class ArticlesCollectionViewController: UICollectionViewController, ManagedObjec
         NSNotificationCenter.defaultCenter().removeObserver(notif)
     }
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard let cell = dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? ArticleCollectionViewCell,
-        learnItem = cell.learnItem,
-        url = learnItem.url
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        guard let cell = tableView.cellForRowAtIndexPath(indexPath) as? Cell,
+            learnItem = cell.learnItem,
+            url = learnItem.url
         else { return }
+        
         let sfc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
         sfc.delegate = self
         presentViewController(sfc, animated: true, completion: nil)
@@ -84,52 +85,14 @@ class ArticlesCollectionViewController: UICollectionViewController, ManagedObjec
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    @IBAction func handleLongPress(sender: UILongPressGestureRecognizer) {
-        guard sender.state == .Began else { return }
-        guard let indexPath = collectionView?.indexPathForItemAtPoint(sender.locationInView(collectionView)),
-            cell = collectionView?.cellForItemAtIndexPath(indexPath)
-            else { return }
-        
-        selectedIndexPath = indexPath
-        
-        let menuItem = UIMenuItem(title: "Delete", action: "deleteArticle:")
-        
-        let mc = UIMenuController.sharedMenuController()
-        mc.menuItems = [menuItem]
-        mc.setTargetRect(cell.bounds, inView: cell)
-        mc.setMenuVisible(true, animated: false)
-    }
-    
-    override func canBecomeFirstResponder() -> Bool {
-        return true
-    }
-    
-    override func canPerformAction(action: Selector, withSender sender: AnyObject?) -> Bool {
-        if action == "deleteArticle:" {
-            return true
-        }
-        return super.canPerformAction(action, withSender: sender)
-    }
-    
-    func deleteArticle(sender: AnyObject?) {
-        guard let indexPath = selectedIndexPath,
-            cv = collectionView,
-            cell = dataSource?.collectionView(cv, cellForItemAtIndexPath: indexPath) as? ArticleCollectionViewCell,
-            learnItem = cell.learnItem else { return }
-        managedObjectContext.performChanges {
-            self.managedObjectContext.deleteObject(learnItem)
-        }
-        selectedIndexPath = nil
-    }
 }
 
-extension ArticlesCollectionViewController: FetchedResultsCollectionDataSourceDelegate {
-    typealias Cell = ArticleCollectionViewCell
+extension ArticlesTableViewController: FetchedResultsTableDataSourceDelegate {
+    typealias Cell = ArticleTableViewCell
     typealias Object = LearnItem
     
     func cellIdentifierForObject(object: Object) -> String {
-        return "ArticleCollectionCell"
+        return "ArticleTableCell"
     }
     
     func configureCell(cell: Cell, object: Object) {

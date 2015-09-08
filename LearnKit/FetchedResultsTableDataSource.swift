@@ -1,53 +1,50 @@
 //
-//  FetchedResultsCollectionDataSource.swift
+//  FetchedResultsTableDataSource.swift
 //  Learn
 //
-//  Created by Christopher Sullivan on 8/20/15.
+//  Created by Christopher Sullivan on 9/8/15.
 //  Copyright © 2015 Christopher Sullivan. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import CoreData
 
-public class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataSourceDelegate>: NSObject, UICollectionViewDataSource, NSFetchedResultsControllerDelegate {
+public class FetchedResultsTableDataSource<D: FetchedResultsTableDataSourceDelegate>: NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     private let fetchedResultsController: NSFetchedResultsController
-    let collectionView: UICollectionView
+    let tableView: UITableView
     let delegate: D
     
-    public required init(collectionView: UICollectionView, fetchedResultsController: NSFetchedResultsController, delegate: D) {
-        self.collectionView = collectionView
+    public required init(tableView: UITableView, fetchedResultsController: NSFetchedResultsController, delegate: D) {
+        self.tableView = tableView
         self.fetchedResultsController = fetchedResultsController
         self.delegate = delegate
         
         super.init()
         
         fetchedResultsController.delegate = self
-        collectionView.dataSource = self
+        tableView.dataSource = self
         try! fetchedResultsController.performFetch()
-        collectionView.reloadData()
+        tableView.reloadData()
     }
     
     public func refreshData() {
         try! fetchedResultsController.performFetch()
-        collectionView.reloadData()
+        tableView.reloadData()
     }
-    
-    //MARK: NSFetchedResultsControllerDelegate
     
     public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
         case .Delete:
             guard let unwrappedIndexPath = indexPath
             else { return }
-            collectionView.deleteItemsAtIndexPaths([unwrappedIndexPath])
+            tableView.deleteRowsAtIndexPaths([unwrappedIndexPath], withRowAnimation: .Right)
         case .Insert:
-            guard let unwrappedIndexPath = newIndexPath
+            guard let unwrappedIndexPath = indexPath
             else { return }
-            collectionView.insertItemsAtIndexPaths([unwrappedIndexPath])
+            tableView.insertRowsAtIndexPaths([unwrappedIndexPath], withRowAnimation: .Right)
         case .Update:
             guard let unwrappedIndexPath = indexPath,
-                cell = collectionView.cellForItemAtIndexPath(unwrappedIndexPath) as? D.Cell,
+                cell = tableView.cellForRowAtIndexPath(unwrappedIndexPath) as? D.Cell,
                 object = anObject as? D.Object
             else { return }
             delegate.configureCell(cell, object: object)
@@ -55,39 +52,38 @@ public class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataS
             guard let unwrappedOldIndexPath = indexPath,
                 unwrappedNewIndexPath = newIndexPath
             else { return }
-            collectionView.deleteItemsAtIndexPaths([unwrappedOldIndexPath])
-            collectionView.insertItemsAtIndexPaths([unwrappedNewIndexPath])
+            tableView.deleteRowsAtIndexPaths([unwrappedOldIndexPath], withRowAnimation: .Right)
+            tableView.insertRowsAtIndexPaths([unwrappedNewIndexPath], withRowAnimation: .Right)
         }
     }
     
-    //MARK: UICollectionViewDataSource
-    
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sec = fetchedResultsController.sections?[section]
         else { return 0 }
         return sec.numberOfObjects
     }
     
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let obj = objectAtIndexPath(indexPath)
         let identifier = delegate.cellIdentifierForObject(obj)
-        guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as? D.Cell
+        guard let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? D.Cell
         else { fatalError("Unexpected cell type at \(indexPath)") }
+        
         delegate.configureCell(cell, object: obj)
+        
         return cell
     }
     
     func objectAtIndexPath(indexPath: NSIndexPath) -> D.Object {
-        guard let obj = fetchedResultsController.objectAtIndexPath(indexPath) as? D.Object else {
-            fatalError("Couldn't find object at index path in FetchedResultsDataSource")
-        }
+        guard let obj = fetchedResultsController.objectAtIndexPath(indexPath) as? D.Object
+        else { fatalError("Unexpected cell type at \(indexPath)") }
         return obj
     }
 }
 
-public protocol FetchedResultsCollectionDataSourceDelegate {
+public protocol FetchedResultsTableDataSourceDelegate {
     typealias Object: ManagedObject
-    typealias Cell: UICollectionViewCell
+    typealias Cell: UITableViewCell
     
     func cellIdentifierForObject(object: Object) -> String
     func configureCell(cell: Cell, object: Object)

@@ -152,20 +152,30 @@ class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, Man
         if let shareURL = shareURL {
             let pocketAPI = PocketAPI(delegate: self)
             pocketAPI.addURLToPocket(shareURL) { pocketItem in
-                print("Saved URL to Pocket!")
+                print("\(pocketItem)")
+                managedObjectContext.performChanges {
+                    let learnItem: LearnItem = managedObjectContext.insertObject()
+                    learnItem.title = title
+                    learnItem.url = self.shareURL
+                    learnItem.itemType = .Article
+                    learnItem.read = false
+                    learnItem.dateAdded = NSDate()
+                    learnItem.topic = topic
+                    learnItem.excerpt = pocketItem.excerpt
+                    if let itemID = Int32(pocketItem.item_id) {
+                        learnItem.pocketItemID = NSNumber(int: itemID)
+                    }
+                    if let imageSrc = pocketItem.imageItem?.src {
+                        learnItem.imageURL = NSURL(string: imageSrc)
+                    }
+                    if let wordCount = Int32(pocketItem.word_count) {
+                        learnItem.wordCount = NSNumber(int: wordCount)
+                    }
+                }
+                
+                self.delegate?.dismissChooseTopicController()
             }
         }
-        
-        managedObjectContext.performChanges {
-            let learnItem: LearnItem = managedObjectContext.insertObject()
-            learnItem.title = title
-            learnItem.url = self.shareURL
-            learnItem.itemType = .Article
-            learnItem.read = false
-            learnItem.dateAdded = NSDate()
-            learnItem.topic = topic
-        }
-        delegate?.dismissChooseTopicController()
     }
     
     @IBAction func cancelButtonPressed(sender: UIButton) {

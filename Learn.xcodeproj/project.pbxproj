@@ -29,6 +29,7 @@
 		74418D281B83DD1500BCDD79 /* LearnTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D271B83DD1500BCDD79 /* LearnTests.swift */; };
 		74418D331B83DD1500BCDD79 /* LearnUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D321B83DD1500BCDD79 /* LearnUITests.swift */; };
 		744B1E611B9E009A001B5263 /* TopicCollectionControllable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B1E601B9E009A001B5263 /* TopicCollectionControllable.swift */; settings = {ASSET_TAGS = (); }; };
+		744B1E631B9E9A51001B5263 /* FetchedResultsTableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B1E621B9E9A51001B5263 /* FetchedResultsTableDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		7469F22B1B8CC21100AB3A7C /* PocketAPISettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D293181B86997D0037EBA9 /* PocketAPISettable.swift */; settings = {ASSET_TAGS = (); }; };
 		7469F22C1B8CC21500AB3A7C /* PocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2931A1B86999D0037EBA9 /* PocketAPI.swift */; settings = {ASSET_TAGS = (); }; };
 		7469F22D1B8CC39E00AB3A7C /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D2931C1B869A910037EBA9 /* Alamofire.framework */; };
@@ -49,7 +50,7 @@
 		74B7634E1B86AB0A001140F5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D2931C1B869A910037EBA9 /* Alamofire.framework */; };
 		74C6E64E1B863C9D0013B1BD /* TopicCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64D1B863C9D0013B1BD /* TopicCollectionViewController.swift */; };
 		74C6E6541B8670CD0013B1BD /* ArticlesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6531B8670CD0013B1BD /* ArticlesCollectionViewController.swift */; };
-		74C6E6561B86711D0013B1BD /* ArticleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6551B86711D0013B1BD /* ArticleCollectionViewCell.swift */; };
+		74C6E6561B86711D0013B1BD /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6551B86711D0013B1BD /* ArticleTableViewCell.swift */; };
 		74C6E6581B867D780013B1BD /* CreateLearnItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */; };
 		74D438601B98992400F3838D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74418D191B83DD1500BCDD79 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
 		74DC60751B95319E00C53D13 /* CreateTopic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74DC60741B95319E00C53D13 /* CreateTopic.storyboard */; settings = {ASSET_TAGS = (); }; };
@@ -157,6 +158,7 @@
 		74418D481B83E2E000BCDD79 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = ../Learn/CoreDataStack.swift; sourceTree = "<group>"; };
 		74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicViewController.swift; sourceTree = "<group>"; };
 		744B1E601B9E009A001B5263 /* TopicCollectionControllable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionControllable.swift; sourceTree = "<group>"; };
+		744B1E621B9E9A51001B5263 /* FetchedResultsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableDataSource.swift; sourceTree = "<group>"; };
 		749B07CA1B94FFB600E668BF /* ChooseTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTopicViewController.swift; sourceTree = "<group>"; };
 		74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddableFetchedResultsCollectionDataSource.swift; sourceTree = "<group>"; };
 		74A911CB1B94C26000B695B5 /* SmallModalTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallModalTransitioningDelegate.swift; sourceTree = "<group>"; };
@@ -168,7 +170,7 @@
 		74C6E64D1B863C9D0013B1BD /* TopicCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicCollectionViewController.swift; path = Learn/TopicCollectionViewController.swift; sourceTree = "<group>"; };
 		74C6E64F1B863E800013B1BD /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicCollectionViewCell.swift; path = ../Learn/TopicCollectionViewCell.swift; sourceTree = "<group>"; };
 		74C6E6531B8670CD0013B1BD /* ArticlesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticlesCollectionViewController.swift; path = Learn/ArticlesCollectionViewController.swift; sourceTree = "<group>"; };
-		74C6E6551B86711D0013B1BD /* ArticleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleCollectionViewCell.swift; path = Learn/ArticleCollectionViewCell.swift; sourceTree = "<group>"; };
+		74C6E6551B86711D0013B1BD /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleTableViewCell.swift; path = Learn/ArticleTableViewCell.swift; sourceTree = "<group>"; };
 		74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateLearnItemViewController.swift; path = Learn/CreateLearnItemViewController.swift; sourceTree = "<group>"; };
 		74D22E4C1B8B70BC0097D5BC /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = ../Learn/Keys.plist; sourceTree = "<group>"; };
 		74D22E531B8BA2630097D5BC /* Learn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Learn.entitlements; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				74D293181B86997D0037EBA9 /* PocketAPISettable.swift */,
 				74D2931A1B86999D0037EBA9 /* PocketAPI.swift */,
 				74418D481B83E2E000BCDD79 /* CoreDataStack.swift */,
+				744B1E621B9E9A51001B5263 /* FetchedResultsTableDataSource.swift */,
 				74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */,
 				74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */,
 				744B1E601B9E009A001B5263 /* TopicCollectionControllable.swift */,
@@ -374,7 +377,7 @@
 			isa = PBXGroup;
 			children = (
 				74C6E6531B8670CD0013B1BD /* ArticlesCollectionViewController.swift */,
-				74C6E6551B86711D0013B1BD /* ArticleCollectionViewCell.swift */,
+				74C6E6551B86711D0013B1BD /* ArticleTableViewCell.swift */,
 				74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */,
 			);
 			name = ArticlesView;
@@ -682,6 +685,7 @@
 				7469F2391B8D0FF900AB3A7C /* FetchedResultsCollectionDataSource.swift in Sources */,
 				7415CB951B8BCF32008FB09B /* CoreDataStack.swift in Sources */,
 				749B07C61B94FAC200E668BF /* CreateTopicViewController.swift in Sources */,
+				744B1E631B9E9A51001B5263 /* FetchedResultsTableDataSource.swift in Sources */,
 				749B07C91B94FC3300E668BF /* SmallModalPresentationController.swift in Sources */,
 				749B07C81B94FC3300E668BF /* SmallModalTransitioningDelegate.swift in Sources */,
 				7415CB901B8BCE34008FB09B /* LearnModel.xcdatamodeld in Sources */,
@@ -719,7 +723,7 @@
 				74C6E6581B867D780013B1BD /* CreateLearnItemViewController.swift in Sources */,
 				74C6E64E1B863C9D0013B1BD /* TopicCollectionViewController.swift in Sources */,
 				74C6E6541B8670CD0013B1BD /* ArticlesCollectionViewController.swift in Sources */,
-				74C6E6561B86711D0013B1BD /* ArticleCollectionViewCell.swift in Sources */,
+				74C6E6561B86711D0013B1BD /* ArticleTableViewCell.swift in Sources */,
 				74418D131B83DD1500BCDD79 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

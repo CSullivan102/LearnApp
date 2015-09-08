@@ -16,6 +16,10 @@ public final class LearnItem: ManagedObject {
     @NSManaged public var topic: Topic?
     @NSManaged public var dateAdded: NSDate
     @NSManaged private var type: Int16
+    @NSManaged public var excerpt: String?
+    @NSManaged public var wordCount: NSNumber?
+    @NSManaged public var imageURL: NSURL?
+    @NSManaged public var pocketItemID: NSNumber?
 
     public var itemType: LearnItemType {
         get {

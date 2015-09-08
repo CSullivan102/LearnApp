@@ -2,10 +2,14 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="8193.2" systemVersion="14F27" minimumToolsVersion="Xcode 7.0">
     <entity name="LearnItem" representedClassName=".LearnItem" syncable="YES">
         <attribute name="dateAdded" attributeType="Date" syncable="YES"/>
+        <attribute name="excerpt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="pocketItemID" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="read" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="type" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="wordCount" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="topic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Topic" inverseName="learnItems" inverseEntity="Topic" syncable="YES"/>
     </entity>
     <entity name="Topic" representedClassName=".Topic" syncable="YES">
@@ -17,7 +21,7 @@
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Topic" inverseName="childTopics" inverseEntity="Topic" syncable="YES"/>
     </entity>
     <elements>
-        <element name="LearnItem" positionX="-45" positionY="27" width="128" height="135"/>
+        <element name="LearnItem" positionX="-45" positionY="27" width="128" height="195"/>
         <element name="Topic" positionX="-63" positionY="-18" width="128" height="135"/>
     </elements>
 </model>

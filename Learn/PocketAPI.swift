@@ -78,9 +78,19 @@ public class PocketAPI {
             switch result {
             case .Success(let JSON):
                 let decodedResponse: Decoded<PocketAddResponse> = decode(JSON)
-                
+                print(JSON)
                 switch decodedResponse {
-                case .Success(let responseObj):
+                case .Success(var responseObj):
+                    // try and decode the images, which can't use argo b/c of the property names
+                    if let item = JSON["item"] as? NSDictionary,
+                        let images = item["images"] as? NSDictionary,
+                        let image1 = images["1"] as? NSDictionary,
+                        let imageURL = image1["src"] as? String {
+                            print(imageURL)
+                            responseObj.item.imageItem = PocketImageItem(src: imageURL)
+                    }
+                    
+                    
                     completion(responseObj.item)
                 case .MissingKey(let s):
                     print("JSON decoding failed for Add to Pocket, missing key \(s)")
@@ -230,7 +240,7 @@ extension PocketUserAuthResponse: Decodable {
 }
 
 public struct PocketAddResponse {
-    public let item: PocketItem
+    public var item: PocketItem
     public let status: Int
 }
 
@@ -246,17 +256,46 @@ extension PocketAddResponse: Decodable {
     }
 }
 
-public struct PocketItem {
+public struct PocketItem: CustomStringConvertible {
     public let item_id: String
+    public let title: String
+    public let excerpt: String
+    public let word_count: String
+    public var imageItem: PocketImageItem?
+    
+    public var description: String {
+        get {
+            return "\(item_id) \(title) \(excerpt) \(word_count)"
+        }
+    }
 }
 
 extension PocketItem: Decodable {
-    static func create(item_id: String) -> PocketItem {
-        return PocketItem(item_id: item_id)
+    static func create(item_id: String)(title: String)(excerpt: String)(word_count: String)(imageItem: PocketImageItem?) -> PocketItem {
+        return PocketItem(item_id: item_id, title: title, excerpt: excerpt, word_count: word_count, imageItem: imageItem)
     }
     
     public static func decode(json: JSON) -> Decoded<PocketItem> {
         return create
             <^> json <| "item_id"
+            <*> json <| "title"
+            <*> json <| "excerpt"
+            <*> json <| "word_count"
+            <*> json <|? "imageItem"
+    }
+}
+
+public struct PocketImageItem {
+    public let src: String
+}
+
+extension PocketImageItem: Decodable {
+    static func create(src: String) -> PocketImageItem {
+        return PocketImageItem(src: src)
+    }
+    
+    public static func decode(json: JSON) -> Decoded<PocketImageItem> {
+        return create
+            <^> json <| "src"
     }
 }

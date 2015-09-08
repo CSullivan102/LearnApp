@@ -35,7 +35,6 @@ class SharePresentationViewController: UIViewController, ChooseTopicDelegate {
             vc.modalPresentationStyle = .Custom
             vc.delegate = self
             vc.managedObjectContext = managedObjectContext
-            
         }
     }
     

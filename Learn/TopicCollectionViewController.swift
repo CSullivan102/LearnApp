@@ -102,7 +102,7 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
             vc.transitioningDelegate = createTopicTransitioningDelegate
             vc.modalPresentationStyle = .Custom
         case .ShowArticles:
-            guard let vc = segue.destinationViewController as? ArticlesCollectionViewController
+            guard let vc = segue.destinationViewController as? ArticlesTableViewController
             else { fatalError("Unexpected view controller for \(identifier) segue") }
             guard let topic = sender as? Topic
             else { fatalError("Missing topic for \(identifier) segue") }
