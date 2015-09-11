@@ -72,21 +72,34 @@ public class PocketAPI {
                 let decodedResponse: Decoded<PocketAddResponse> = decode(JSON)
                 switch decodedResponse {
                 case .Success(let responseObj):
-                    // try and decode the images, which can't use argo b/c of the property names
-//                    if let item = JSON["item"] as? NSDictionary,
-//                        let images = item["images"] as? NSDictionary,
-//                        let image1 = images["1"] as? NSDictionary,
-//                        let imageURL = image1["src"] as? String {
-//                            print(imageURL)
-//                            responseObj.item.imageItem = PocketImageItem(src: imageURL)
-//                    }
-                    
-                    
                     completion(responseObj.item)
                 case .MissingKey(let s):
                     print("JSON decoding failed for Add to Pocket, missing key \(s)")
-                case .TypeMismatch(let s):
-                    print("JSON decoding failed for Add to Pocket, type mismatch \(s)")
+                case .TypeMismatch:
+                    // The Pocket API's add URL response normally returns an "item" with a key "images"
+                    // which is an object of key -> image object, however when there are no images, it incorrectly
+                    // assigns "images" an empty array instead of an empty object, so rebuild the JSON without the "images"
+                    // key and try parsing the PocketItem again
+                    if let j = JSON as? [String: AnyObject] {
+                        if let item = j["item"] as? [String: AnyObject] {
+                            var modifiedJSON = [String: AnyObject]()
+                            for (key, val) in item {
+                                if key == "images" {
+                                    continue
+                                }
+                                modifiedJSON[key] = val
+                            }
+                            let decodedModifiedPocketItem: Decoded<PocketItem> = decode(modifiedJSON)
+                            switch decodedModifiedPocketItem {
+                            case .Success(let pocketItem):
+                                completion(pocketItem)
+                            case .MissingKey(let s):
+                                print("JSON decoding missing key on modified add URL pocket item \(s)")
+                            case .TypeMismatch(let s):
+                                print("JSON decoding type mismatch on modified add URL pocket item \(s)")
+                            }
+                        }
+                    }
                 }
             case .Failure(let data, let error):
                 print("Request failed with error: \(error)")
@@ -97,8 +110,8 @@ public class PocketAPI {
         }
     }
     
-    public func getPocketItems(count: Int, completion: ([PocketItem]) -> ()) {
-        authenticateAndMakeRequest(.POST, urlAsString: "https://getpocket.com/v3/get", params: ["count": "\(count)", "detailType": "complete"]) {
+    public func getPocketItemsWithCount(count: Int, andOffset offset: Int, completion: ([PocketItem]) -> ()) {
+        authenticateAndMakeRequest(.POST, urlAsString: "https://getpocket.com/v3/get", params: ["count": "\(count)", "offset": "\(offset)", "sort": "newest", "detailType": "complete"]) {
             result in
             switch result {
             case .Success(let JSON):
@@ -214,7 +227,7 @@ public class PocketAPI {
         var newParams = params ?? [String: String]()
         newParams["consumer_key"] = consumerKey
         newParams["access_token"] = accessToken
-        
+
         Alamofire.request(method, urlAsString, parameters: newParams, encoding: .JSON, headers: ["X-Accept": "application/json"]).responseJSON { (_, _, result) -> Void in
             completion(result)
         }
@@ -295,11 +308,12 @@ public struct PocketItem {
     public let excerpt: String
     public let word_count: String
     public let images: [String: PocketImageItem]?
+    public var importedToLearn: Bool?
 }
 
 extension PocketItem: Decodable {
-    static func create(item_id: String)(title: String?)(resolved_title: String?)(given_url: String?)(excerpt: String)(word_count: String)(images: [String: PocketImageItem]?) -> PocketItem {
-        return PocketItem(item_id: item_id, title: title, resolved_title: resolved_title, given_url: given_url, excerpt: excerpt, word_count: word_count, images: images)
+    static func create(item_id: String)(title: String?)(resolved_title: String?)(given_url: String?)(excerpt: String)(word_count: String)(images: [String: PocketImageItem]?)(importedToLearn: Bool?) -> PocketItem {
+        return PocketItem(item_id: item_id, title: title, resolved_title: resolved_title, given_url: given_url, excerpt: excerpt, word_count: word_count, images: images, importedToLearn: importedToLearn)
     }
     
     public static func decode(json: JSON) -> Decoded<PocketItem> {
@@ -311,6 +325,7 @@ extension PocketItem: Decodable {
             <*> json <| "excerpt"
             <*> json <| "word_count"
             <*> json <|~? "images"
+            <*> json <|? "importedToLearn"
     }
 }
 
