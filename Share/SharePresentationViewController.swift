@@ -11,7 +11,7 @@ import LearnKit
 import MobileCoreServices
 import CoreData
 
-class SharePresentationViewController: UIViewController, ChooseTopicDelegate {
+class SharePresentationViewController: UIViewController, LearnShareSheetDelegate {
     var managedObjectContext: NSManagedObjectContext?
     let createTopicTransitionDelegate = SmallModalTransitioningDelegate()
     
@@ -28,8 +28,8 @@ class SharePresentationViewController: UIViewController, ChooseTopicDelegate {
         else { fatalError("Invalid segue identifier \(segue.identifier)") }
         switch segueIdentifier {
         case .ShowChooseTopicModal:
-            guard let vc = segue.destinationViewController as? ChooseTopicViewController
-                else { fatalError("Wrong view controller for segue") }
+            guard let vc = segue.destinationViewController as? ShareChooseTopicViewController
+            else { fatalError("Unexpected view controller for \(identifier)") }
             
             vc.transitioningDelegate = createTopicTransitionDelegate
             vc.modalPresentationStyle = .Custom
@@ -38,7 +38,7 @@ class SharePresentationViewController: UIViewController, ChooseTopicDelegate {
         }
     }
     
-    func dismissChooseTopicController() {
+    func dismissLearnShareSheetController() {
         dismissViewControllerAnimated(true) {
             self.extensionContext?.completeRequestReturningItems([], completionHandler: nil)
         }

@@ -26,10 +26,10 @@
             </objects>
             <point key="canvasLocation" x="539" y="97"/>
         </scene>
-        <!--Choose Topic View Controller-->
+        <!--Share Choose Topic View Controller-->
         <scene sceneID="vjp-n7-y5P">
             <objects>
-                <viewController id="iHY-YO-3p3" customClass="ChooseTopicViewController" customModule="Share" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="iHY-YO-3p3" customClass="ShareChooseTopicViewController" customModule="Share" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="McH-kg-mYN"/>
                         <viewControllerLayoutGuide type="bottom" id="skm-eq-vPK"/>
@@ -60,104 +60,23 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="K9n-LS-1Dd">
-                                <rect key="frame" x="75" y="74" width="450" height="68"/>
+                                <rect key="frame" x="75" y="74" width="450" height="113"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-gv-wo9">
                                         <rect key="frame" x="0.0" y="0.0" width="450" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ss3-bF-zSC">
-                                        <rect key="frame" x="0.0" y="38" width="450" height="30"/>
-                                        <color key="backgroundColor" red="0.25882352939999997" green="0.83529411760000005" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Choose Topic">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="chooseTopicButtonPressed:" destination="iHY-YO-3p3" eventType="touchUpInside" id="NTd-79-Gg8"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZB-bI-E81">
-                                        <rect key="frame" x="0.0" y="76" width="450" height="0.0"/>
-                                        <color key="backgroundColor" red="0.25882352939999997" green="0.83529411760000005" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="Choose Subtopic">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="chooseSubtopicButtonPressed:" destination="iHY-YO-3p3" eventType="touchUpInside" id="Osi-WR-n8Q"/>
-                                        </connections>
-                                    </button>
-                                    <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mkN-1v-IB6">
-                                        <rect key="frame" x="0.0" y="84" width="450" height="0.0"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mtA-Gi-AVd">
+                                        <rect key="frame" x="0.0" y="38" width="450" height="75"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" priority="750" constant="125" id="S3L-qb-0z9"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="FZM-iZ-mzB"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0sA-VF-baR">
-                                            <size key="itemSize" width="50" height="50"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopicShareCell" id="w3u-wm-H1H" customClass="TopicCollectionViewCell" customModule="LearnKit">
-                                                <rect key="frame" x="0.0" y="10" width="50" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ygt-bD-oUL">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                            <color key="backgroundColor" red="0.25882352939999997" green="0.83529411760000005" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="50" id="teO-X4-GZD"/>
-                                                                <constraint firstAttribute="height" constant="50" id="vQ2-Zc-Z6A"/>
-                                                            </constraints>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                    <integer key="value" value="25"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🙈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNx-Xu-kj1">
-                                                            <rect key="frame" x="13" y="11" width="25" height="29"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="Ygt-bD-oUL" firstAttribute="centerX" secondItem="w3u-wm-H1H" secondAttribute="centerX" id="00Z-2n-hNo"/>
-                                                    <constraint firstItem="WNx-Xu-kj1" firstAttribute="centerY" secondItem="w3u-wm-H1H" secondAttribute="centerY" id="Ur1-so-YHE"/>
-                                                    <constraint firstItem="WNx-Xu-kj1" firstAttribute="centerX" secondItem="w3u-wm-H1H" secondAttribute="centerX" id="tpN-Bc-5f9"/>
-                                                    <constraint firstItem="Ygt-bD-oUL" firstAttribute="top" secondItem="w3u-wm-H1H" secondAttribute="top" id="uiT-ka-67D"/>
-                                                </constraints>
-                                                <connections>
-                                                    <outlet property="iconBackgroundView" destination="Ygt-bD-oUL" id="ALv-Ma-UNi"/>
-                                                    <outlet property="iconLabel" destination="WNx-Xu-kj1" id="f7Q-WQ-QTe"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
-                                    </collectionView>
+                                        <connections>
+                                            <segue destination="lgK-iA-yhM" kind="embed" identifier="EmbedChooseTopic" id="wDv-zJ-DLg"/>
+                                        </connections>
+                                    </containerView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="hZB-bI-E81" firstAttribute="top" secondItem="Ss3-bF-zSC" secondAttribute="bottom" constant="8" symbolic="YES" id="JIq-Ai-jJy"/>
-                                    <constraint firstItem="mkN-1v-IB6" firstAttribute="top" secondItem="hZB-bI-E81" secondAttribute="bottom" constant="8" symbolic="YES" id="Rvo-vv-XaF"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -179,9 +98,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
-                        <outlet property="chooseSubTopicButton" destination="hZB-bI-E81" id="eqv-rU-N0k"/>
-                        <outlet property="chooseTopicButton" destination="Ss3-bF-zSC" id="UcO-3m-fHF"/>
-                        <outlet property="collectionView" destination="mkN-1v-IB6" id="MZJ-uc-enK"/>
+                        <outlet property="chooseTopicContainerHeightConstraint" destination="FZM-iZ-mzB" id="wGo-ux-xae"/>
                         <outlet property="titleTextField" destination="aqK-gv-wo9" id="5HO-X3-1vi"/>
                         <outlet property="topicStackView" destination="K9n-LS-1Dd" id="P5c-hk-oBJ"/>
                         <segue destination="4cW-Wp-z07" kind="presentation" identifier="ShowCreateTopic" id="881-sC-giq"/>
@@ -199,6 +116,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUj-Te-AI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1899" y="96"/>
+        </scene>
+        <!--ChooseTopic-->
+        <scene sceneID="FoF-d7-wnL">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ChooseTopic" bundleIdentifier="com.sullivan.j.chris.LearnKit" referencedIdentifier="ChooseTopic" id="lgK-iA-yhM" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="74b-R3-5F8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1236" y="554"/>
         </scene>
     </scenes>
     <resources>
