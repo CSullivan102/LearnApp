@@ -13,7 +13,7 @@ public protocol CreateTopicDelegate {
     func didCreateTopic(topic: Topic)
 }
 
-public class CreateTopicViewController: UIViewController, ManagedObjectContextSettable, UITextFieldDelegate {
+public class CreateTopicViewController: UIViewController, ManagedObjectContextSettable, UITextFieldDelegate, UIViewControllerHeightRequestable {
     public var managedObjectContext: NSManagedObjectContext!
     
     public var createTopicDelegate: CreateTopicDelegate?
@@ -118,5 +118,9 @@ public class CreateTopicViewController: UIViewController, ManagedObjectContextSe
             length++
         }
         return length
+    }
+    
+    public func preferredHeight() -> CGFloat {
+        return 150.0
     }
 }
