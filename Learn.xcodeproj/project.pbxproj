@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74101D371BA7488300CF29AF /* PocketImportModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74101D361BA7488300CF29AF /* PocketImportModalController.swift */; settings = {ASSET_TAGS = (); }; };
 		7415CB681B8BA764008FB09B /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7415CB671B8BA764008FB09B /* KeychainAccess.framework */; };
 		7415CB741B8BCC9B008FB09B /* LearnKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7415CB731B8BCC9B008FB09B /* LearnKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7415CB7B1B8BCC9B008FB09B /* LearnKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7415CB711B8BCC9B008FB09B /* LearnKit.framework */; };
@@ -132,6 +133,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		74101D361BA7488300CF29AF /* PocketImportModalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketImportModalController.swift; sourceTree = "<group>"; };
 		7415CB671B8BA764008FB09B /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
 		7415CB711B8BCC9B008FB09B /* LearnKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LearnKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7415CB731B8BCC9B008FB09B /* LearnKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LearnKit.h; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 			children = (
 				74CDD1A91B9F5ED70022D116 /* PocketImportController.swift */,
 				74CDD1AB1B9F84870022D116 /* PocketAuthModalController.swift */,
+				74101D361BA7488300CF29AF /* PocketImportModalController.swift */,
 			);
 			name = PocketImport;
 			sourceTree = "<group>";
@@ -761,6 +764,7 @@
 				74CDD1AA1B9F5ED70022D116 /* PocketImportController.swift in Sources */,
 				74C6E6541B8670CD0013B1BD /* ArticlesTableViewController.swift in Sources */,
 				74C6E6561B86711D0013B1BD /* ArticleTableViewCell.swift in Sources */,
+				74101D371BA7488300CF29AF /* PocketImportModalController.swift in Sources */,
 				74CDD1AC1B9F84870022D116 /* PocketAuthModalController.swift in Sources */,
 				74418D131B83DD1500BCDD79 /* AppDelegate.swift in Sources */,
 			);

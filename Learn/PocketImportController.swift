@@ -19,6 +19,7 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
     private var fetching = false
     private let fetchCount = 10
     private var fetchOffset = 0
+    private let smallModalTransitioningDelegate = SmallModalTransitioningDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +70,6 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
     private func fetchPocketItems(completion: ([PocketItem]) -> ()) {
         if !fetching {
             fetching = true
-            print("fetch! \(fetchCount) \(fetchOffset)")
             pocketAPI.getPocketItemsWithCount(fetchCount, andOffset: fetchOffset) {
                 items in
                 self.fetching = false
@@ -129,11 +129,38 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
             }
             
             vc.modalPresentationStyle = .Custom
-            vc.transitioningDelegate = SmallModalTransitioningDelegate()
+            vc.transitioningDelegate = smallModalTransitioningDelegate
+        case .ShowImportTopicPicker:
+            guard let vc = segue.destinationViewController as? PocketImportModalController
+            else { fatalError("Unexpected view controller for \(identifier) segue") }
+            
+            vc.managedObjectContext = managedObjectContext
+            
+            vc.transitioningDelegate = smallModalTransitioningDelegate
+            vc.modalPresentationStyle = .Custom
+            
+            guard let indexPaths = tableView.indexPathsForSelectedRows where indexPaths.count > 0
+            else { return }
+            
+            let pocketItemsToImport = indexPaths.map({ (indexPath) -> PocketItem in
+                return pocketItems[indexPath.row]
+            })
+            vc.pocketItemsToImport = pocketItemsToImport
+            vc.completionHandler = {
+                items in
+                
+                for indexPath in indexPaths {
+                    self.tableView.deselectRowAtIndexPath(indexPath, animated: false)
+                    self.pocketItems[indexPath.row].setImported(true)
+                }
+                self.tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.None)
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
         }
     }
     
     enum SegueIdentifier: String {
         case ShowPocketAuth = "ShowPocketAuth"
+        case ShowImportTopicPicker = "ShowImportTopicPicker"
     }
 }

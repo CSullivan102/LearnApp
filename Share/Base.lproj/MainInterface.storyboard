@@ -59,37 +59,35 @@
                                     <action selector="saveButtonPressed:" destination="iHY-YO-3p3" eventType="touchUpInside" id="zdK-Oe-g5L"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="K9n-LS-1Dd">
-                                <rect key="frame" x="75" y="74" width="450" height="113"/>
-                                <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-gv-wo9">
-                                        <rect key="frame" x="0.0" y="0.0" width="450" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
-                                    </textField>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mtA-Gi-AVd">
-                                        <rect key="frame" x="0.0" y="38" width="450" height="75"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="FZM-iZ-mzB"/>
-                                        </constraints>
-                                        <connections>
-                                            <segue destination="lgK-iA-yhM" kind="embed" identifier="EmbedChooseTopic" id="wDv-zJ-DLg"/>
-                                        </connections>
-                                    </containerView>
-                                </subviews>
-                            </stackView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mtA-Gi-AVd">
+                                <rect key="frame" x="75" y="112" width="450" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="mn0-xm-yf1"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="lxV-eX-rkH" kind="embed" identifier="EmbedChooseTopic" id="Zfz-Wb-o9B"/>
+                                </connections>
+                            </containerView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-gv-wo9">
+                                <rect key="frame" x="75" y="74" width="450" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="mtA-Gi-AVd" firstAttribute="width" secondItem="aqK-gv-wo9" secondAttribute="width" id="18i-b8-WRU"/>
                             <constraint firstItem="alI-Ve-sag" firstAttribute="baseline" secondItem="k7O-o0-OLF" secondAttribute="baseline" id="1E8-2L-ZfU"/>
+                            <constraint firstItem="aqK-gv-wo9" firstAttribute="width" secondItem="HQo-w4-NaF" secondAttribute="width" multiplier="0.75" id="9Ts-WC-shV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="k7O-o0-OLF" secondAttribute="trailing" id="EhJ-VA-ZmA"/>
-                            <constraint firstItem="K9n-LS-1Dd" firstAttribute="centerX" secondItem="HQo-w4-NaF" secondAttribute="centerX" id="R00-zP-osT"/>
+                            <constraint firstItem="mtA-Gi-AVd" firstAttribute="centerX" secondItem="aqK-gv-wo9" secondAttribute="centerX" id="QZw-oC-vxd"/>
                             <constraint firstAttribute="leadingMargin" secondItem="alI-Ve-sag" secondAttribute="leading" id="Yl9-sw-xfC"/>
+                            <constraint firstItem="aqK-gv-wo9" firstAttribute="centerX" secondItem="HQo-w4-NaF" secondAttribute="centerX" id="c0y-ju-e4S"/>
+                            <constraint firstItem="aqK-gv-wo9" firstAttribute="top" secondItem="6gY-3o-ZVv" secondAttribute="bottom" constant="8" symbolic="YES" id="cBZ-ou-76N"/>
                             <constraint firstItem="alI-Ve-sag" firstAttribute="top" secondItem="McH-kg-mYN" secondAttribute="bottom" constant="8" symbolic="YES" id="cK4-S0-RFT"/>
                             <constraint firstItem="6gY-3o-ZVv" firstAttribute="top" secondItem="McH-kg-mYN" secondAttribute="bottom" id="g4P-yv-Jmk"/>
-                            <constraint firstItem="K9n-LS-1Dd" firstAttribute="top" secondItem="6gY-3o-ZVv" secondAttribute="bottom" constant="8" symbolic="YES" id="hba-y9-Hk2"/>
+                            <constraint firstItem="mtA-Gi-AVd" firstAttribute="top" secondItem="aqK-gv-wo9" secondAttribute="bottom" constant="8" symbolic="YES" id="gqB-Wf-Dkw"/>
                             <constraint firstItem="6gY-3o-ZVv" firstAttribute="centerX" secondItem="HQo-w4-NaF" secondAttribute="centerX" id="ikP-RJ-Gzd"/>
-                            <constraint firstItem="K9n-LS-1Dd" firstAttribute="width" secondItem="HQo-w4-NaF" secondAttribute="width" multiplier="0.75" id="zs5-VK-x1r"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -98,9 +96,9 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
-                        <outlet property="chooseTopicContainerHeightConstraint" destination="FZM-iZ-mzB" id="wGo-ux-xae"/>
+                        <outlet property="chooseContainerHeightConstraint" destination="mn0-xm-yf1" id="sEd-xN-zfB"/>
+                        <outlet property="chooseTopicContainerView" destination="mtA-Gi-AVd" id="JBJ-VV-7aH"/>
                         <outlet property="titleTextField" destination="aqK-gv-wo9" id="5HO-X3-1vi"/>
-                        <outlet property="topicStackView" destination="K9n-LS-1Dd" id="P5c-hk-oBJ"/>
                         <segue destination="4cW-Wp-z07" kind="presentation" identifier="ShowCreateTopic" id="881-sC-giq"/>
                     </connections>
                 </viewController>
@@ -109,6 +107,14 @@
             </objects>
             <point key="canvasLocation" x="1236" y="97"/>
         </scene>
+        <!--ChooseTopic-->
+        <scene sceneID="tWZ-hg-s7s">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ChooseTopic" bundleIdentifier="com.sullivan.j.chris.LearnKit" id="lxV-eX-rkH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kgM-gn-Ajk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1209" y="534"/>
+        </scene>
         <!--CreateTopic-->
         <scene sceneID="xRx-Wn-vR6">
             <objects>
@@ -116,14 +122,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cUj-Te-AI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1899" y="96"/>
-        </scene>
-        <!--ChooseTopic-->
-        <scene sceneID="FoF-d7-wnL">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ChooseTopic" bundleIdentifier="com.sullivan.j.chris.LearnKit" referencedIdentifier="ChooseTopic" id="lgK-iA-yhM" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="74b-R3-5F8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1236" y="554"/>
         </scene>
     </scenes>
     <resources>

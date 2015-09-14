@@ -4,6 +4,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
+        <!--CreateTopic-->
+        <scene sceneID="SO5-YQ-Ao1">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CreateTopic" id="yn6-J8-wue" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Obi-Uh-8bx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="366" y="943"/>
+        </scene>
         <!--Choose Topic View Controller-->
         <scene sceneID="Tm6-9q-5gH">
             <objects>
@@ -17,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6Ys-R2-06Y">
-                                <rect key="frame" x="0.0" y="20" width="600" height="201"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OKG-Dj-w9D">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
@@ -34,8 +42,8 @@
                                             <action selector="chooseTopicButtonPressed:" destination="n33-1z-bPN" eventType="touchUpInside" id="5U5-KQ-aqR"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCK-6g-6vA">
-                                        <rect key="frame" x="0.0" y="38" width="600" height="30"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PCK-6g-6vA">
+                                        <rect key="frame" x="0.0" y="34" width="600" height="0.0"/>
                                         <color key="backgroundColor" red="0.25882352939999997" green="0.83529411760000005" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Choose Subtopic">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -49,8 +57,8 @@
                                             <action selector="chooseSubtopicButtonPressed:" destination="n33-1z-bPN" eventType="touchUpInside" id="fIV-ls-EQ9"/>
                                         </connections>
                                     </button>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4RM-P5-Ok3">
-                                        <rect key="frame" x="0.0" y="76" width="600" height="125"/>
+                                    <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4RM-P5-Ok3">
+                                        <rect key="frame" x="0.0" y="34" width="600" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" priority="750" constant="125" id="grX-3h-TEV"/>
@@ -120,6 +128,7 @@
                         <outlet property="chooseTopicButton" destination="OKG-Dj-w9D" id="Q5L-eW-1c8"/>
                         <outlet property="collectionView" destination="4RM-P5-Ok3" id="ihB-Tj-lZc"/>
                         <outlet property="stackView" destination="6Ys-R2-06Y" id="OdL-WV-IRz"/>
+                        <segue destination="yn6-J8-wue" kind="presentation" identifier="ShowCreateTopic" id="qAU-dn-D55"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lyU-bP-MvD" userLabel="First Responder" sceneMemberID="firstResponder"/>

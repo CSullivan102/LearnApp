@@ -68,5 +68,7 @@ class ArticleTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         articleImageView.image = UIImage(named: "LearnIconInverted")
         articleImageView.hidden = false
+        userInteractionEnabled = true
+        contentView.alpha = 1.0
     }
 }

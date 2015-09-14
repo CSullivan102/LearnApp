@@ -15,7 +15,7 @@ protocol LearnShareSheetDelegate {
     func getExtensionContextInfo(completion: (NSURL?, String?) -> Void)
 }
 
-class ShareChooseTopicViewController: UIViewController, UICollectionViewDelegate, ManagedObjectContextSettable, UIViewControllerHeightRequestable, TopicCollectionControllable {
+class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSettable, UIViewControllerHeightRequestable, TopicCollectionControllable {
     var managedObjectContext: NSManagedObjectContext!
     var parentTopic: Topic?
     var delegate: LearnShareSheetDelegate?
@@ -23,11 +23,9 @@ class ShareChooseTopicViewController: UIViewController, UICollectionViewDelegate
     var itemTitle: String?
     var selectedTopic: Topic?
     
-    let createTopicTransitioningDelegate = SmallModalTransitioningDelegate()
-    
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var topicStackView: UIStackView!
-    @IBOutlet weak var chooseTopicContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var chooseTopicContainerView: UIView!
+    @IBOutlet weak var chooseContainerHeightConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +40,10 @@ class ShareChooseTopicViewController: UIViewController, UICollectionViewDelegate
     
     @IBAction func saveButtonPressed(sender: UIButton) {
         guard let managedObjectContext = managedObjectContext
-            else { fatalError("Tried to post article without MOC") }
+        else { fatalError("Tried to post article without MOC") }
         
         guard let topic = selectedTopic, title = titleTextField.text where title.characters.count > 0
-            else { return }
+        else { return }
         
         if let shareURL = shareURL {
             managedObjectContext.performChanges {
@@ -60,17 +58,7 @@ class ShareChooseTopicViewController: UIViewController, UICollectionViewDelegate
                 if pocketAPI.isAuthenticated() {
                     pocketAPI.addURLToPocket(shareURL) { pocketItem in
                         managedObjectContext.performChanges {
-                            learnItem.excerpt = pocketItem.excerpt
-                            if let itemID = Int32(pocketItem.item_id) {
-                                learnItem.pocketItemID = NSNumber(int: itemID)
-                            }
-                            if let images = pocketItem.images,
-                                (_, firstImage) = images.first {
-                                learnItem.imageURL = NSURL(string: firstImage.src)
-                            }
-                            if let wordCount = Int32(pocketItem.word_count) {
-                                learnItem.wordCount = NSNumber(int: wordCount)
-                            }
+                            learnItem.copyDataFromPocketItem(pocketItem)
                             self.delegate?.dismissLearnShareSheetController()
                         }
                     }
@@ -86,15 +74,22 @@ class ShareChooseTopicViewController: UIViewController, UICollectionViewDelegate
     }
     
     func preferredHeight() -> CGFloat {
-        let baseHeight = topicStackView.frame.origin.y
-        let margin: CGFloat = 16
-        return baseHeight + topicStackView.frame.height + margin
+        return 104 + chooseContainerHeightConstraint.constant
     }
     
     override func preferredContentSizeDidChangeForChildContentContainer(container: UIContentContainer) {
-        print("\(container.preferredContentSize)")
-        chooseTopicContainerHeightConstraint.constant = container.preferredContentSize.height
-        preferredContentSize.height = preferredHeight()
+        UIView.animateWithDuration(0.6,
+                            delay: 0.0,
+           usingSpringWithDamping: 0.9,
+            initialSpringVelocity: 1.0,
+                          options: .CurveEaseOut,
+                       animations: { () -> Void in
+                                    self.chooseContainerHeightConstraint.constant = container.preferredContentSize.height
+                                    self.view.superview?.setNeedsLayout()
+                                    self.view.superview?.layoutIfNeeded()
+                                  },
+                       completion: nil)
+        
         super.preferredContentSizeDidChangeForChildContentContainer(container)
     }
     
@@ -120,7 +115,7 @@ class ShareChooseTopicViewController: UIViewController, UICollectionViewDelegate
 }
 
 extension ShareChooseTopicViewController: ChooseTopicDelegate {
-    func didChooseTopic(topic: Topic) {
+    func didChooseTopic(topic: Topic?) {
         selectedTopic = topic
     }
 }

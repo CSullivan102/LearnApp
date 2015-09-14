@@ -35,7 +35,7 @@ class ArticlesTableViewController: UITableViewController, ManagedObjectContextSe
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        notif = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: nil) {
+        notif = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) {
             [unowned self] (_) -> Void in
             if let dataSource = self.dataSource as? FetchedResultsTableDataSource<ArticlesTableViewController> {
                 dataSource.refreshData()

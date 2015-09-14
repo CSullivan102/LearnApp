@@ -54,15 +54,8 @@ public class SmallModalPresentationController: UIPresentationController {
         }
         
         let yCoord = containerView.bounds.height / 2 - modalHeight / 2
-        
+
         return CGRect(x: insetBounds.origin.x, y: yCoord, width: insetBounds.width, height: modalHeight)
-    }
-    
-    public override func preferredContentSizeDidChangeForChildContentContainer(container: UIContentContainer) {
-        guard let presentedView = presentedView()
-        else { return }
-        
-        presentedView.frame.size = container.preferredContentSize
     }
     
     override public func containerViewWillLayoutSubviews() {

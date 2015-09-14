@@ -40,10 +40,6 @@ class CreateLearnItemViewController: UIViewController, ManagedObjectContextSetta
         url = NSURL(string: urlValue)
         else { return }
         
-        pocketAPI.addURLToPocket(url) { (pocketItem) -> () in
-            print(pocketItem.item_id)
-        }
-        
         managedObjectContext.performChanges {
             let learnItem: LearnItem = self.managedObjectContext.insertObject()
             learnItem.title = titleValue
@@ -52,6 +48,11 @@ class CreateLearnItemViewController: UIViewController, ManagedObjectContextSetta
             learnItem.read = false
             learnItem.dateAdded = NSDate()
             learnItem.topic = topic
+            if self.pocketAPI.isAuthenticated() {
+                self.pocketAPI.addURLToPocket(url) { (pocketItem) -> () in
+                    learnItem.copyDataFromPocketItem(pocketItem)
+                }
+            }
         }
     }
 }

@@ -32,6 +32,29 @@ public final class LearnItem: ManagedObject {
             type = newValue.rawValue
         }
     }
+    
+    public func copyDataFromPocketItem(pocketItem: PocketItem) {
+        // Only overwrite title, URL if they're the default value
+        if let resolvedTitle = pocketItem.resolved_title where title == ""{
+            title = resolvedTitle
+        }
+        
+        if let givenUrl = pocketItem.given_url where url == nil {
+            url = NSURL(string: givenUrl)
+        }
+        
+        excerpt = pocketItem.excerpt
+        if let itemID = Int32(pocketItem.item_id) {
+            pocketItemID = NSNumber(int: itemID)
+        }
+        if let images = pocketItem.images,
+            (_, firstImage) = images.first {
+                imageURL = NSURL(string: firstImage.src)
+        }
+        if let wordCount = pocketItem.word_count, wordCountInt = Int32(wordCount) {
+            self.wordCount = NSNumber(int: wordCountInt)
+        }
+    }
 }
 
 extension LearnItem: ManagedObjectType {

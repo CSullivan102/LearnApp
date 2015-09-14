@@ -6,8 +6,6 @@
 //  Copyright © 2015 Christopher Sullivan. All rights reserved.
 //
 
-import Foundation
-
 public enum LearnItemType : Int16 {
     case Article = 1
     case Video = 2

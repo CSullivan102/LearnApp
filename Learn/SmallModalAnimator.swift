@@ -12,7 +12,7 @@ public class SmallModalAnimator: NSObject, UIViewControllerAnimatedTransitioning
     
     private let duration: NSTimeInterval = 0.6
     private let damping: CGFloat = 0.9
-    private let initialSprintVelocity: CGFloat = 10.0
+    private let initialSpringVelocity: CGFloat = 10.0
     private let delay: NSTimeInterval = 0.0
     private let animationOptions = UIViewAnimationOptions.CurveEaseOut
     
@@ -26,13 +26,13 @@ public class SmallModalAnimator: NSObject, UIViewControllerAnimatedTransitioning
         
         let presentedViewCenter = presentedView.center
         presentedView.center = CGPoint(x: presentedViewCenter.x, y: -presentedView.bounds.size.height)
-        
+
         transitionContext.containerView()?.addSubview(presentedView)
         
         UIView.animateWithDuration(transitionDuration(transitionContext),
                              delay: delay,
             usingSpringWithDamping: damping,
-             initialSpringVelocity: initialSprintVelocity,
+             initialSpringVelocity: initialSpringVelocity,
                            options: animationOptions,
                         animations: {
             presentedView.center = presentedViewCenter
@@ -56,7 +56,7 @@ public class SmallModalDismissalAnimator: SmallModalAnimator {
         UIView.animateWithDuration(duration,
                              delay: delay,
             usingSpringWithDamping: damping,
-             initialSpringVelocity: initialSprintVelocity,
+             initialSpringVelocity: initialSpringVelocity,
                            options: animationOptions,
                         animations: {
             presentedView.center = CGPoint(x: presentedView.center.x, y: -presentedView.bounds.size.height)

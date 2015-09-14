@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 public protocol ChooseTopicDelegate {
-    func didChooseTopic(topic: Topic)
+    func didChooseTopic(topic: Topic?)
 }
 
 public class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, ManagedObjectContextSettable, TopicCollectionControllable {
@@ -19,9 +19,14 @@ public class ChooseTopicViewController: UIViewController, UICollectionViewDelega
     public var chooseTopicDelegate: ChooseTopicDelegate?
     
     private var selectedTopic: Topic?
-    private var selectedSubtopic: Topic?
+    private var selectedSubtopic: Topic? {
+        didSet {
+            chooseTopicDelegate?.didChooseTopic(selectedSubtopic)
+        }
+    }
     private var currentDataSource: UICollectionViewDataSource?
     private var topicPickingState: TopicPickingState = .None
+    private let createTopicTransitioningDelegate = SmallModalTransitioningDelegate()
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var chooseTopicButton: UIButton!
@@ -64,7 +69,7 @@ public class ChooseTopicViewController: UIViewController, UICollectionViewDelega
         topicPickingState = .Topic
         if prevTopicPickingState != topicPickingState {
             setupInitialFetchedResultsController()
-            animateViewStateChange()
+            updateUIForState()
         }
     }
     
@@ -73,7 +78,7 @@ public class ChooseTopicViewController: UIViewController, UICollectionViewDelega
         let prevTopicPickingState = topicPickingState
         topicPickingState = .Subtopic
         if prevTopicPickingState != topicPickingState {
-            animateViewStateChange()
+            updateUIForState()
         }
     }
     
@@ -96,6 +101,7 @@ public class ChooseTopicViewController: UIViewController, UICollectionViewDelega
             
             vc.managedObjectContext = managedObjectContext
             vc.modalPresentationStyle = .Custom
+            vc.transitioningDelegate = createTopicTransitioningDelegate
             vc.createTopicDelegate = self
         }
     }
@@ -126,20 +132,23 @@ public class ChooseTopicViewController: UIViewController, UICollectionViewDelega
         topicPickingState = .Subtopic
         setupSubtopicDataSourceForTopic(topic)
         
-        animateViewStateChange()
+        updateUIForState()
+    }
+    
+    public override func viewDidLayoutSubviews() {
+        preferredContentSize = stackView.bounds.size
     }
     
     private func didPickSubtopic(subtopic: Topic) {
         selectedSubtopic = subtopic
         topicPickingState = .None
         
-        animateViewStateChange()
+        updateUIForState()
     }
     
-    private func animateViewStateChange() {
+    private func updateUIForState() {
         updateButtonTitlesForCurrentState()
         updateModalLayoutForCurrentState()
-        preferredContentSize = stackView.bounds.size
     }
     
     private func updateButtonTitlesForCurrentState() {
