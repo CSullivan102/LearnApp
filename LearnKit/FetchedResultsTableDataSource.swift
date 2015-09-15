@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 public class FetchedResultsTableDataSource<D: FetchedResultsTableDataSourceDelegate>: NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
-    private let fetchedResultsController: NSFetchedResultsController
+    public let fetchedResultsController: NSFetchedResultsController
     let tableView: UITableView
     let delegate: D
     
@@ -33,6 +33,7 @@ public class FetchedResultsTableDataSource<D: FetchedResultsTableDataSourceDeleg
     }
     
     public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        tableView.beginUpdates()
         switch type {
         case .Delete:
             guard let unwrappedIndexPath = indexPath
@@ -55,11 +56,12 @@ public class FetchedResultsTableDataSource<D: FetchedResultsTableDataSourceDeleg
             tableView.deleteRowsAtIndexPaths([unwrappedOldIndexPath], withRowAnimation: .Right)
             tableView.insertRowsAtIndexPaths([unwrappedNewIndexPath], withRowAnimation: .Right)
         }
+        tableView.endUpdates()
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sec = fetchedResultsController.sections?[section]
-        else { return 0 }
+            else { return 0 }
         return sec.numberOfObjects
     }
     
@@ -74,7 +76,7 @@ public class FetchedResultsTableDataSource<D: FetchedResultsTableDataSourceDeleg
         return cell
     }
     
-    func objectAtIndexPath(indexPath: NSIndexPath) -> D.Object {
+    public func objectAtIndexPath(indexPath: NSIndexPath) -> D.Object {
         guard let obj = fetchedResultsController.objectAtIndexPath(indexPath) as? D.Object
         else { fatalError("Unexpected cell type at \(indexPath)") }
         return obj

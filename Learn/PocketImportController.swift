@@ -85,9 +85,9 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let pocketItem = pocketItems[indexPath.row]
-        let identifier = "ArticleTableCell"
+        let identifier = "PocketItemTableViewCell"
         
-        guard let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? ArticleTableViewCell
+        guard let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? PocketItemTableViewCell
         else { fatalError("Wrong cell type for \(identifier)") }
         
         cell.pocketItem = pocketItem

@@ -41,6 +41,7 @@
 		7469F2351B8CF9B000AB3A7C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D22E4C1B8B70BC0097D5BC /* Keys.plist */; settings = {ASSET_TAGS = (); }; };
 		7469F2381B8D0C7C00AB3A7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74418D191B83DD1500BCDD79 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
 		7469F2391B8D0FF900AB3A7C /* FetchedResultsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */; settings = {ASSET_TAGS = (); }; };
+		747BF6471BA771E200BBCF61 /* PocketItemTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747BF6461BA771E200BBCF61 /* PocketItemTableCell.swift */; settings = {ASSET_TAGS = (); }; };
 		749B07C31B94F18300E668BF /* TopicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64F1B863E800013B1BD /* TopicCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		749B07C61B94FAC200E668BF /* CreateTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		749B07C71B94FC3300E668BF /* SmallModalAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A911CD1B94C2AD00B695B5 /* SmallModalAnimator.swift */; settings = {ASSET_TAGS = (); }; };
@@ -53,7 +54,6 @@
 		74C6E64E1B863C9D0013B1BD /* TopicCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64D1B863C9D0013B1BD /* TopicCollectionViewController.swift */; };
 		74C6E6541B8670CD0013B1BD /* ArticlesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6531B8670CD0013B1BD /* ArticlesTableViewController.swift */; };
 		74C6E6561B86711D0013B1BD /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6551B86711D0013B1BD /* ArticleTableViewCell.swift */; };
-		74C6E6581B867D780013B1BD /* CreateLearnItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */; };
 		74CDD1A71B9F38920022D116 /* Haneke.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CDD1A61B9F38920022D116 /* Haneke.framework */; };
 		74CDD1AA1B9F5ED70022D116 /* PocketImportController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CDD1A91B9F5ED70022D116 /* PocketImportController.swift */; settings = {ASSET_TAGS = (); }; };
 		74CDD1AC1B9F84870022D116 /* PocketAuthModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CDD1AB1B9F84870022D116 /* PocketAuthModalController.swift */; settings = {ASSET_TAGS = (); }; };
@@ -167,6 +167,7 @@
 		74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicViewController.swift; sourceTree = "<group>"; };
 		744B1E601B9E009A001B5263 /* TopicCollectionControllable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionControllable.swift; sourceTree = "<group>"; };
 		744B1E621B9E9A51001B5263 /* FetchedResultsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableDataSource.swift; sourceTree = "<group>"; };
+		747BF6461BA771E200BBCF61 /* PocketItemTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketItemTableCell.swift; sourceTree = "<group>"; };
 		749B07CA1B94FFB600E668BF /* ShareChooseTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareChooseTopicViewController.swift; sourceTree = "<group>"; };
 		74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddableFetchedResultsCollectionDataSource.swift; sourceTree = "<group>"; };
 		74A911CB1B94C26000B695B5 /* SmallModalTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallModalTransitioningDelegate.swift; sourceTree = "<group>"; };
@@ -179,7 +180,6 @@
 		74C6E64F1B863E800013B1BD /* TopicCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TopicCollectionViewCell.swift; path = ../Learn/TopicCollectionViewCell.swift; sourceTree = "<group>"; };
 		74C6E6531B8670CD0013B1BD /* ArticlesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticlesTableViewController.swift; path = Learn/ArticlesTableViewController.swift; sourceTree = "<group>"; };
 		74C6E6551B86711D0013B1BD /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ArticleTableViewCell.swift; path = Learn/ArticleTableViewCell.swift; sourceTree = "<group>"; };
-		74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreateLearnItemViewController.swift; path = Learn/CreateLearnItemViewController.swift; sourceTree = "<group>"; };
 		74CDD1A61B9F38920022D116 /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = Carthage/Build/iOS/Haneke.framework; sourceTree = "<group>"; };
 		74CDD1A91B9F5ED70022D116 /* PocketImportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketImportController.swift; sourceTree = "<group>"; };
 		74CDD1AB1B9F84870022D116 /* PocketAuthModalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAuthModalController.swift; sourceTree = "<group>"; };
@@ -404,7 +404,6 @@
 			children = (
 				74C6E6531B8670CD0013B1BD /* ArticlesTableViewController.swift */,
 				74C6E6551B86711D0013B1BD /* ArticleTableViewCell.swift */,
-				74C6E6571B867D780013B1BD /* CreateLearnItemViewController.swift */,
 			);
 			name = ArticlesView;
 			path = ..;
@@ -416,6 +415,7 @@
 				74CDD1A91B9F5ED70022D116 /* PocketImportController.swift */,
 				74CDD1AB1B9F84870022D116 /* PocketAuthModalController.swift */,
 				74101D361BA7488300CF29AF /* PocketImportModalController.swift */,
+				747BF6461BA771E200BBCF61 /* PocketItemTableCell.swift */,
 			);
 			name = PocketImport;
 			sourceTree = "<group>";
@@ -759,11 +759,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				74C6E6581B867D780013B1BD /* CreateLearnItemViewController.swift in Sources */,
 				74C6E64E1B863C9D0013B1BD /* TopicCollectionViewController.swift in Sources */,
 				74CDD1AA1B9F5ED70022D116 /* PocketImportController.swift in Sources */,
 				74C6E6541B8670CD0013B1BD /* ArticlesTableViewController.swift in Sources */,
 				74C6E6561B86711D0013B1BD /* ArticleTableViewCell.swift in Sources */,
+				747BF6471BA771E200BBCF61 /* PocketItemTableCell.swift in Sources */,
 				74101D371BA7488300CF29AF /* PocketImportModalController.swift in Sources */,
 				74CDD1AC1B9F84870022D116 /* PocketAuthModalController.swift in Sources */,
 				74418D131B83DD1500BCDD79 /* AppDelegate.swift in Sources */,

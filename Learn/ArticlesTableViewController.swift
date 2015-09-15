@@ -14,10 +14,11 @@ import SafariServices
 class ArticlesTableViewController: UITableViewController, ManagedObjectContextSettable, PocketAPISettable, SFSafariViewControllerDelegate {
     var managedObjectContext: NSManagedObjectContext!
     var pocketAPI: PocketAPI!
-    var dataSource: UITableViewDataSource?
+    var dataSource: FetchedResultsTableDataSource<ArticlesTableViewController>?
     var topic: Topic?
     var selectedIndexPath: NSIndexPath?
     var notif: NSObjectProtocol?
+    var viewArchives = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,16 +29,21 @@ class ArticlesTableViewController: UITableViewController, ManagedObjectContextSe
         
         let request = LearnItem.sortedFetchRequest
         request.fetchBatchSize = 20
-        request.predicate = NSPredicate(format: "topic = %@", topic)
+        request.predicate = getPredicateForFetchedResultsController()
         let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         dataSource = FetchedResultsTableDataSource(tableView: tableView, fetchedResultsController: frc, delegate: self)
+    }
+    
+    private func getPredicateForFetchedResultsController() -> NSPredicate {
+        guard let topic = self.topic else { fatalError("No topic found") }
+        return NSPredicate(format: "topic == %@ AND read == %@", topic, NSNumber(bool: viewArchives))
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         notif = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) {
             [unowned self] (_) -> Void in
-            if let dataSource = self.dataSource as? FetchedResultsTableDataSource<ArticlesTableViewController> {
+            if let dataSource = self.dataSource {
                 dataSource.refreshData()
             }
         }
@@ -46,7 +52,7 @@ class ArticlesTableViewController: UITableViewController, ManagedObjectContextSe
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         guard let notif = notif
-            else { return }
+        else { return }
         NSNotificationCenter.defaultCenter().removeObserver(notif)
     }
     
@@ -61,25 +67,57 @@ class ArticlesTableViewController: UITableViewController, ManagedObjectContextSe
         presentViewController(sfc, animated: true, completion: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let identifier = segue.identifier,
-            segueIdentifier = SegueIdentifier(rawValue: identifier)
-        else { fatalError("Invalid segue identifier \(segue.identifier)") }
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        var actions = [UITableViewRowAction]()
         
-        switch segueIdentifier {
-        case .ShowCreateLearnItem:
-            guard let nc = segue.destinationViewController as? UINavigationController,
-            vc = nc.viewControllers.first as? CreateLearnItemViewController
-            else { fatalError("Unexpected view controller for \(identifier) segue") }
-            
-            vc.managedObjectContext = managedObjectContext
-            vc.topic = topic
-            vc.pocketAPI = pocketAPI
+        let deleteAction = UITableViewRowAction(style: .Default, title: "Delete") { (action, indexPath) -> Void in
+            if let learnItem = self.dataSource?.objectAtIndexPath(indexPath) {
+                let actionSheet = UIAlertController(title: nil, message: "Are you sure you want to delete this article?", preferredStyle: .ActionSheet)
+                let deleteAction = UIAlertAction(title: "Delete", style: .Destructive, handler: { (action) -> Void in
+                    self.managedObjectContext.performChanges {
+                        self.managedObjectContext.deleteObject(learnItem)
+                    }
+                })
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+                actionSheet.addAction(deleteAction)
+                actionSheet.addAction(cancelAction)
+                self.presentViewController(actionSheet, animated: true, completion: nil)
+            }
         }
+        
+        if viewArchives {
+            let unArchiveAction = UITableViewRowAction(style: .Normal, title: "Mark Unread") { (action, indexPath) -> Void in
+                if let learnItem = self.dataSource?.objectAtIndexPath(indexPath) {
+                    self.managedObjectContext.performChanges {
+                        learnItem.read = false
+                    }
+                }
+            }
+            actions.append(unArchiveAction)
+        } else {
+            let archiveAction = UITableViewRowAction(style: .Normal, title: "Archive") { (action, indexPath) -> Void in
+                if let learnItem = self.dataSource?.objectAtIndexPath(indexPath) {
+                    self.managedObjectContext.performChanges {
+                        learnItem.read = true
+                    }
+                }
+            }
+            actions.append(archiveAction)
+        }
+        actions.append(deleteAction)
+        return actions
     }
     
-    enum SegueIdentifier: String {
-        case ShowCreateLearnItem = "ShowCreateLearnItem"
+    @IBAction func viewArchiveButtonPressed(sender: UIBarButtonItem) {
+        if viewArchives {
+            viewArchives = false
+            sender.title = "View Archive"
+        } else {
+            viewArchives = true
+            sender.title = "View Unread"
+        }
+        dataSource?.fetchedResultsController.fetchRequest.predicate = getPredicateForFetchedResultsController()
+        dataSource?.refreshData()
     }
     
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
