@@ -25,14 +25,16 @@ public class PocketAPI {
     
     private var accessToken: String? {
         get {
-            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn")
-                else { fatalError("Can't open user defaults") }
+            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn") else {
+                fatalError("Can't open user defaults")
+            }
             let plist: AnyObject? = defaults.objectForKey(AccessTokenKeychainKey)
             return plist as? String
         }
         set {
-            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn")
-                else { fatalError("Can't open user defaults") }
+            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn") else {
+                fatalError("Can't open user defaults")
+            }
             defaults.setObject(newValue, forKey: AccessTokenKeychainKey)
             defaults.synchronize()
         }
@@ -40,14 +42,16 @@ public class PocketAPI {
 
     public var authenticatedUser: String? {
         get {
-            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn")
-                else { fatalError("Can't open user defaults") }
+            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn") else {
+                fatalError("Can't open user defaults")
+            }
             let plist: AnyObject? = defaults.objectForKey(AuthUserKeychainKey)
             return plist as? String
         }
         set {
-            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn")
-                else { fatalError("Can't open user defaults") }
+            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn") else {
+                fatalError("Can't open user defaults")
+            }
             defaults.setObject(newValue, forKey: AuthUserKeychainKey)
             defaults.synchronize()
         }
@@ -56,8 +60,9 @@ public class PocketAPI {
     public init(delegate: PocketAuthenticationDelegate) {
         guard let bundle = NSBundle(identifier: "com.sullivan.j.chris.LearnKit"),
             path = bundle.pathForResource("Keys", ofType: "plist"),
-            pocketKeys = NSDictionary(contentsOfFile: path)
-        else { fatalError("Could not find Keys.plist in bundle") }
+            pocketKeys = NSDictionary(contentsOfFile: path) else {
+                fatalError("Could not find Keys.plist in bundle")
+        }
         self.appId = pocketKeys["PocketAppId"] as? String
         self.consumerKey = pocketKeys["PocketConsumerKey"] as? String
         
@@ -143,8 +148,9 @@ public class PocketAPI {
     public func authenticate(completion: (() -> ())?) {
         // Need to set up a closure on this object, something to come back to
         
-        guard let consumerKey = consumerKey, appId = appId
-        else { return }
+        guard let consumerKey = consumerKey, appId = appId else {
+            return
+        }
         let oAuthRequestParams = ["consumer_key": consumerKey, "redirect_uri": "pocketapp\(appId):authorizationFinished"]
         
         Alamofire.request(.POST, "https://getpocket.com/v3/oauth/request", parameters: oAuthRequestParams, encoding: .JSON, headers: ["X-Accept": "application/json"])
@@ -162,8 +168,9 @@ public class PocketAPI {
     }
     
     public func oAuthCallbackReceived() {
-        guard let consumerKey = consumerKey, requestToken = requestToken
-            else { return }
+        guard let consumerKey = consumerKey, requestToken = requestToken else {
+            return
+        }
         let userAuthRequestParams = ["consumer_key": consumerKey, "code": requestToken]
         
         Alamofire.request(.POST, "https://getpocket.com/v3/oauth/authorize", parameters: userAuthRequestParams, encoding: .JSON, headers: ["X-Accept": "application/json"])
@@ -185,8 +192,11 @@ public class PocketAPI {
         switch decodedResponse {
         case .Success(let responseObj):
             self.requestToken = responseObj.code
-            guard let requestToken = self.requestToken, appId = self.appId, URL = NSURL(string: "pocket-oauth-v1:///authorize?request_token=\(requestToken)&redirect_uri=pocketapp\(appId):authorizationFinished")
-            else { fatalError("Bad URL for pocket oauth") }
+            guard let requestToken = self.requestToken,
+                appId = self.appId,
+                URL = NSURL(string: "pocket-oauth-v1:///authorize?request_token=\(requestToken)&redirect_uri=pocketapp\(appId):authorizationFinished") else {
+                    fatalError("Bad URL for pocket oauth")
+            }
             delegate.promptOAuthUserAuthWithURL(URL)
         case .MissingKey(let s):
             print("JSON decoding failed for OAuth Request, missing key \(s)")
@@ -221,8 +231,9 @@ public class PocketAPI {
     }
     
     private func makeRequest(method: Alamofire.Method, urlAsString: String, params: [String: String]?, completion: (Result<AnyObject>) -> ()) {
-        guard let consumerKey = consumerKey, accessToken = accessToken
-        else { return }
+        guard let consumerKey = consumerKey, accessToken = accessToken else {
+            return
+        }
         
         var newParams = params ?? [String: String]()
         newParams["consumer_key"] = consumerKey

@@ -15,17 +15,21 @@ protocol LearnShareSheetDelegate {
     func getExtensionContextInfo(completion: (NSURL?, String?) -> Void)
 }
 
-class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSettable, UIViewControllerHeightRequestable, TopicCollectionControllable {
+class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSettable, UIViewControllerHeightRequestable, TopicCollectionControllable, UITextFieldDelegate {
     var managedObjectContext: NSManagedObjectContext!
     var parentTopic: Topic?
     var delegate: LearnShareSheetDelegate?
     var shareURL: NSURL?
-    var itemTitle: String?
-    var selectedTopic: Topic?
+    var selectedTopic: Topic? { didSet { topicValid = (selectedTopic != nil) } }
     
-    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var titleTextField: UITextField! { didSet { titleTextField.delegate = self } }
     @IBOutlet weak var chooseTopicContainerView: UIView!
     @IBOutlet weak var chooseContainerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var saveButton: UIButton!
+    
+    private var titleTextValid = false { didSet { checkModalValid() } }
+    private var topicValid = false { didSet { checkModalValid() } }
+    private var modalValid = false { didSet { saveButton.enabled = modalValid } }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,17 +37,34 @@ class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSett
         delegate?.getExtensionContextInfo() {
             url, itemTitle in
             self.shareURL = url
-            self.itemTitle = itemTitle
             self.titleTextField.text = itemTitle
+        }
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldTextChangedNotification:", name: UITextFieldTextDidChangeNotification, object: nil)
+    }
+    
+    private func checkModalValid() {
+        modalValid = titleTextValid && topicValid
+    }
+    
+    func textFieldTextChangedNotification(notification: NSNotification) {
+        guard let textField = notification.object as? UITextField else {
+            return
+        }
+        
+        if textField == titleTextField {
+            titleTextValid = textField.text?.characters.count > 0
         }
     }
     
     @IBAction func saveButtonPressed(sender: UIButton) {
-        guard let managedObjectContext = managedObjectContext
-        else { fatalError("Tried to post article without MOC") }
+        guard let managedObjectContext = managedObjectContext else {
+            fatalError("Tried to post article without MOC")
+        }
         
-        guard let topic = selectedTopic, title = titleTextField.text where title.characters.count > 0
-        else { return }
+        guard let topic = selectedTopic, title = titleTextField.text where title.characters.count > 0 else {
+            return
+        }
         
         if let shareURL = shareURL {
             managedObjectContext.performChanges {
@@ -94,9 +115,9 @@ class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSett
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let identifier = segue.identifier,
-            segueIdentifier = SegueIdentifier(rawValue: identifier)
-        else { return }
+        guard let identifier = segue.identifier, segueIdentifier = SegueIdentifier(rawValue: identifier) else {
+            return
+        }
         
         switch segueIdentifier {
         case .EmbedChooseTopic:
@@ -111,6 +132,11 @@ class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSett
     
     private enum SegueIdentifier: String {
         case EmbedChooseTopic = "EmbedChooseTopic"
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

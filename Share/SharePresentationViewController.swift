@@ -24,8 +24,9 @@ class SharePresentationViewController: UIViewController, LearnShareSheetDelegate
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let identifier = segue.identifier, segueIdentifier = SegueIdentifier(rawValue: identifier)
-        else { fatalError("Invalid segue identifier \(segue.identifier)") }
+        guard let identifier = segue.identifier, segueIdentifier = SegueIdentifier(rawValue: identifier) else {
+            fatalError("Invalid segue identifier \(segue.identifier)")
+        }
         switch segueIdentifier {
         case .ShowChooseTopicModal:
             guard let vc = segue.destinationViewController as? ShareChooseTopicViewController
@@ -46,8 +47,9 @@ class SharePresentationViewController: UIViewController, LearnShareSheetDelegate
     
     func getExtensionContextInfo(completion: (NSURL?, String?) -> Void) {
         guard let item = self.extensionContext?.inputItems.first as? NSExtensionItem,
-            attachment = item.attachments?.first as? NSItemProvider
-            else { return }
+            attachment = item.attachments?.first as? NSItemProvider else {
+                return
+        }
         
         if attachment.hasItemConformingToTypeIdentifier(kUTTypeURL as String) {
             attachment.loadItemForTypeIdentifier(kUTTypeURL as String, options: nil, completionHandler: { (urlProvider, error) -> Void in

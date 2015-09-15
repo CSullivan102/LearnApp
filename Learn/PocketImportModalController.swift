@@ -24,8 +24,9 @@ class PocketImportModalController: UIViewController, ManagedObjectContextSettabl
     }
     
     @IBAction func importButtonPressed(sender: UIButton) {
-        guard let topic = selectedTopic
-        else { return }
+        guard let topic = selectedTopic else {
+            return
+        }
         
         managedObjectContext.performChanges { () -> () in
             for pocketItem in self.pocketItemsToImport {
@@ -61,14 +62,15 @@ class PocketImportModalController: UIViewController, ManagedObjectContextSettabl
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let identifier = segue.identifier,
-            segueIdentifier = SegueIdentifier(rawValue: identifier)
-        else { return }
+        guard let identifier = segue.identifier, segueIdentifier = SegueIdentifier(rawValue: identifier) else {
+                return
+        }
         
         switch segueIdentifier {
         case .EmbedTopicPicker:
-            guard let vc = segue.destinationViewController as? ChooseTopicViewController
-            else { fatalError("Unexpected view controller for \(identifier)") }
+            guard let vc = segue.destinationViewController as? ChooseTopicViewController else {
+                fatalError("Unexpected view controller for \(identifier)")
+            }
             
             vc.managedObjectContext = managedObjectContext
             vc.parentTopic = parentTopic

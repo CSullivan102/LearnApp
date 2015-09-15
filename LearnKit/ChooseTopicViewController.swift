@@ -46,8 +46,9 @@ public class ChooseTopicViewController: UIViewController, UICollectionViewDelega
     }
     
     private func setupInitialFetchedResultsController() {
-        guard let topic = self.parentTopic
-            else { fatalError("Tried to set up choose topic controller without parent") }
+        guard let topic = self.parentTopic else {
+            fatalError("Tried to set up choose topic controller without parent")
+        }
         
         let frc = getFetchedResultsControllerForTopic(topic)
         currentDataSource = AddableFetchedResultsCollectionDataSource(collectionView: collectionView, fetchedResultsController: frc, delegate: self)
@@ -84,13 +85,15 @@ public class ChooseTopicViewController: UIViewController, UICollectionViewDelega
     
     override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let identifier = segue.identifier,
-            segueIdentifier = SegueIdentifier(rawValue: identifier)
-            else { fatalError("Invalid segue identifier \(segue.identifier)") }
+            segueIdentifier = SegueIdentifier(rawValue: identifier) else {
+                fatalError("Invalid segue identifier \(segue.identifier)")
+        }
         
         switch segueIdentifier {
         case .ShowCreateTopic:
-            guard let vc = segue.destinationViewController as? CreateTopicViewController
-                else { fatalError("Unexpected view controller for \(identifier) segue") }
+            guard let vc = segue.destinationViewController as? CreateTopicViewController else {
+                fatalError("Unexpected view controller for \(identifier) segue")
+            }
             
             switch topicPickingState {
             case .Subtopic:
@@ -107,14 +110,16 @@ public class ChooseTopicViewController: UIViewController, UICollectionViewDelega
     }
     
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? Cell
-            else { return }
+        guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? Cell else {
+            return
+        }
         
         if cell.addableCell {
             performSegueWithIdentifier(SegueIdentifier.ShowCreateTopic.rawValue, sender: nil)
         } else {
-            guard let topic = cell.topic
-                else { return }
+            guard let topic = cell.topic else {
+                return
+            }
             
             switch topicPickingState {
             case .Topic:

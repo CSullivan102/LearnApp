@@ -23,7 +23,9 @@ class ArticlesTableViewController: UITableViewController, ManagedObjectContextSe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        guard let topic = topic else { fatalError("No topic found") }
+        guard let topic = topic else {
+            fatalError("No topic found")
+        }
         
         navigationItem.title = topic.iconAndName
         
@@ -35,7 +37,9 @@ class ArticlesTableViewController: UITableViewController, ManagedObjectContextSe
     }
     
     private func getPredicateForFetchedResultsController() -> NSPredicate {
-        guard let topic = self.topic else { fatalError("No topic found") }
+        guard let topic = self.topic else {
+            fatalError("No topic found")
+        }
         return NSPredicate(format: "topic == %@ AND read == %@", topic, NSNumber(bool: viewArchives))
     }
     
@@ -51,16 +55,18 @@ class ArticlesTableViewController: UITableViewController, ManagedObjectContextSe
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        guard let notif = notif
-        else { return }
+        guard let notif = notif else {
+            return
+        }
         NSNotificationCenter.defaultCenter().removeObserver(notif)
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         guard let cell = tableView.cellForRowAtIndexPath(indexPath) as? Cell,
             learnItem = cell.learnItem,
-            url = learnItem.url
-        else { return }
+            url = learnItem.url else {
+                return
+        }
         
         let sfc = SFSafariViewController(URL: url, entersReaderIfAvailable: true)
         sfc.delegate = self

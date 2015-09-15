@@ -36,8 +36,9 @@ extension TopicCollectionControllable {
     private func getBaseTopic(completion: (Topic) -> Void) {
         let baseTopicRequest = NSFetchRequest(entityName: Topic.entityName)
         baseTopicRequest.predicate = NSPredicate(format: "baseTopic == YES")
-        guard let result = try! managedObjectContext.executeFetchRequest(baseTopicRequest) as? [Topic]
-            else { fatalError("Failed to fetch base topic") }
+        guard let result = try! managedObjectContext.executeFetchRequest(baseTopicRequest) as? [Topic] else {
+            fatalError("Failed to fetch base topic")
+        }
         if result.isEmpty {
             managedObjectContext.performChanges {
                 let baseTopic: Topic = self.managedObjectContext.insertObject()
@@ -47,8 +48,9 @@ extension TopicCollectionControllable {
                 completion(baseTopic)
             }
         } else {
-            guard let baseTopic = result.first
-            else { fatalError("Non-empty Base topic result doesn't have a first element") }
+            guard let baseTopic = result.first else {
+                fatalError("Non-empty Base topic result doesn't have a first element")
+            }
             completion(baseTopic)
         }
 

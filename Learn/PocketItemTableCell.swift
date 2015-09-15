@@ -18,8 +18,9 @@ class PocketItemTableViewCell: UITableViewCell {
     
     var pocketItem: PocketItem? {
         didSet {
-            guard let titleLabel = titleLabel, urlLabel = urlLabel, excerptLabel = excerptLabel, articleImageView = articleImageView
-                else { return }
+            guard let titleLabel = titleLabel, urlLabel = urlLabel, excerptLabel = excerptLabel, articleImageView = articleImageView else {
+                return
+            }
             
             titleLabel.text = pocketItem?.resolved_title ?? ""
             urlLabel.text = pocketItem?.given_url ?? ""

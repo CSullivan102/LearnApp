@@ -25,8 +25,9 @@ public class AddableFetchedResultsCollectionDataSource<D: AddableFetchedResultsC
         if addableCellAtIndexPath(indexPath) {
             // Addable row
             let identifier = delegate.cellIdentifierForAddable()
-            guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as? D.AddableCell
-                else { fatalError("Unexpected cell type at \(indexPath)") }
+            guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as? D.AddableCell else {
+                fatalError("Unexpected cell type at \(indexPath)")
+            }
             delegate.configureAddableCell(cell)
             return cell
         } else {

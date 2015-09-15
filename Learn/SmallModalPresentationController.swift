@@ -19,8 +19,9 @@ public class SmallModalPresentationController: UIPresentationController {
     }
     
     override public func presentationTransitionWillBegin() {
-        guard let containerView = containerView
-        else { return }
+        guard let containerView = containerView else {
+            return
+        }
         
         dimmingView.frame = containerView.bounds
         dimmingView.alpha = 0.0
@@ -43,8 +44,9 @@ public class SmallModalPresentationController: UIPresentationController {
     }
     
     override public func frameOfPresentedViewInContainerView() -> CGRect {
-        guard let containerView = containerView
-        else { return CGRect(x: 0, y: 0, width: 0, height: 0) }
+        guard let containerView = containerView else {
+            return CGRect(x: 0, y: 0, width: 0, height: 0)
+        }
         
         let insetBounds = containerView.bounds.insetBy(dx: 30, dy: 30)
         
@@ -54,14 +56,14 @@ public class SmallModalPresentationController: UIPresentationController {
         }
         
         let yCoord = containerView.bounds.height / 2 - modalHeight / 2
-
+        
         return CGRect(x: insetBounds.origin.x, y: yCoord, width: insetBounds.width, height: modalHeight)
     }
     
     override public func containerViewWillLayoutSubviews() {
-        guard let containerView = containerView,
-            presentedView = presentedView()
-        else { return }
+        guard let containerView = containerView, presentedView = presentedView() else {
+            return
+        }
         
         dimmingView.frame = containerView.bounds
         presentedView.frame = frameOfPresentedViewInContainerView()

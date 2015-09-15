@@ -53,8 +53,9 @@ private func createCoordinator() -> NSPersistentStoreCoordinator {
 }
 
 private func storeURL() -> NSURL {
-    guard let directory = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.com.sullivan.j.chris.Learn")
-    else { fatalError("Could not get container URL for app group") }
+    guard let directory = NSFileManager.defaultManager().containerURLForSecurityApplicationGroupIdentifier("group.com.sullivan.j.chris.Learn") else {
+        fatalError("Could not get container URL for app group")
+    }
     
     return directory
         .URLByAppendingPathComponent(ModelName)
@@ -63,14 +64,12 @@ private func storeURL() -> NSURL {
 
 private func model() -> NSManagedObjectModel {
     let bundle = NSBundle(forClass: Topic.self)
-    guard let modelURL = bundle.URLForResource(ModelName,
-        withExtension: "momd")
-        else {
-            fatalError("Managed object model not found")
+    
+    guard let modelURL = bundle.URLForResource(ModelName, withExtension: "momd") else {
+        fatalError("Managed object model not found")
     }
-    guard let model = NSManagedObjectModel(contentsOfURL: modelURL)
-        else {
-            fatalError("Could not load managed object model from \(modelURL)")
+    guard let model = NSManagedObjectModel(contentsOfURL: modelURL) else {
+        fatalError("Could not load managed object model from \(modelURL)")
     }
     return model
 }

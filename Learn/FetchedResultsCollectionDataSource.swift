@@ -38,23 +38,27 @@ public class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataS
     public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         switch type {
         case .Delete:
-            guard let unwrappedIndexPath = indexPath
-            else { return }
+            guard let unwrappedIndexPath = indexPath else {
+                return
+            }
             collectionView.deleteItemsAtIndexPaths([unwrappedIndexPath])
         case .Insert:
-            guard let unwrappedIndexPath = newIndexPath
-            else { return }
+            guard let unwrappedIndexPath = newIndexPath else {
+                return
+            }
             collectionView.insertItemsAtIndexPaths([unwrappedIndexPath])
         case .Update:
             guard let unwrappedIndexPath = indexPath,
                 cell = collectionView.cellForItemAtIndexPath(unwrappedIndexPath) as? D.Cell,
-                object = anObject as? D.Object
-            else { return }
+                object = anObject as? D.Object else {
+                    return
+            }
             delegate.configureCell(cell, object: object)
         case .Move:
             guard let unwrappedOldIndexPath = indexPath,
-                unwrappedNewIndexPath = newIndexPath
-            else { return }
+                unwrappedNewIndexPath = newIndexPath else {
+                    return
+            }
             collectionView.deleteItemsAtIndexPaths([unwrappedOldIndexPath])
             collectionView.insertItemsAtIndexPaths([unwrappedNewIndexPath])
         }
@@ -63,16 +67,18 @@ public class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataS
     //MARK: UICollectionViewDataSource
     
     public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let sec = fetchedResultsController.sections?[section]
-        else { return 0 }
+        guard let sec = fetchedResultsController.sections?[section] else {
+            return 0
+        }
         return sec.numberOfObjects
     }
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let obj = objectAtIndexPath(indexPath)
         let identifier = delegate.cellIdentifierForObject(obj)
-        guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as? D.Cell
-        else { fatalError("Unexpected cell type at \(indexPath)") }
+        guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath) as? D.Cell else {
+            fatalError("Unexpected cell type at \(indexPath)")
+        }
         delegate.configureCell(cell, object: obj)
         return cell
     }

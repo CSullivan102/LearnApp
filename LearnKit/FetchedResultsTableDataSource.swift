@@ -36,23 +36,27 @@ public class FetchedResultsTableDataSource<D: FetchedResultsTableDataSourceDeleg
         tableView.beginUpdates()
         switch type {
         case .Delete:
-            guard let unwrappedIndexPath = indexPath
-            else { return }
+            guard let unwrappedIndexPath = indexPath else {
+                return
+            }
             tableView.deleteRowsAtIndexPaths([unwrappedIndexPath], withRowAnimation: .Right)
         case .Insert:
-            guard let unwrappedIndexPath = indexPath
-            else { return }
+            guard let unwrappedIndexPath = indexPath else {
+                return
+            }
             tableView.insertRowsAtIndexPaths([unwrappedIndexPath], withRowAnimation: .Right)
         case .Update:
             guard let unwrappedIndexPath = indexPath,
                 cell = tableView.cellForRowAtIndexPath(unwrappedIndexPath) as? D.Cell,
-                object = anObject as? D.Object
-            else { return }
+                object = anObject as? D.Object else {
+                    return
+            }
             delegate.configureCell(cell, object: object)
         case .Move:
             guard let unwrappedOldIndexPath = indexPath,
-                unwrappedNewIndexPath = newIndexPath
-            else { return }
+                unwrappedNewIndexPath = newIndexPath else {
+                    return
+            }
             tableView.deleteRowsAtIndexPaths([unwrappedOldIndexPath], withRowAnimation: .Right)
             tableView.insertRowsAtIndexPaths([unwrappedNewIndexPath], withRowAnimation: .Right)
         }
@@ -60,16 +64,18 @@ public class FetchedResultsTableDataSource<D: FetchedResultsTableDataSourceDeleg
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let sec = fetchedResultsController.sections?[section]
-            else { return 0 }
+        guard let sec = fetchedResultsController.sections?[section] else {
+            return 0
+        }
         return sec.numberOfObjects
     }
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let obj = objectAtIndexPath(indexPath)
         let identifier = delegate.cellIdentifierForObject(obj)
-        guard let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? D.Cell
-        else { fatalError("Unexpected cell type at \(indexPath)") }
+        guard let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? D.Cell else {
+            fatalError("Unexpected cell type at \(indexPath)")
+        }
         
         delegate.configureCell(cell, object: obj)
         
@@ -77,8 +83,9 @@ public class FetchedResultsTableDataSource<D: FetchedResultsTableDataSourceDeleg
     }
     
     public func objectAtIndexPath(indexPath: NSIndexPath) -> D.Object {
-        guard let obj = fetchedResultsController.objectAtIndexPath(indexPath) as? D.Object
-        else { fatalError("Unexpected cell type at \(indexPath)") }
+        guard let obj = fetchedResultsController.objectAtIndexPath(indexPath) as? D.Object else {
+            fatalError("Unexpected cell type at \(indexPath)")
+        }
         return obj
     }
 }

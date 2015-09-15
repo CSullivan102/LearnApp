@@ -98,6 +98,7 @@
                     <connections>
                         <outlet property="chooseContainerHeightConstraint" destination="mn0-xm-yf1" id="sEd-xN-zfB"/>
                         <outlet property="chooseTopicContainerView" destination="mtA-Gi-AVd" id="JBJ-VV-7aH"/>
+                        <outlet property="saveButton" destination="k7O-o0-OLF" id="VFW-Jx-yzA"/>
                         <outlet property="titleTextField" destination="aqK-gv-wo9" id="5HO-X3-1vi"/>
                         <segue destination="4cW-Wp-z07" kind="presentation" identifier="ShowCreateTopic" id="881-sC-giq"/>
                     </connections>

@@ -21,8 +21,9 @@ public class SmallModalAnimator: NSObject, UIViewControllerAnimatedTransitioning
     }
     
     public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        guard let presentedView = transitionContext.viewForKey(UITransitionContextToViewKey)
-        else { return }
+        guard let presentedView = transitionContext.viewForKey(UITransitionContextToViewKey) else {
+            return
+        }
         
         let presentedViewCenter = presentedView.center
         presentedView.center = CGPoint(x: presentedViewCenter.x, y: -presentedView.bounds.size.height)
@@ -50,8 +51,9 @@ public class SmallModalAnimator: NSObject, UIViewControllerAnimatedTransitioning
 public class SmallModalDismissalAnimator: SmallModalAnimator {
     
     override public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
-        guard let presentedView = transitionContext.viewForKey(UITransitionContextFromViewKey)
-        else { return }
+        guard let presentedView = transitionContext.viewForKey(UITransitionContextFromViewKey) else {
+            return
+        }
         
         UIView.animateWithDuration(duration,
                              delay: delay,

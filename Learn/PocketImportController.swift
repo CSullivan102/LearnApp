@@ -31,7 +31,9 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
         
         if let pocketIDResultDict = try! managedObjectContext.executeFetchRequest(request) as? [[String: Int]] {
             for resultDict in pocketIDResultDict {
-                guard let itemID = resultDict["pocketItemID"] else { continue }
+                guard let itemID = resultDict["pocketItemID"] else {
+                    continue
+                }
                 importedPocketItemIDs.append(itemID)
             }
         }
@@ -87,8 +89,9 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
         let pocketItem = pocketItems[indexPath.row]
         let identifier = "PocketItemTableViewCell"
         
-        guard let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? PocketItemTableViewCell
-        else { fatalError("Wrong cell type for \(identifier)") }
+        guard let cell = tableView.dequeueReusableCellWithIdentifier(identifier) as? PocketItemTableViewCell else {
+            fatalError("Wrong cell type for \(identifier)")
+        }
         
         cell.pocketItem = pocketItem
         
@@ -111,13 +114,15 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let identifier = segue.identifier, segueIdentifier = SegueIdentifier(rawValue: identifier)
-        else { fatalError("Invalid segue identifier \(segue.identifier)") }
+        guard let identifier = segue.identifier, segueIdentifier = SegueIdentifier(rawValue: identifier) else {
+            fatalError("Invalid segue identifier \(segue.identifier)")
+        }
         
         switch segueIdentifier {
         case .ShowPocketAuth:
-            guard let vc = segue.destinationViewController as? PocketAuthModalController
-            else { fatalError("Unexpected view controller for \(identifier) segue") }
+            guard let vc = segue.destinationViewController as? PocketAuthModalController else {
+                fatalError("Unexpected view controller for \(identifier) segue")
+            }
             
             vc.pocketAPI = pocketAPI
             vc.completionHandler = {
@@ -131,16 +136,18 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
             vc.modalPresentationStyle = .Custom
             vc.transitioningDelegate = smallModalTransitioningDelegate
         case .ShowImportTopicPicker:
-            guard let vc = segue.destinationViewController as? PocketImportModalController
-            else { fatalError("Unexpected view controller for \(identifier) segue") }
+            guard let vc = segue.destinationViewController as? PocketImportModalController else {
+                fatalError("Unexpected view controller for \(identifier) segue")
+            }
             
             vc.managedObjectContext = managedObjectContext
             
             vc.transitioningDelegate = smallModalTransitioningDelegate
             vc.modalPresentationStyle = .Custom
             
-            guard let indexPaths = tableView.indexPathsForSelectedRows where indexPaths.count > 0
-            else { return }
+            guard let indexPaths = tableView.indexPathsForSelectedRows where indexPaths.count > 0 else {
+                return
+            }
             
             let pocketItemsToImport = indexPaths.map({ (indexPath) -> PocketItem in
                 return pocketItems[indexPath.row]

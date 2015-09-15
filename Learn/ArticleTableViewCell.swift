@@ -19,8 +19,9 @@ class ArticleTableViewCell: UITableViewCell {
     
     var learnItem: LearnItem? {
         didSet {
-            guard let titleLabel = titleLabel, urlLabel = urlLabel, excerptLabel = excerptLabel, articleImageView = articleImageView
-            else { return }
+            guard let titleLabel = titleLabel, urlLabel = urlLabel, excerptLabel = excerptLabel, articleImageView = articleImageView else {
+                return
+            }
             
             titleLabel.text = learnItem?.title ?? ""
             urlLabel.text = learnItem?.url?.host

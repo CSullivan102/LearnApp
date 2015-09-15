@@ -38,7 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PocketAuthenticationDeleg
     }
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
-        guard let pocketAPI = pocketAPI else { fatalError("No Pocket API instance on oAuth callback") }
+        guard let pocketAPI = pocketAPI else {
+            fatalError("No Pocket API instance on oAuth callback")
+        }
         pocketAPI.oAuthCallbackReceived()
         return true
     }
