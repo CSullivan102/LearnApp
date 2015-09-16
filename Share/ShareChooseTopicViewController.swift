@@ -15,9 +15,8 @@ protocol LearnShareSheetDelegate {
     func getExtensionContextInfo(completion: (NSURL?, String?) -> Void)
 }
 
-class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSettable, UIViewControllerHeightRequestable, TopicCollectionControllable, UITextFieldDelegate {
+class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSettable, UIViewControllerHeightRequestable, UITextFieldDelegate {
     var managedObjectContext: NSManagedObjectContext!
-    var parentTopic: Topic?
     var delegate: LearnShareSheetDelegate?
     var shareURL: NSURL?
     var selectedTopic: Topic? { didSet { topicValid = (selectedTopic != nil) } }
@@ -38,12 +37,14 @@ class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSett
             url, itemTitle in
             self.shareURL = url
             self.titleTextField.text = itemTitle
+            self.titleTextValid = self.titleTextIsValid(itemTitle)
         }
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "textFieldTextChangedNotification:", name: UITextFieldTextDidChangeNotification, object: nil)
     }
     
     private func checkModalValid() {
+        print("\(titleTextValid) \(topicValid)")
         modalValid = titleTextValid && topicValid
     }
     
@@ -53,8 +54,13 @@ class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSett
         }
         
         if textField == titleTextField {
-            titleTextValid = textField.text?.characters.count > 0
+            titleTextValid = titleTextIsValid(textField.text)
         }
+    }
+    
+    func titleTextIsValid(text: String?) -> Bool {
+        let textLength = text?.characters.count ?? 0
+        return textLength > 0
     }
     
     @IBAction func saveButtonPressed(sender: UIButton) {
@@ -125,7 +131,6 @@ class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSett
             else { fatalError("Unexpected view controller for \(identifier)") }
             
             vc.managedObjectContext = managedObjectContext
-            vc.parentTopic = parentTopic
             vc.chooseTopicDelegate = self
         }
     }

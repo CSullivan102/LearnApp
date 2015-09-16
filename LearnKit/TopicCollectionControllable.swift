@@ -14,6 +14,12 @@ public protocol TopicCollectionControllable: ManagedObjectContextSettable {
 
 extension TopicCollectionControllable {
     
+    public var topicViewState: TopicViewState {
+        get {
+            return TopicViewState(fromTopic: parentTopic)
+        }
+    }
+    
     public func setupParentTopic(completion: () -> Void) {
         if let _ = parentTopic {
             completion()
@@ -54,5 +60,22 @@ extension TopicCollectionControllable {
             completion(baseTopic)
         }
 
+    }
+}
+
+public enum TopicViewState {
+    case BaseTopic
+    case SubTopic
+    
+    public init(fromTopic: Topic?) {
+        if let topic = fromTopic {
+            if topic.baseTopic {
+                self = .BaseTopic
+            } else {
+                self = .SubTopic
+            }
+        } else {
+            self = .BaseTopic
+        }
     }
 }

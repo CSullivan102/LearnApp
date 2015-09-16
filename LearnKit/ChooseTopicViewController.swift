@@ -16,6 +16,7 @@ public protocol ChooseTopicDelegate {
 public class ChooseTopicViewController: UIViewController, UICollectionViewDelegate, ManagedObjectContextSettable, TopicCollectionControllable {
     public var managedObjectContext: NSManagedObjectContext!
     public var parentTopic: Topic?
+    public var topicViewState: TopicViewState = .BaseTopic
     public var chooseTopicDelegate: ChooseTopicDelegate?
     
     private var selectedTopic: Topic?
@@ -50,13 +51,10 @@ public class ChooseTopicViewController: UIViewController, UICollectionViewDelega
             fatalError("Tried to set up choose topic controller without parent")
         }
         
-        let frc = getFetchedResultsControllerForTopic(topic)
-        currentDataSource = AddableFetchedResultsCollectionDataSource(collectionView: collectionView, fetchedResultsController: frc, delegate: self)
-        collectionView.dataSource = currentDataSource
-        collectionView.reloadData()
+        setupDataSourceForTopic(topic)
     }
     
-    private func setupSubtopicDataSourceForTopic(topic: Topic) {
+    private func setupDataSourceForTopic(topic: Topic) {
         let frc = getFetchedResultsControllerForTopic(topic)
         currentDataSource = AddableFetchedResultsCollectionDataSource(collectionView: collectionView, fetchedResultsController: frc, delegate: self)
         collectionView.dataSource = currentDataSource
@@ -135,7 +133,7 @@ public class ChooseTopicViewController: UIViewController, UICollectionViewDelega
     private func didPickTopic(topic: Topic) {
         selectedTopic = topic
         topicPickingState = .Subtopic
-        setupSubtopicDataSourceForTopic(topic)
+        setupDataSourceForTopic(topic)
         
         updateUIForState()
     }

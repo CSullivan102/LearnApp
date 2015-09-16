@@ -16,7 +16,6 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
     var pocketAPI: PocketAPI!
     var dataSource: UICollectionViewDataSource?
     var indexPathForMenuController: NSIndexPath?
-    var notif: NSObjectProtocol?
     var parentTopic: Topic?
     
     let createTopicTransitioningDelegate = SmallModalTransitioningDelegate()
@@ -32,9 +31,9 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
     }
     
     private func setupNavigationItem() {
-        if let parentTopic = parentTopic where parentTopic.baseTopic == false {
+        if case .SubTopic = topicViewState {
             navigationItem.titleView = nil
-            navigationItem.title = parentTopic.iconAndName
+            navigationItem.title = parentTopic?.iconAndName
         }
     }
     
@@ -49,21 +48,16 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        notif = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationWillEnterForegroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) {
-            [unowned self] (_) -> Void in
-            if let dataSource = self.dataSource as? FetchedResultsCollectionDataSource<TopicCollectionViewController> {
-                dataSource.refreshData()
-            }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "refreshDataSource:", name: UIApplicationWillEnterForegroundNotification, object: nil)
+    }
+    
+    func refreshDataSource(notification: NSNotification) {
+        if let dataSource = dataSource as? FetchedResultsCollectionDataSource<TopicCollectionViewController> {
+            dataSource.refreshData()
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        guard let notif = notif else {
-            return
-        }
-        NSNotificationCenter.defaultCenter().removeObserver(notif)
-    }
+    // MARK: UICollectionViewDelegate
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         guard let cell = dataSource?.collectionView(collectionView, cellForItemAtIndexPath: indexPath) as? Cell else {
@@ -73,88 +67,35 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
         if cell.addableCell {
             performSegueWithIdentifier(SegueIdentifier.ShowCreateTopic.rawValue, sender: nil)
         } else {
-            guard let parentTopic = parentTopic, topic = cell.topic else {
-                fatalError("Missing topic or parent topic when segue-ing on topic view controller")
+            guard let topic = cell.topic else {
+                fatalError("Missing topic when segue-ing on topic view controller")
             }
             
-            if parentTopic.baseTopic {
+            switch topicViewState {
+            case .BaseTopic:
                 performSegueWithIdentifier(SegueIdentifier.ShowTopicView.rawValue, sender: topic)
-            } else {
+            case .SubTopic:
                 performSegueWithIdentifier(SegueIdentifier.ShowArticles.rawValue, sender: topic)
             }
         }
     }
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let identifier = segue.identifier, segueIdentifier = SegueIdentifier(rawValue: identifier) else {
-            fatalError("Invalid segue identifier \(segue.identifier)")
-        }
-        
-        switch segueIdentifier {
-        case .ShowCreateTopic:
-            guard let vc = segue.destinationViewController as? CreateTopicViewController else {
-                fatalError("Unexpected view controller for \(identifier) segue")
-            }
-            
-            if let topic = sender as? Topic {
-                vc.topic = topic
-            }
-
-            vc.parentTopic = parentTopic
-            vc.managedObjectContext = managedObjectContext
-            
-            vc.transitioningDelegate = createTopicTransitioningDelegate
-            vc.modalPresentationStyle = .Custom
-        case .ShowArticles:
-            guard let vc = segue.destinationViewController as? ArticlesTableViewController else {
-                fatalError("Unexpected view controller for \(identifier) segue")
-            }
-            guard let topic = sender as? Topic else {
-                fatalError("Missing topic for \(identifier) segue")
-            }
-            vc.managedObjectContext = managedObjectContext
-            vc.topic = topic
-            vc.pocketAPI = pocketAPI
-        case .ShowTopicView:
-            guard let vc = segue.destinationViewController as? TopicCollectionViewController else {
-                fatalError("Unexpected view controller for \(identifier) segue")
-            }
-            guard let topic = sender as? Topic else {
-                fatalError("Missing topic for \(identifier) segue")
-            }
-            vc.managedObjectContext = managedObjectContext
-            vc.parentTopic = topic
-            vc.pocketAPI = pocketAPI
-        case .ShowPocketImport:
-            guard let vc = segue.destinationViewController as? PocketImportController else {
-                fatalError("Unexpected view controller for \(identifier) segue")
-            }
-            
-            vc.managedObjectContext = managedObjectContext
-            vc.pocketAPI = pocketAPI
-            
-            vc.transitioningDelegate = createTopicTransitioningDelegate
-            vc.modalPresentationStyle = .Custom
-        }
-    }
+    
+    // MARK: Handle long press for edit/delete menu
     
     @IBAction func handleLongPress(sender: UILongPressGestureRecognizer) {
-        guard sender.state == .Began
-        else { return }
-        guard let indexPath = collectionView?.indexPathForItemAtPoint(sender.locationInView(collectionView)),
-            cell = collectionView?.cellForItemAtIndexPath(indexPath) as? Cell else {
-                return
-        }
-        
-        if cell.addableCell {
+        guard sender.state == .Began else {
             return
+        }
+        guard let indexPath = collectionView?.indexPathForItemAtPoint(sender.locationInView(collectionView)),
+            cell = collectionView?.cellForItemAtIndexPath(indexPath) as? Cell where !cell.addableCell else {
+                return
         }
         
         indexPathForMenuController = indexPath
         
         let editMenuItem = UIMenuItem(title: "Edit", action: "editTopic:")
         let deleteMenuItem = UIMenuItem(title: "Delete", action: "deleteTopic:")
-        
+
         let mc = UIMenuController.sharedMenuController()
         mc.menuItems = [editMenuItem, deleteMenuItem]
         mc.setTargetRect(cell.bounds, inView: cell)
@@ -196,7 +137,61 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
         indexPathForMenuController = nil
     }
     
-    enum SegueIdentifier: String {
+    // MARK: Segues
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let identifier = segue.identifier, segueIdentifier = SegueIdentifier(rawValue: identifier) else {
+            fatalError("Invalid segue identifier \(segue.identifier)")
+        }
+        
+        switch segueIdentifier {
+        case .ShowCreateTopic:
+            guard let vc = segue.destinationViewController as? CreateTopicViewController else {
+                fatalError("Unexpected view controller for \(identifier) segue")
+            }
+
+            vc.topic = sender as? Topic
+            vc.parentTopic = parentTopic
+            vc.managedObjectContext = managedObjectContext
+            
+            vc.transitioningDelegate = createTopicTransitioningDelegate
+            vc.modalPresentationStyle = .Custom
+        case .ShowArticles:
+            guard let vc = segue.destinationViewController as? ArticlesTableViewController else {
+                fatalError("Unexpected view controller for \(identifier) segue")
+            }
+            guard let topic = sender as? Topic else {
+                fatalError("Missing topic for \(identifier) segue")
+            }
+            
+            vc.topic = topic
+            vc.managedObjectContext = managedObjectContext
+            vc.pocketAPI = pocketAPI
+        case .ShowTopicView:
+            guard let vc = segue.destinationViewController as? TopicCollectionViewController else {
+                fatalError("Unexpected view controller for \(identifier) segue")
+            }
+            guard let topic = sender as? Topic else {
+                fatalError("Missing topic for \(identifier) segue")
+            }
+            
+            vc.parentTopic = topic
+            vc.managedObjectContext = managedObjectContext
+            vc.pocketAPI = pocketAPI
+        case .ShowPocketImport:
+            guard let vc = segue.destinationViewController as? PocketImportController else {
+                fatalError("Unexpected view controller for \(identifier) segue")
+            }
+            
+            vc.managedObjectContext = managedObjectContext
+            vc.pocketAPI = pocketAPI
+            
+            vc.transitioningDelegate = createTopicTransitioningDelegate
+            vc.modalPresentationStyle = .Custom
+        }
+    }
+    
+    private enum SegueIdentifier: String {
         case ShowCreateTopic = "ShowCreateTopic"
         case ShowArticles = "ShowArticles"
         case ShowTopicView = "ShowTopicView"

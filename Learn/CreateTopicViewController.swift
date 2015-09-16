@@ -14,8 +14,8 @@ public protocol CreateTopicDelegate {
 }
 
 public class CreateTopicViewController: UIViewController, ManagedObjectContextSettable, UIViewControllerHeightRequestable, UITextFieldDelegate {
+   
     public var managedObjectContext: NSManagedObjectContext!
-    
     public var createTopicDelegate: CreateTopicDelegate?
     public var parentTopic: Topic?
     public var topic: Topic?
@@ -69,10 +69,10 @@ public class CreateTopicViewController: UIViewController, ManagedObjectContextSe
             return
         }
         if textField == self.nameTextField {
-            self.nameValid = self.stringLength(textField.text) > 0
+            self.nameValid = textField.text?.characters.count > 0
         }
         if textField == self.emojiTextField {
-            self.emojiValid = self.stringLength(textField.text) > 0
+            self.emojiValid = textField.text?.characters.count > 0
         }
     }
     
@@ -81,7 +81,8 @@ public class CreateTopicViewController: UIViewController, ManagedObjectContextSe
             return true
         }
         
-        let newLength = stringLength(textField.text) + stringLength(string) - range.length
+        let existingStringLength: Int = textField.text?.lengthWithEmoji() ?? 0
+        let newLength = existingStringLength + string.lengthWithEmoji() - range.length
         
         if newLength > maxEmojiTextLength {
             return false
@@ -154,18 +155,6 @@ public class CreateTopicViewController: UIViewController, ManagedObjectContextSe
                 self.createTopicDelegate?.didCreateTopic(newTopic)
             }
         }
-    }
-    
-    private func stringLength(str: String?) -> Int {
-        guard let str = str else {
-            return 0
-        }
-        let range = Range<String.Index>(start: str.startIndex, end: str.endIndex)
-        var length = 0
-        str.enumerateSubstringsInRange(range, options: .ByComposedCharacterSequences) { (substring, substringRange, enclosingRange, stop) -> () in
-            length++
-        }
-        return length
     }
     
     public func preferredHeight() -> CGFloat {

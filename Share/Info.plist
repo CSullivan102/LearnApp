@@ -33,12 +33,12 @@
 			</dict>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>
-		<string>MainInterface</string>
+		<string>ShareExtension</string>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.share-services</string>
 	</dict>
-    <key>NSExtensionActivationDictionaryVersion</key>
-    <string>2</string>
+	<key>NSExtensionActivationDictionaryVersion</key>
+	<string>2</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 </dict>

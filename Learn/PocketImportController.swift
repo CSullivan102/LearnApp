@@ -16,10 +16,14 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
     var pocketAPI: PocketAPI!
     var pocketItems = [PocketItem]()
     var importedPocketItemIDs = [Int]()
+
+    @IBOutlet weak var importButton: UIBarButtonItem!
+    
     private var fetching = false
     private let fetchCount = 10
     private var fetchOffset = 0
     private let smallModalTransitioningDelegate = SmallModalTransitioningDelegate()
+    private var modalValid = false { didSet { importButton.enabled = modalValid } }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +47,8 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
         } else {
             performSegueWithIdentifier(SegueIdentifier.ShowPocketAuth.rawValue, sender: nil)
         }
+        
+        checkModalValid()
     }
     
     private func updateViewForPocketAuthentication() {
@@ -79,6 +85,22 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
                 completion(items)
             }
         }
+    }
+    
+    private func checkModalValid() {
+        if let indexPaths = tableView.indexPathsForSelectedRows where indexPaths.count > 0 {
+            modalValid = true
+        } else {
+            modalValid = false
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        checkModalValid()
+    }
+    
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        checkModalValid()
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

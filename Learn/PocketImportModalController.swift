@@ -10,14 +10,26 @@ import UIKit
 import LearnKit
 import CoreData
 
-class PocketImportModalController: UIViewController, ManagedObjectContextSettable, UIViewControllerHeightRequestable, TopicCollectionControllable {
+class PocketImportModalController: UIViewController, ManagedObjectContextSettable, UIViewControllerHeightRequestable {
     var managedObjectContext: NSManagedObjectContext!
-    var parentTopic: Topic?
-    var selectedTopic: Topic?
+    var topicViewState: TopicViewState = .BaseTopic
+    var selectedTopic: Topic? { didSet { checkModalValid() } }
     var pocketItemsToImport = [PocketItem]()
     var completionHandler: ([PocketItem] -> ())?
     
+    @IBOutlet weak var importButton: UIButton!
     @IBOutlet weak var chooseContainerHeightConstraint: NSLayoutConstraint!
+    
+    private var modalValid = false { didSet { importButton.enabled = modalValid } }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        checkModalValid()
+    }
+    
+    private func checkModalValid() {
+        modalValid = selectedTopic != nil
+    }
     
     @IBAction func cancelButtonPressed(sender: UIButton) {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
@@ -73,7 +85,6 @@ class PocketImportModalController: UIViewController, ManagedObjectContextSettabl
             }
             
             vc.managedObjectContext = managedObjectContext
-            vc.parentTopic = parentTopic
             vc.chooseTopicDelegate = self
         }
     }

@@ -19,11 +19,11 @@
 		7415CB921B8BCF10008FB09B /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D441B83DF7400BCDD79 /* Topic.swift */; };
 		7415CB931B8BCF14008FB09B /* LearnItemTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E6491B862F7C0013B1BD /* LearnItemTypeEnum.swift */; };
 		7415CB941B8BCF18008FB09B /* LearnItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D461B83E2BF00BCDD79 /* LearnItem.swift */; };
-		7415CB951B8BCF32008FB09B /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D481B83E2E000BCDD79 /* CoreDataStack.swift */; };
+		7415CB951B8BCF32008FB09B /* CoreDataSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D481B83E2E000BCDD79 /* CoreDataSetup.swift */; };
 		74213CD31BA37A1200A67339 /* ChooseTopic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74213CD21BA37A1200A67339 /* ChooseTopic.storyboard */; settings = {ASSET_TAGS = (); }; };
 		74213CD51BA37B7500A67339 /* ChooseTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74213CD41BA37B7500A67339 /* ChooseTopicViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		742D30241B8A4AEE002B8028 /* SharePresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742D30231B8A4AEE002B8028 /* SharePresentationViewController.swift */; };
-		742D30271B8A4AEE002B8028 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 742D30251B8A4AEE002B8028 /* MainInterface.storyboard */; };
+		742D30271B8A4AEE002B8028 /* ShareExtension.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 742D30251B8A4AEE002B8028 /* ShareExtension.storyboard */; };
 		742D302B1B8A4AEE002B8028 /* Share.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 742D30211B8A4AEE002B8028 /* Share.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		74418D131B83DD1500BCDD79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74418D121B83DD1500BCDD79 /* AppDelegate.swift */; };
 		74418D181B83DD1500BCDD79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74418D161B83DD1500BCDD79 /* Main.storyboard */; };
@@ -48,6 +48,7 @@
 		749B07C81B94FC3300E668BF /* SmallModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A911CB1B94C26000B695B5 /* SmallModalTransitioningDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		749B07C91B94FC3300E668BF /* SmallModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A911CF1B94C33300B695B5 /* SmallModalPresentationController.swift */; settings = {ASSET_TAGS = (); }; };
 		749B07CB1B94FFB600E668BF /* ShareChooseTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749B07CA1B94FFB600E668BF /* ShareChooseTopicViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		74A39A051BAA048D00334351 /* String+EmojiStringLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A39A041BAA048D00334351 /* String+EmojiStringLength.swift */; settings = {ASSET_TAGS = (); }; };
 		74A41DCC1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		74B7634D1B86AA97001140F5 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B7634C1B86AA97001140F5 /* Argo.framework */; };
 		74B7634E1B86AB0A001140F5 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D2931C1B869A910037EBA9 /* Alamofire.framework */; };
@@ -59,6 +60,16 @@
 		74CDD1AC1B9F84870022D116 /* PocketAuthModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CDD1AB1B9F84870022D116 /* PocketAuthModalController.swift */; settings = {ASSET_TAGS = (); }; };
 		74CDD1AE1B9F8AE20022D116 /* Argo+Dictionaries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CDD1AD1B9F8AE20022D116 /* Argo+Dictionaries.swift */; settings = {ASSET_TAGS = (); }; };
 		74D438601B98992400F3838D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74418D191B83DD1500BCDD79 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
+		74D475BE1BA9A2FB005B5A41 /* PocketOAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D475BD1BA9A2FB005B5A41 /* PocketOAuthResponse.swift */; settings = {ASSET_TAGS = (); }; };
+		74D475C01BA9A308005B5A41 /* PocketUserAuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D475BF1BA9A308005B5A41 /* PocketUserAuthResponse.swift */; settings = {ASSET_TAGS = (); }; };
+		74D475C21BA9A312005B5A41 /* PocketAddResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D475C11BA9A312005B5A41 /* PocketAddResponse.swift */; settings = {ASSET_TAGS = (); }; };
+		74D475C41BA9A31F005B5A41 /* PocketRetrieveResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D475C31BA9A31F005B5A41 /* PocketRetrieveResponse.swift */; settings = {ASSET_TAGS = (); }; };
+		74D475C61BA9A327005B5A41 /* PocketItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D475C51BA9A327005B5A41 /* PocketItem.swift */; settings = {ASSET_TAGS = (); }; };
+		74D475C81BA9A331005B5A41 /* PocketImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D475C71BA9A331005B5A41 /* PocketImageItem.swift */; settings = {ASSET_TAGS = (); }; };
+		74D475CC1BA9A641005B5A41 /* PocketAuthenticationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D475CB1BA9A641005B5A41 /* PocketAuthenticationDelegate.swift */; settings = {ASSET_TAGS = (); }; };
+		74D475CE1BA9A6B3005B5A41 /* ManagedObjectContextSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D475CD1BA9A6B3005B5A41 /* ManagedObjectContextSettable.swift */; settings = {ASSET_TAGS = (); }; };
+		74D475D11BA9A770005B5A41 /* NSManagedObjectContext+InsertSave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D475D01BA9A770005B5A41 /* NSManagedObjectContext+InsertSave.swift */; settings = {ASSET_TAGS = (); }; };
+		74D475D31BA9A7B9005B5A41 /* ManagedObjectType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D475D21BA9A7B9005B5A41 /* ManagedObjectType.swift */; settings = {ASSET_TAGS = (); }; };
 		74DC60751B95319E00C53D13 /* CreateTopic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74DC60741B95319E00C53D13 /* CreateTopic.storyboard */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -146,7 +157,7 @@
 		74213CD41BA37B7500A67339 /* ChooseTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseTopicViewController.swift; sourceTree = "<group>"; };
 		742D30211B8A4AEE002B8028 /* Share.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Share.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		742D30231B8A4AEE002B8028 /* SharePresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePresentationViewController.swift; sourceTree = "<group>"; };
-		742D30261B8A4AEE002B8028 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		742D30261B8A4AEE002B8028 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ShareExtension.storyboard; sourceTree = "<group>"; };
 		742D30281B8A4AEE002B8028 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		74418D0F1B83DD1500BCDD79 /* Learn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Learn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74418D121B83DD1500BCDD79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -163,16 +174,17 @@
 		74418D411B83DD5500BCDD79 /* LearnModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LearnModel.xcdatamodel; sourceTree = "<group>"; };
 		74418D441B83DF7400BCDD79 /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
 		74418D461B83E2BF00BCDD79 /* LearnItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnItem.swift; sourceTree = "<group>"; };
-		74418D481B83E2E000BCDD79 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = ../Learn/CoreDataStack.swift; sourceTree = "<group>"; };
+		74418D481B83E2E000BCDD79 /* CoreDataSetup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataSetup.swift; path = ../Learn/CoreDataSetup.swift; sourceTree = "<group>"; };
 		74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicViewController.swift; sourceTree = "<group>"; };
 		744B1E601B9E009A001B5263 /* TopicCollectionControllable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopicCollectionControllable.swift; sourceTree = "<group>"; };
 		744B1E621B9E9A51001B5263 /* FetchedResultsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableDataSource.swift; sourceTree = "<group>"; };
 		747BF6461BA771E200BBCF61 /* PocketItemTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketItemTableCell.swift; sourceTree = "<group>"; };
 		749B07CA1B94FFB600E668BF /* ShareChooseTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareChooseTopicViewController.swift; sourceTree = "<group>"; };
+		74A39A041BAA048D00334351 /* String+EmojiStringLength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+EmojiStringLength.swift"; sourceTree = "<group>"; };
 		74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddableFetchedResultsCollectionDataSource.swift; sourceTree = "<group>"; };
-		74A911CB1B94C26000B695B5 /* SmallModalTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallModalTransitioningDelegate.swift; sourceTree = "<group>"; };
-		74A911CD1B94C2AD00B695B5 /* SmallModalAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallModalAnimator.swift; sourceTree = "<group>"; };
-		74A911CF1B94C33300B695B5 /* SmallModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallModalPresentationController.swift; sourceTree = "<group>"; };
+		74A911CB1B94C26000B695B5 /* SmallModalTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmallModalTransitioningDelegate.swift; path = ../Learn/SmallModalTransitioningDelegate.swift; sourceTree = "<group>"; };
+		74A911CD1B94C2AD00B695B5 /* SmallModalAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmallModalAnimator.swift; path = ../Learn/SmallModalAnimator.swift; sourceTree = "<group>"; };
+		74A911CF1B94C33300B695B5 /* SmallModalPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SmallModalPresentationController.swift; path = ../Learn/SmallModalPresentationController.swift; sourceTree = "<group>"; };
 		74B7634C1B86AA97001140F5 /* Argo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Argo.framework; path = Carthage/Build/iOS/Argo.framework; sourceTree = "<group>"; };
 		74C6E6491B862F7C0013B1BD /* LearnItemTypeEnum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LearnItemTypeEnum.swift; path = Learn/LearnItemTypeEnum.swift; sourceTree = "<group>"; };
 		74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FetchedResultsCollectionDataSource.swift; path = ../Learn/FetchedResultsCollectionDataSource.swift; sourceTree = "<group>"; };
@@ -189,6 +201,16 @@
 		74D293181B86997D0037EBA9 /* PocketAPISettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PocketAPISettable.swift; path = ../Learn/PocketAPISettable.swift; sourceTree = "<group>"; };
 		74D2931A1B86999D0037EBA9 /* PocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PocketAPI.swift; path = ../Learn/PocketAPI.swift; sourceTree = "<group>"; };
 		74D2931C1B869A910037EBA9 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		74D475BD1BA9A2FB005B5A41 /* PocketOAuthResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketOAuthResponse.swift; sourceTree = "<group>"; };
+		74D475BF1BA9A308005B5A41 /* PocketUserAuthResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketUserAuthResponse.swift; sourceTree = "<group>"; };
+		74D475C11BA9A312005B5A41 /* PocketAddResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAddResponse.swift; sourceTree = "<group>"; };
+		74D475C31BA9A31F005B5A41 /* PocketRetrieveResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketRetrieveResponse.swift; sourceTree = "<group>"; };
+		74D475C51BA9A327005B5A41 /* PocketItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketItem.swift; sourceTree = "<group>"; };
+		74D475C71BA9A331005B5A41 /* PocketImageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketImageItem.swift; sourceTree = "<group>"; };
+		74D475CB1BA9A641005B5A41 /* PocketAuthenticationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAuthenticationDelegate.swift; sourceTree = "<group>"; };
+		74D475CD1BA9A6B3005B5A41 /* ManagedObjectContextSettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectContextSettable.swift; sourceTree = "<group>"; };
+		74D475D01BA9A770005B5A41 /* NSManagedObjectContext+InsertSave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+InsertSave.swift"; sourceTree = "<group>"; };
+		74D475D21BA9A7B9005B5A41 /* ManagedObjectType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedObjectType.swift; sourceTree = "<group>"; };
 		74DC60741B95319E00C53D13 /* CreateTopic.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CreateTopic.storyboard; path = LearnKit/CreateTopic.storyboard; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -251,22 +273,22 @@
 		7415CB721B8BCC9B008FB09B /* LearnKit */ = {
 			isa = PBXGroup;
 			children = (
-				74418D401B83DD5500BCDD79 /* LearnModel.xcdatamodeld */,
+				74A39A011BAA001D00334351 /* SmallModalTransition */,
+				74D475CF1BA9A741005B5A41 /* CoreData */,
+				74213CD11BA379F200A67339 /* ChooseTopic */,
+				74A911CA1B94C20C00B695B5 /* CreateTopic */,
+				74D475CA1BA9A44C005B5A41 /* CollectionVIewAdapters */,
 				74418D431B83DF5E00BCDD79 /* Models */,
-				74A911CA1B94C20C00B695B5 /* Create Topic */,
-				74213CD11BA379F200A67339 /* Choose Topic */,
-				74D293181B86997D0037EBA9 /* PocketAPISettable.swift */,
-				74D2931A1B86999D0037EBA9 /* PocketAPI.swift */,
-				74418D481B83E2E000BCDD79 /* CoreDataStack.swift */,
+				74D475BC1BA9A17F005B5A41 /* PocketIntegration */,
+				74D475C91BA9A434005B5A41 /* TableViewAdapters */,
 				74CDD1AD1B9F8AE20022D116 /* Argo+Dictionaries.swift */,
-				744B1E621B9E9A51001B5263 /* FetchedResultsTableDataSource.swift */,
-				74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */,
-				74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */,
+				7415CB751B8BCC9B008FB09B /* Info.plist */,
+				74D22E4C1B8B70BC0097D5BC /* Keys.plist */,
+				7415CB731B8BCC9B008FB09B /* LearnKit.h */,
+				74418D401B83DD5500BCDD79 /* LearnModel.xcdatamodeld */,
+				74A39A041BAA048D00334351 /* String+EmojiStringLength.swift */,
 				744B1E601B9E009A001B5263 /* TopicCollectionControllable.swift */,
 				74C6E64F1B863E800013B1BD /* TopicCollectionViewCell.swift */,
-				7415CB731B8BCC9B008FB09B /* LearnKit.h */,
-				74D22E4C1B8B70BC0097D5BC /* Keys.plist */,
-				7415CB751B8BCC9B008FB09B /* Info.plist */,
 			);
 			path = LearnKit;
 			sourceTree = "<group>";
@@ -280,13 +302,13 @@
 			path = LearnKitTests;
 			sourceTree = "<group>";
 		};
-		74213CD11BA379F200A67339 /* Choose Topic */ = {
+		74213CD11BA379F200A67339 /* ChooseTopic */ = {
 			isa = PBXGroup;
 			children = (
 				74213CD21BA37A1200A67339 /* ChooseTopic.storyboard */,
 				74213CD41BA37B7500A67339 /* ChooseTopicViewController.swift */,
 			);
-			name = "Choose Topic";
+			name = ChooseTopic;
 			path = LearnKit;
 			sourceTree = SOURCE_ROOT;
 		};
@@ -296,7 +318,7 @@
 				7415CB8F1B8BCD97008FB09B /* Share.entitlements */,
 				742D30231B8A4AEE002B8028 /* SharePresentationViewController.swift */,
 				749B07CA1B94FFB600E668BF /* ShareChooseTopicViewController.swift */,
-				742D30251B8A4AEE002B8028 /* MainInterface.storyboard */,
+				742D30251B8A4AEE002B8028 /* ShareExtension.storyboard */,
 				742D30281B8A4AEE002B8028 /* Info.plist */,
 			);
 			path = Share;
@@ -377,16 +399,23 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
-		74A911CA1B94C20C00B695B5 /* Create Topic */ = {
+		74A39A011BAA001D00334351 /* SmallModalTransition */ = {
 			isa = PBXGroup;
 			children = (
-				74DC60741B95319E00C53D13 /* CreateTopic.storyboard */,
-				74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */,
 				74A911CD1B94C2AD00B695B5 /* SmallModalAnimator.swift */,
 				74A911CB1B94C26000B695B5 /* SmallModalTransitioningDelegate.swift */,
 				74A911CF1B94C33300B695B5 /* SmallModalPresentationController.swift */,
 			);
-			name = "Create Topic";
+			name = SmallModalTransition;
+			sourceTree = "<group>";
+		};
+		74A911CA1B94C20C00B695B5 /* CreateTopic */ = {
+			isa = PBXGroup;
+			children = (
+				74DC60741B95319E00C53D13 /* CreateTopic.storyboard */,
+				74418D521B84F47500BCDD79 /* CreateTopicViewController.swift */,
+			);
+			name = CreateTopic;
 			path = ../Learn;
 			sourceTree = "<group>";
 		};
@@ -412,12 +441,56 @@
 		74CDD1A81B9F5EBB0022D116 /* PocketImport */ = {
 			isa = PBXGroup;
 			children = (
-				74CDD1A91B9F5ED70022D116 /* PocketImportController.swift */,
 				74CDD1AB1B9F84870022D116 /* PocketAuthModalController.swift */,
+				74CDD1A91B9F5ED70022D116 /* PocketImportController.swift */,
 				74101D361BA7488300CF29AF /* PocketImportModalController.swift */,
 				747BF6461BA771E200BBCF61 /* PocketItemTableCell.swift */,
 			);
 			name = PocketImport;
+			sourceTree = "<group>";
+		};
+		74D475BC1BA9A17F005B5A41 /* PocketIntegration */ = {
+			isa = PBXGroup;
+			children = (
+				74D475CB1BA9A641005B5A41 /* PocketAuthenticationDelegate.swift */,
+				74D2931A1B86999D0037EBA9 /* PocketAPI.swift */,
+				74D475BD1BA9A2FB005B5A41 /* PocketOAuthResponse.swift */,
+				74D475BF1BA9A308005B5A41 /* PocketUserAuthResponse.swift */,
+				74D475C11BA9A312005B5A41 /* PocketAddResponse.swift */,
+				74D475C31BA9A31F005B5A41 /* PocketRetrieveResponse.swift */,
+				74D475C51BA9A327005B5A41 /* PocketItem.swift */,
+				74D475C71BA9A331005B5A41 /* PocketImageItem.swift */,
+				74D293181B86997D0037EBA9 /* PocketAPISettable.swift */,
+			);
+			name = PocketIntegration;
+			sourceTree = "<group>";
+		};
+		74D475C91BA9A434005B5A41 /* TableViewAdapters */ = {
+			isa = PBXGroup;
+			children = (
+				744B1E621B9E9A51001B5263 /* FetchedResultsTableDataSource.swift */,
+			);
+			name = TableViewAdapters;
+			sourceTree = "<group>";
+		};
+		74D475CA1BA9A44C005B5A41 /* CollectionVIewAdapters */ = {
+			isa = PBXGroup;
+			children = (
+				74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */,
+				74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */,
+			);
+			name = CollectionVIewAdapters;
+			sourceTree = "<group>";
+		};
+		74D475CF1BA9A741005B5A41 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				74418D481B83E2E000BCDD79 /* CoreDataSetup.swift */,
+				74D475D21BA9A7B9005B5A41 /* ManagedObjectType.swift */,
+				74D475D01BA9A770005B5A41 /* NSManagedObjectContext+InsertSave.swift */,
+				74D475CD1BA9A6B3005B5A41 /* ManagedObjectContextSettable.swift */,
+			);
+			name = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -646,7 +719,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7469F2381B8D0C7C00AB3A7C /* Assets.xcassets in Resources */,
-				742D30271B8A4AEE002B8028 /* MainInterface.storyboard in Resources */,
+				742D30271B8A4AEE002B8028 /* ShareExtension.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,23 +790,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74A39A051BAA048D00334351 /* String+EmojiStringLength.swift in Sources */,
 				749B07C71B94FC3300E668BF /* SmallModalAnimator.swift in Sources */,
 				7469F22C1B8CC21500AB3A7C /* PocketAPI.swift in Sources */,
+				74D475BE1BA9A2FB005B5A41 /* PocketOAuthResponse.swift in Sources */,
 				7469F2391B8D0FF900AB3A7C /* FetchedResultsCollectionDataSource.swift in Sources */,
-				7415CB951B8BCF32008FB09B /* CoreDataStack.swift in Sources */,
+				74D475CE1BA9A6B3005B5A41 /* ManagedObjectContextSettable.swift in Sources */,
+				7415CB951B8BCF32008FB09B /* CoreDataSetup.swift in Sources */,
+				74D475D11BA9A770005B5A41 /* NSManagedObjectContext+InsertSave.swift in Sources */,
+				74D475C01BA9A308005B5A41 /* PocketUserAuthResponse.swift in Sources */,
 				749B07C61B94FAC200E668BF /* CreateTopicViewController.swift in Sources */,
 				744B1E631B9E9A51001B5263 /* FetchedResultsTableDataSource.swift in Sources */,
 				749B07C91B94FC3300E668BF /* SmallModalPresentationController.swift in Sources */,
 				749B07C81B94FC3300E668BF /* SmallModalTransitioningDelegate.swift in Sources */,
 				7415CB901B8BCE34008FB09B /* LearnModel.xcdatamodeld in Sources */,
+				74D475CC1BA9A641005B5A41 /* PocketAuthenticationDelegate.swift in Sources */,
 				7415CB931B8BCF14008FB09B /* LearnItemTypeEnum.swift in Sources */,
+				74D475C61BA9A327005B5A41 /* PocketItem.swift in Sources */,
 				749B07C31B94F18300E668BF /* TopicCollectionViewCell.swift in Sources */,
 				744B1E611B9E009A001B5263 /* TopicCollectionControllable.swift in Sources */,
 				7415CB921B8BCF10008FB09B /* Topic.swift in Sources */,
+				74D475C81BA9A331005B5A41 /* PocketImageItem.swift in Sources */,
+				74D475D31BA9A7B9005B5A41 /* ManagedObjectType.swift in Sources */,
 				74213CD51BA37B7500A67339 /* ChooseTopicViewController.swift in Sources */,
+				74D475C41BA9A31F005B5A41 /* PocketRetrieveResponse.swift in Sources */,
 				74A41DCC1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift in Sources */,
 				7469F22B1B8CC21100AB3A7C /* PocketAPISettable.swift in Sources */,
 				7415CB941B8BCF18008FB09B /* LearnItem.swift in Sources */,
+				74D475C21BA9A312005B5A41 /* PocketAddResponse.swift in Sources */,
 				74CDD1AE1B9F8AE20022D116 /* Argo+Dictionaries.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -822,12 +906,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		742D30251B8A4AEE002B8028 /* MainInterface.storyboard */ = {
+		742D30251B8A4AEE002B8028 /* ShareExtension.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				742D30261B8A4AEE002B8028 /* Base */,
 			);
-			name = MainInterface.storyboard;
+			name = ShareExtension.storyboard;
 			sourceTree = "<group>";
 		};
 		74418D161B83DD1500BCDD79 /* Main.storyboard */ = {
