@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PocketAuthenticationDeleg
         if UIApplication.sharedApplication().canOpenURL(URL) {
             UIApplication.sharedApplication().openURL(URL)
         } else {
-            // SFViewController instance to do OAuth when pocket's not installed
+            // TODO: SFViewController instance to do OAuth when pocket's not installed
         }
     }
 }

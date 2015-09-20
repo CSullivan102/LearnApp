@@ -35,7 +35,7 @@ public final class LearnItem: ManagedObject {
     
     public func copyDataFromPocketItem(pocketItem: PocketItem) {
         // Only overwrite title, URL if they're the default value
-        if let resolvedTitle = pocketItem.resolved_title where title == ""{
+        if let resolvedTitle = pocketItem.resolved_title where title == "" {
             title = resolvedTitle
         }
         
