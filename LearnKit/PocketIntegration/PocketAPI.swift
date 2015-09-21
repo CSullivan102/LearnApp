@@ -18,9 +18,11 @@ public class PocketAPI {
     private let delegate: PocketAuthenticationDelegate
     private let AccessTokenKeychainKey = "PocketAccessToken"
     private let AuthUserKeychainKey = "PocketAuthUser"
+    private var onAuthenticationCompletion: (() -> ())?
     
     private var accessToken: String? {
         get {
+            //TODO: Move this into the Keychain
             guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn") else {
                 fatalError("Can't open user defaults")
             }
@@ -74,30 +76,28 @@ public class PocketAPI {
                 switch decodedResponse {
                 case .Success(let responseObj):
                     completion(responseObj.item)
-                case .MissingKey(let s):
-                    print("JSON decoding failed for Add to Pocket, missing key \(s)")
-                case .TypeMismatch:
-                    // The Pocket API's add URL response normally returns an "item" with a key "images"
-                    // which is an object of key -> image object, however when there are no images, it incorrectly
-                    // assigns "images" an empty array instead of an empty object, so rebuild the JSON without the "images"
-                    // key and try parsing the PocketItem again
-                    if let j = JSON as? [String: AnyObject] {
-                        if let item = j["item"] as? [String: AnyObject] {
-                            var modifiedJSON = [String: AnyObject]()
-                            for (key, val) in item {
-                                if key == "images" {
-                                    continue
+                case .Failure(let error):
+                    if case .TypeMismatch = error {
+                        // The Pocket API's add URL response normally returns an "item" with a key "images"
+                        // which is an object of key -> image object, however when there are no images, it incorrectly
+                        // assigns "images" an empty array instead of an empty object, so rebuild the JSON without the "images"
+                        // key and try parsing the PocketItem again
+                        if let j = JSON as? [String: AnyObject] {
+                            if let item = j["item"] as? [String: AnyObject] {
+                                var modifiedJSON = [String: AnyObject]()
+                                for (key, val) in item {
+                                    if key == "images" {
+                                        continue
+                                    }
+                                    modifiedJSON[key] = val
                                 }
-                                modifiedJSON[key] = val
-                            }
-                            let decodedModifiedPocketItem: Decoded<PocketItem> = decode(modifiedJSON)
-                            switch decodedModifiedPocketItem {
-                            case .Success(let pocketItem):
-                                completion(pocketItem)
-                            case .MissingKey(let s):
-                                print("JSON decoding missing key on modified add URL pocket item \(s)")
-                            case .TypeMismatch(let s):
-                                print("JSON decoding type mismatch on modified add URL pocket item \(s)")
+                                let decodedModifiedPocketItem: Decoded<PocketItem> = decode(modifiedJSON)
+                                switch decodedModifiedPocketItem {
+                                case .Success(let pocketItem):
+                                    completion(pocketItem)
+                                case .Failure(let error):
+                                    print(error)
+                                }
                             }
                         }
                     }
@@ -120,10 +120,8 @@ public class PocketAPI {
                 switch decodedResponse {
                 case .Success(let responseObj):
                     completion(Array(responseObj.list.values))
-                case .MissingKey(let s):
-                    print("JSON decoding failed for Add to Pocket, missing key \(s)")
-                case .TypeMismatch(let s):
-                    print("JSON decoding failed for Add to Pocket, type mismatch \(s)")
+                case .Failure(let error):
+                    print(error)
                 }
             case .Failure(let data, let error):
                 print("Request failed with error: \(error)")
@@ -141,13 +139,18 @@ public class PocketAPI {
         return false
     }
     
+    private func clearAuthentication() {
+        self.accessToken = nil
+        self.authenticatedUser = nil
+    }
+    
     public func authenticate(completion: (() -> ())?) {
-        // Need to set up a closure on this object, something to come back to
-        
         guard let consumerKey = consumerKey, appId = appId else {
             return
         }
         let oAuthRequestParams = ["consumer_key": consumerKey, "redirect_uri": "pocketapp\(appId):authorizationFinished"]
+        
+        onAuthenticationCompletion = completion
         
         Alamofire.request(.POST, "https://getpocket.com/v3/oauth/request", parameters: oAuthRequestParams, encoding: .JSON, headers: ["X-Accept": "application/json"])
         .responseJSON { (_, _, result) -> Void in
@@ -155,6 +158,7 @@ public class PocketAPI {
             case .Success(let JSON):
                 self.handleOAuthRequestSuccess(JSON)
             case .Failure(let data, let error):
+                self.onAuthenticationCompletion = nil
                 print("Request failed with error: \(error)")
                 if let data = data {
                     print("Response data: \(NSString(data: data, encoding: NSUTF8StringEncoding)!)")
@@ -175,6 +179,7 @@ public class PocketAPI {
                 case .Success(let JSON):
                     self.handleOAuthAuthorizeSuccess(JSON)
                 case .Failure(let data, let error):
+                    self.onAuthenticationCompletion = nil
                     print("Request failed with error: \(error)")
                     if let data = data {
                         print("Response data: \(NSString(data: data, encoding: NSUTF8StringEncoding)!)")
@@ -194,10 +199,9 @@ public class PocketAPI {
                     fatalError("Bad URL for pocket oauth")
             }
             delegate.promptOAuthUserAuthWithURL(URL)
-        case .MissingKey(let s):
-            print("JSON decoding failed for OAuth Request, missing key \(s)")
-        case .TypeMismatch(let s):
-            print("JSON decoding failed for OAuth Request, type mismatch \(s)")
+        case .Failure(let error):
+            self.onAuthenticationCompletion = nil
+            print(error)
         }
     }
     
@@ -208,11 +212,11 @@ public class PocketAPI {
         case .Success(let responseObj):
             self.accessToken = responseObj.access_token
             self.authenticatedUser = responseObj.username
-            // Need to have a closure available with the original request in it here
-        case .MissingKey(let s):
-            print("JSON decoding failed for OAuth Authorize, missing key \(s)")
-        case .TypeMismatch(let s):
-            print("JSON decoding failed for OAuth Authorize, type mismatch \(s)")
+            self.onAuthenticationCompletion?()
+            self.onAuthenticationCompletion = nil
+        case .Failure(let error):
+            self.onAuthenticationCompletion = nil
+            print(error)
         }
     }
 
@@ -221,12 +225,13 @@ public class PocketAPI {
             makeRequest(method, urlAsString: urlAsString, params: params, completion: completion)
         } else {
             authenticate {
-                self.makeRequest(method, urlAsString: urlAsString, params: params, completion: completion)
+                [unowned self] in
+                self.makeRequest(method, urlAsString: urlAsString, params: params, authAttempted: true, completion: completion)
             }
         }
     }
     
-    private func makeRequest(method: Alamofire.Method, urlAsString: String, params: [String: String]?, completion: (Result<AnyObject>) -> ()) {
+    private func makeRequest(method: Alamofire.Method, urlAsString: String, params: [String: String]?, authAttempted: Bool = false, completion: (Result<AnyObject>) -> ()) {
         guard let consumerKey = consumerKey, accessToken = accessToken else {
             return
         }
@@ -235,8 +240,14 @@ public class PocketAPI {
         newParams["consumer_key"] = consumerKey
         newParams["access_token"] = accessToken
 
-        Alamofire.request(method, urlAsString, parameters: newParams, encoding: .JSON, headers: ["X-Accept": "application/json"]).responseJSON { (_, _, result) -> Void in
-            completion(result)
+        Alamofire.request(method, urlAsString, parameters: newParams, encoding: .JSON, headers: ["X-Accept": "application/json"]).responseJSON { (_, response, result) -> Void in
+            if let statusCode = response?.statusCode where statusCode == 401 && !authAttempted {
+                // existing credentials are incorrect, clear them and re-authenticate
+                self.clearAuthentication()
+                self.authenticateAndMakeRequest(method, urlAsString: urlAsString, params: params, completion: completion)
+            } else {
+                completion(result)
+            }
         }
     }
 }
