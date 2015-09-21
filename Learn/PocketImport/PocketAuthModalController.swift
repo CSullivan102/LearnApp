@@ -9,7 +9,7 @@
 import UIKit
 import LearnKit
 
-class PocketAuthModalController: UIViewController, PocketAPISettable {
+class PocketAuthModalController: UIViewController, PocketAPISettable, UIViewControllerHeightRequestable {
     
     var pocketAPI: PocketAPI!
     var completionHandler: ((Bool) -> ())?
@@ -30,5 +30,9 @@ class PocketAuthModalController: UIViewController, PocketAPISettable {
         } else {
             presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         }
+    }
+    
+    func preferredHeight() -> CGFloat {
+        return 180
     }
 }
