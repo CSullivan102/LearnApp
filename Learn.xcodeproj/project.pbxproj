@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		74101D371BA7488300CF29AF /* PocketImportModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74101D361BA7488300CF29AF /* PocketImportModalController.swift */; settings = {ASSET_TAGS = (); }; };
-		7415CB681B8BA764008FB09B /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7415CB671B8BA764008FB09B /* KeychainAccess.framework */; };
+		7413977F1BB05866007D8F13 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7413977E1BB05866007D8F13 /* Keys.plist */; settings = {ASSET_TAGS = (); }; };
 		7415CB741B8BCC9B008FB09B /* LearnKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7415CB731B8BCC9B008FB09B /* LearnKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7415CB7B1B8BCC9B008FB09B /* LearnKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7415CB711B8BCC9B008FB09B /* LearnKit.framework */; };
 		7415CB821B8BCC9B008FB09B /* LearnKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7415CB811B8BCC9B008FB09B /* LearnKitTests.swift */; };
@@ -37,8 +37,6 @@
 		7469F22C1B8CC21500AB3A7C /* PocketAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D2931A1B86999D0037EBA9 /* PocketAPI.swift */; settings = {ASSET_TAGS = (); }; };
 		7469F22D1B8CC39E00AB3A7C /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D2931C1B869A910037EBA9 /* Alamofire.framework */; };
 		7469F22E1B8CC39E00AB3A7C /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B7634C1B86AA97001140F5 /* Argo.framework */; };
-		7469F22F1B8CC39E00AB3A7C /* KeychainAccess.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7415CB671B8BA764008FB09B /* KeychainAccess.framework */; };
-		7469F2351B8CF9B000AB3A7C /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 74D22E4C1B8B70BC0097D5BC /* Keys.plist */; settings = {ASSET_TAGS = (); }; };
 		7469F2381B8D0C7C00AB3A7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74418D191B83DD1500BCDD79 /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
 		7469F2391B8D0FF900AB3A7C /* FetchedResultsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C6E64B1B8635CD0013B1BD /* FetchedResultsCollectionDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		747BF6471BA771E200BBCF61 /* PocketItemTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747BF6461BA771E200BBCF61 /* PocketItemTableCell.swift */; settings = {ASSET_TAGS = (); }; };
@@ -145,7 +143,7 @@
 
 /* Begin PBXFileReference section */
 		74101D361BA7488300CF29AF /* PocketImportModalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketImportModalController.swift; sourceTree = "<group>"; };
-		7415CB671B8BA764008FB09B /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
+		7413977E1BB05866007D8F13 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Keys.plist; path = ../../SampleProjects/Learn/LearnKit/Keys.plist; sourceTree = "<group>"; };
 		7415CB711B8BCC9B008FB09B /* LearnKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LearnKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7415CB731B8BCC9B008FB09B /* LearnKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LearnKit.h; sourceTree = "<group>"; };
 		7415CB751B8BCC9B008FB09B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 		74CDD1A91B9F5ED70022D116 /* PocketImportController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketImportController.swift; sourceTree = "<group>"; };
 		74CDD1AB1B9F84870022D116 /* PocketAuthModalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAuthModalController.swift; sourceTree = "<group>"; };
 		74CDD1AD1B9F8AE20022D116 /* Argo+Dictionaries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Argo+Dictionaries.swift"; sourceTree = "<group>"; };
-		74D22E4C1B8B70BC0097D5BC /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		74D22E531B8BA2630097D5BC /* Learn.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Learn.entitlements; sourceTree = "<group>"; };
 		74D293181B86997D0037EBA9 /* PocketAPISettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAPISettable.swift; sourceTree = "<group>"; };
 		74D2931A1B86999D0037EBA9 /* PocketAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAPI.swift; sourceTree = "<group>"; };
@@ -221,7 +218,6 @@
 			files = (
 				7469F22D1B8CC39E00AB3A7C /* Alamofire.framework in Frameworks */,
 				7469F22E1B8CC39E00AB3A7C /* Argo.framework in Frameworks */,
-				7469F22F1B8CC39E00AB3A7C /* KeychainAccess.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +245,6 @@
 				74B7634D1B86AA97001140F5 /* Argo.framework in Frameworks */,
 				74B7634E1B86AB0A001140F5 /* Alamofire.framework in Frameworks */,
 				74CDD1A71B9F38920022D116 /* Haneke.framework in Frameworks */,
-				7415CB681B8BA764008FB09B /* KeychainAccess.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,8 +278,8 @@
 				74D475C91BA9A434005B5A41 /* TableViewAdapters */,
 				74CDD1AD1B9F8AE20022D116 /* Argo+Dictionaries.swift */,
 				7415CB751B8BCC9B008FB09B /* Info.plist */,
-				74D22E4C1B8B70BC0097D5BC /* Keys.plist */,
 				7415CB731B8BCC9B008FB09B /* LearnKit.h */,
+				7413977E1BB05866007D8F13 /* Keys.plist */,
 				74418D401B83DD5500BCDD79 /* LearnModel.xcdatamodeld */,
 				74A39A041BAA048D00334351 /* String+EmojiStringLength.swift */,
 				744B1E601B9E009A001B5263 /* TopicCollectionControllable.swift */,
@@ -336,7 +331,6 @@
 				74D2931C1B869A910037EBA9 /* Alamofire.framework */,
 				74B7634C1B86AA97001140F5 /* Argo.framework */,
 				74CDD1A61B9F38920022D116 /* Haneke.framework */,
-				7415CB671B8BA764008FB09B /* KeychainAccess.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -510,7 +504,6 @@
 				7415CB6D1B8BCC9B008FB09B /* Frameworks */,
 				7415CB6E1B8BCC9B008FB09B /* Headers */,
 				7415CB6F1B8BCC9B008FB09B /* Resources */,
-				7469F2301B8CC3BF00AB3A7C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -695,7 +688,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7469F2351B8CF9B000AB3A7C /* Keys.plist in Resources */,
+				7413977F1BB05866007D8F13 /* Keys.plist in Resources */,
 				74213CD31BA37A1200A67339 /* ChooseTopic.storyboard in Resources */,
 				74D438601B98992400F3838D /* Assets.xcassets in Resources */,
 				74DC60751B95319E00C53D13 /* CreateTopic.storyboard in Resources */,
@@ -745,22 +738,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7469F2301B8CC3BF00AB3A7C /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Argo.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
 		74D293201B869AA70037EBA9 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -769,7 +746,6 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Argo.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/KeychainAccess.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Haneke.framework",
 			);
 			outputPaths = (

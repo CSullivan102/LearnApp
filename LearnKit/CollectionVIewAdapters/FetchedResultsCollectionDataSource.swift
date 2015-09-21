@@ -15,7 +15,10 @@ public class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataS
     let collectionView: UICollectionView
     let delegate: D
     
+    private var dataProviderUpdates: [DataProviderUpdate<D.Object>]!
+    
     public required init(collectionView: UICollectionView, fetchedResultsController: NSFetchedResultsController, delegate: D) {
+        dataProviderUpdates = []
         self.collectionView = collectionView
         self.fetchedResultsController = fetchedResultsController
         self.delegate = delegate
@@ -33,34 +36,57 @@ public class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataS
         collectionView.reloadData()
     }
     
+    public func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        dataProviderUpdates.removeAll()
+    }
+
     //MARK: NSFetchedResultsControllerDelegate
-    
     public func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        let update: DataProviderUpdate<D.Object>
         switch type {
-        case .Delete:
-            guard let unwrappedIndexPath = indexPath else {
-                return
-            }
-            collectionView.deleteItemsAtIndexPaths([unwrappedIndexPath])
         case .Insert:
             guard let unwrappedIndexPath = newIndexPath else {
                 return
             }
-            collectionView.insertItemsAtIndexPaths([unwrappedIndexPath])
+            update = DataProviderUpdate.Insert(unwrappedIndexPath)
+        case .Delete:
+            guard let unwrappedIndexPath = indexPath else {
+                return
+            }
+            update = DataProviderUpdate.Delete(unwrappedIndexPath)
         case .Update:
-            guard let unwrappedIndexPath = indexPath,
-                cell = collectionView.cellForItemAtIndexPath(unwrappedIndexPath) as? D.Cell,
-                object = anObject as? D.Object else {
-                    return
+            guard let unwrappedIndexPath = indexPath, object = anObject as? D.Object else {
+                return
             }
-            delegate.configureCell(cell, object: object)
+            update = DataProviderUpdate.Update(unwrappedIndexPath, object)
         case .Move:
-            guard let unwrappedOldIndexPath = indexPath,
-                unwrappedNewIndexPath = newIndexPath else {
-                    return
+            guard let unwrappedOldIndexPath = indexPath, unwrappedNewIndexPath = newIndexPath else {
+                return
             }
-            collectionView.deleteItemsAtIndexPaths([unwrappedOldIndexPath])
-            collectionView.insertItemsAtIndexPaths([unwrappedNewIndexPath])
+            update = DataProviderUpdate.Move(unwrappedOldIndexPath, unwrappedNewIndexPath)
+        }
+        
+        dataProviderUpdates.append(update)
+    }
+    
+    public func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        collectionView.performBatchUpdates({ () -> Void in
+            for update in self.dataProviderUpdates {
+                switch update {
+                case .Insert(let indexPath): self.collectionView.insertItemsAtIndexPaths([indexPath])
+                case .Delete(let indexPath): self.collectionView.deleteItemsAtIndexPaths([indexPath])
+                case .Update(let indexPath, let object):
+                    guard let cell = self.collectionView.cellForItemAtIndexPath(indexPath) as? D.Cell else {
+                            return
+                    }
+                    self.delegate.configureCell(cell, object: object)
+                case .Move(let oldIndexPath, let newIndexPath):
+                    self.collectionView.deleteItemsAtIndexPaths([oldIndexPath])
+                    self.collectionView.insertItemsAtIndexPaths([newIndexPath])
+                }
+            }
+        }) { (_) -> Void in
+                self.dataProviderUpdates.removeAll()
         }
     }
     
@@ -89,6 +115,13 @@ public class FetchedResultsCollectionDataSource<D: FetchedResultsCollectionDataS
         }
         return obj
     }
+}
+
+private enum DataProviderUpdate<T> {
+    case Insert(NSIndexPath)
+    case Update(NSIndexPath, T)
+    case Move(NSIndexPath, NSIndexPath)
+    case Delete(NSIndexPath)
 }
 
 public protocol FetchedResultsCollectionDataSourceDelegate {

@@ -124,7 +124,7 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
         let scrollPosition = scrollView.contentOffset.y
         let maxScrollPosition = scrollView.contentSize.height - tableView.frame.height
 
-        if scrollPosition > maxScrollPosition {
+        if scrollPosition > maxScrollPosition && maxScrollPosition > 0 {
             fetchPocketItems({
                 items in
                 let rowsToAddRange = (self.pocketItems.count ..< self.pocketItems.count + items.count)

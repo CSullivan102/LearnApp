@@ -56,15 +56,17 @@ public class PocketAPI {
     }
     
     public init(delegate: PocketAuthenticationDelegate) {
+        self.delegate = delegate
+        
         guard let bundle = NSBundle(identifier: "com.sullivan.j.chris.LearnKit"),
             path = bundle.pathForResource("Keys", ofType: "plist"),
             pocketKeys = NSDictionary(contentsOfFile: path) else {
-                fatalError("Could not find Keys.plist in bundle")
+                return
         }
         self.appId = pocketKeys["PocketAppId"] as? String
         self.consumerKey = pocketKeys["PocketConsumerKey"] as? String
         
-        self.delegate = delegate
+        
     }
     
     public func addURLToPocket(url: NSURL, completion: (PocketItem) -> ()) {
