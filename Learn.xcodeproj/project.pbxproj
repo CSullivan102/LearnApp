@@ -46,6 +46,11 @@
 		749B07C81B94FC3300E668BF /* SmallModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A911CB1B94C26000B695B5 /* SmallModalTransitioningDelegate.swift */; settings = {ASSET_TAGS = (); }; };
 		749B07C91B94FC3300E668BF /* SmallModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A911CF1B94C33300B695B5 /* SmallModalPresentationController.swift */; settings = {ASSET_TAGS = (); }; };
 		749B07CB1B94FFB600E668BF /* ShareChooseTopicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749B07CA1B94FFB600E668BF /* ShareChooseTopicViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		749B88D91BB1FC8B00CFED4E /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749B88D81BB1FC8B00CFED4E /* Locksmith.framework */; };
+		749B88DB1BB2057F00CFED4E /* PocketAPICredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749B88DA1BB2057F00CFED4E /* PocketAPICredentials.swift */; settings = {ASSET_TAGS = (); }; };
+		749B88DD1BB2059000CFED4E /* PocketAPICredentialsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749B88DC1BB2059000CFED4E /* PocketAPICredentialsManager.swift */; settings = {ASSET_TAGS = (); }; };
+		749B88DF1BB20A1400CFED4E /* PocketAPICredentialsKeychainEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749B88DE1BB20A1400CFED4E /* PocketAPICredentialsKeychainEntry.swift */; settings = {ASSET_TAGS = (); }; };
+		749B88E21BB20B6400CFED4E /* PocketAPICredentialsKeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749B88E11BB20B6400CFED4E /* PocketAPICredentialsKeychainManager.swift */; settings = {ASSET_TAGS = (); }; };
 		74A39A051BAA048D00334351 /* String+EmojiStringLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A39A041BAA048D00334351 /* String+EmojiStringLength.swift */; settings = {ASSET_TAGS = (); }; };
 		74A41DCC1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 		74B7634D1B86AA97001140F5 /* Argo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74B7634C1B86AA97001140F5 /* Argo.framework */; };
@@ -178,6 +183,11 @@
 		744B1E621B9E9A51001B5263 /* FetchedResultsTableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedResultsTableDataSource.swift; sourceTree = "<group>"; };
 		747BF6461BA771E200BBCF61 /* PocketItemTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketItemTableCell.swift; sourceTree = "<group>"; };
 		749B07CA1B94FFB600E668BF /* ShareChooseTopicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareChooseTopicViewController.swift; sourceTree = "<group>"; };
+		749B88D81BB1FC8B00CFED4E /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/iOS/Locksmith.framework; sourceTree = "<group>"; };
+		749B88DA1BB2057F00CFED4E /* PocketAPICredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAPICredentials.swift; sourceTree = "<group>"; };
+		749B88DC1BB2059000CFED4E /* PocketAPICredentialsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAPICredentialsManager.swift; sourceTree = "<group>"; };
+		749B88DE1BB20A1400CFED4E /* PocketAPICredentialsKeychainEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAPICredentialsKeychainEntry.swift; sourceTree = "<group>"; };
+		749B88E11BB20B6400CFED4E /* PocketAPICredentialsKeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAPICredentialsKeychainManager.swift; sourceTree = "<group>"; };
 		74A39A041BAA048D00334351 /* String+EmojiStringLength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+EmojiStringLength.swift"; sourceTree = "<group>"; };
 		74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddableFetchedResultsCollectionDataSource.swift; sourceTree = "<group>"; };
 		74A911CB1B94C26000B695B5 /* SmallModalTransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallModalTransitioningDelegate.swift; sourceTree = "<group>"; };
@@ -245,6 +255,7 @@
 				74B7634D1B86AA97001140F5 /* Argo.framework in Frameworks */,
 				74B7634E1B86AB0A001140F5 /* Alamofire.framework in Frameworks */,
 				74CDD1A71B9F38920022D116 /* Haneke.framework in Frameworks */,
+				749B88D91BB1FC8B00CFED4E /* Locksmith.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +342,7 @@
 				74D2931C1B869A910037EBA9 /* Alamofire.framework */,
 				74B7634C1B86AA97001140F5 /* Argo.framework */,
 				74CDD1A61B9F38920022D116 /* Haneke.framework */,
+				749B88D81BB1FC8B00CFED4E /* Locksmith.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -391,6 +403,17 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		749B88E01BB20AF200CFED4E /* Credentials */ = {
+			isa = PBXGroup;
+			children = (
+				749B88DE1BB20A1400CFED4E /* PocketAPICredentialsKeychainEntry.swift */,
+				749B88DA1BB2057F00CFED4E /* PocketAPICredentials.swift */,
+				749B88DC1BB2059000CFED4E /* PocketAPICredentialsManager.swift */,
+				749B88E11BB20B6400CFED4E /* PocketAPICredentialsKeychainManager.swift */,
+			);
+			name = Credentials;
+			sourceTree = "<group>";
+		};
 		74A39A011BAA001D00334351 /* SmallModalTransition */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,6 +464,7 @@
 		74D475BC1BA9A17F005B5A41 /* PocketIntegration */ = {
 			isa = PBXGroup;
 			children = (
+				749B88E01BB20AF200CFED4E /* Credentials */,
 				74D2931A1B86999D0037EBA9 /* PocketAPI.swift */,
 				74D293181B86997D0037EBA9 /* PocketAPISettable.swift */,
 				74D475C11BA9A312005B5A41 /* PocketAddResponse.swift */,
@@ -747,6 +771,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Argo.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Haneke.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Locksmith.framework",
 			);
 			outputPaths = (
 			);
@@ -768,16 +793,20 @@
 				7469F2391B8D0FF900AB3A7C /* FetchedResultsCollectionDataSource.swift in Sources */,
 				74D475CE1BA9A6B3005B5A41 /* ManagedObjectContextSettable.swift in Sources */,
 				7415CB951B8BCF32008FB09B /* CoreDataSetup.swift in Sources */,
+				749B88DD1BB2059000CFED4E /* PocketAPICredentialsManager.swift in Sources */,
 				74D475D11BA9A770005B5A41 /* NSManagedObjectContext+InsertSave.swift in Sources */,
 				74D475C01BA9A308005B5A41 /* PocketUserAuthResponse.swift in Sources */,
 				749B07C61B94FAC200E668BF /* CreateTopicViewController.swift in Sources */,
 				744B1E631B9E9A51001B5263 /* FetchedResultsTableDataSource.swift in Sources */,
+				749B88E21BB20B6400CFED4E /* PocketAPICredentialsKeychainManager.swift in Sources */,
 				749B07C91B94FC3300E668BF /* SmallModalPresentationController.swift in Sources */,
 				749B07C81B94FC3300E668BF /* SmallModalTransitioningDelegate.swift in Sources */,
+				749B88DF1BB20A1400CFED4E /* PocketAPICredentialsKeychainEntry.swift in Sources */,
 				7415CB901B8BCE34008FB09B /* LearnModel.xcdatamodeld in Sources */,
 				74D475CC1BA9A641005B5A41 /* PocketAuthenticationDelegate.swift in Sources */,
 				7415CB931B8BCF14008FB09B /* LearnItemTypeEnum.swift in Sources */,
 				74D475C61BA9A327005B5A41 /* PocketItem.swift in Sources */,
+				749B88DB1BB2057F00CFED4E /* PocketAPICredentials.swift in Sources */,
 				749B07C31B94F18300E668BF /* TopicCollectionViewCell.swift in Sources */,
 				744B1E611B9E009A001B5263 /* TopicCollectionControllable.swift in Sources */,
 				7415CB921B8BCF10008FB09B /* Topic.swift in Sources */,

@@ -31,10 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PocketAuthenticationDeleg
         
         return true
     }
-    
-    
+
     private func setupPocketAPI() {
-        pocketAPI = PocketAPI(delegate: self)
+        pocketAPI = PocketAPI(delegate: self, andCredentialsManager: PocketAPICredentialsKeychainManager())
     }
     
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {

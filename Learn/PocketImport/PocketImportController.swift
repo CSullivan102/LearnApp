@@ -52,7 +52,7 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
     }
     
     private func updateViewForPocketAuthentication() {
-        if let authUser = pocketAPI.authenticatedUser {
+        if let authUser = pocketAPI.getAuthenticatedUserString() {
             navigationItem.title = authUser
         }
         

@@ -15,49 +15,23 @@ public class PocketAPI {
     private var consumerKey: String?
     private var appId: String?
     private var requestToken: String?
-    private let delegate: PocketAuthenticationDelegate
-    private let AccessTokenKeychainKey = "PocketAccessToken"
-    private let AuthUserKeychainKey = "PocketAuthUser"
+    
     private var onAuthenticationCompletion: (() -> ())?
     
-    private var accessToken: String? {
-        get {
-            //TODO: Move this into the Keychain
-            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn") else {
-                fatalError("Can't open user defaults")
-            }
-            let plist: AnyObject? = defaults.objectForKey(AccessTokenKeychainKey)
-            return plist as? String
-        }
-        set {
-            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn") else {
-                fatalError("Can't open user defaults")
-            }
-            defaults.setObject(newValue, forKey: AccessTokenKeychainKey)
-            defaults.synchronize()
-        }
-    }
-
-    public var authenticatedUser: String? {
-        get {
-            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn") else {
-                fatalError("Can't open user defaults")
-            }
-            let plist: AnyObject? = defaults.objectForKey(AuthUserKeychainKey)
-            return plist as? String
-        }
-        set {
-            guard let defaults = NSUserDefaults(suiteName: "group.com.sullivan.j.chris.Learn") else {
-                fatalError("Can't open user defaults")
-            }
-            defaults.setObject(newValue, forKey: AuthUserKeychainKey)
-            defaults.synchronize()
-        }
-    }
+    private let delegate: PocketAuthenticationDelegate
+    private let credentialsManager: PocketAPICredentialsManager
     
-    public init(delegate: PocketAuthenticationDelegate) {
+    private var accessToken: String?
+    private var authenticatedUser: String?
+    
+    public init(delegate: PocketAuthenticationDelegate, andCredentialsManager credentialsManager: PocketAPICredentialsManager) {
         self.delegate = delegate
+        self.credentialsManager = credentialsManager
         
+        if let credentials = credentialsManager.getPocketAPICredentialsFromStore() {
+            setAuthenticated(credentials)
+        }
+
         guard let bundle = NSBundle(identifier: "com.sullivan.j.chris.LearnKit"),
             path = bundle.pathForResource("Keys", ofType: "plist"),
             pocketKeys = NSDictionary(contentsOfFile: path) else {
@@ -65,8 +39,10 @@ public class PocketAPI {
         }
         self.appId = pocketKeys["PocketAppId"] as? String
         self.consumerKey = pocketKeys["PocketConsumerKey"] as? String
-        
-        
+    }
+    
+    public func getAuthenticatedUserString() -> String? {
+        return authenticatedUser
     }
     
     public func addURLToPocket(url: NSURL, completion: (PocketItem) -> ()) {
@@ -141,7 +117,14 @@ public class PocketAPI {
         return false
     }
     
+    private func setAuthenticated(credentials: PocketAPICredentials) {
+        credentialsManager.setPocketAPICredentials(credentials)
+        self.accessToken = credentials.accessToken
+        self.authenticatedUser = credentials.authenticatedUser
+    }
+    
     private func clearAuthentication() {
+        credentialsManager.clearPocketAPICredentials()
         self.accessToken = nil
         self.authenticatedUser = nil
     }
@@ -212,12 +195,12 @@ public class PocketAPI {
         
         switch decodedResponse {
         case .Success(let responseObj):
-            self.accessToken = responseObj.access_token
-            self.authenticatedUser = responseObj.username
-            self.onAuthenticationCompletion?()
-            self.onAuthenticationCompletion = nil
+            let credentials = PocketAPICredentials(authenticatedUser: responseObj.username, accessToken: responseObj.access_token)
+            setAuthenticated(credentials)
+            onAuthenticationCompletion?()
+            onAuthenticationCompletion = nil
         case .Failure(let error):
-            self.onAuthenticationCompletion = nil
+            onAuthenticationCompletion = nil
             print(error)
         }
     }

@@ -44,7 +44,6 @@ class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSett
     }
     
     private func checkModalValid() {
-        print("\(titleTextValid) \(topicValid)")
         modalValid = titleTextValid && topicValid
     }
     
@@ -81,7 +80,7 @@ class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSett
                 learnItem.read = false
                 learnItem.dateAdded = NSDate()
                 learnItem.topic = topic
-                let pocketAPI = PocketAPI(delegate: self)
+                let pocketAPI = PocketAPI(delegate: self, andCredentialsManager: PocketAPICredentialsKeychainManager())
                 if pocketAPI.isAuthenticated() {
                     pocketAPI.addURLToPocket(shareURL) { pocketItem in
                         managedObjectContext.performChanges {
