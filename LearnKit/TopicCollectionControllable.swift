@@ -35,13 +35,13 @@ extension TopicCollectionControllable {
     public func getFetchedResultsControllerForTopic(topic: Topic) -> NSFetchedResultsController {
         let request = Topic.sortedFetchRequest
         request.fetchBatchSize = 20
-        request.predicate = NSPredicate(format: "parent = %@", topic)
+        request.predicate = NSPredicate(parentTopic: topic)
         return NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
     }
     
     private func getBaseTopic(completion: (Topic) -> Void) {
         let baseTopicRequest = NSFetchRequest(entityName: Topic.entityName)
-        baseTopicRequest.predicate = NSPredicate(format: "baseTopic == YES")
+        baseTopicRequest.predicate = NSPredicate.predicateForBaseTopic()
         guard let result = try! managedObjectContext.executeFetchRequest(baseTopicRequest) as? [Topic] else {
             fatalError("Failed to fetch base topic")
         }

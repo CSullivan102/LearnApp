@@ -151,7 +151,7 @@ extension ShareChooseTopicViewController: ChooseTopicDelegate {
 }
 
 extension ShareChooseTopicViewController: PocketAuthenticationDelegate {
-    func promptOAuthUserAuthWithURL(URL: NSURL) {
+    func promptOAuthUserAuthWithPocketAppURL(pocketAppURL: NSURL, orWebURL webURL: NSURL) {
         return
     }
 }

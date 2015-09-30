@@ -15,6 +15,13 @@ extension NSManagedObjectContext {
         }
         return obj
     }
+    
+    public func getObjectForObjectID<A: ManagedObject where A: ManagedObjectType>(objectID: NSManagedObjectID) -> A? {
+        if let object = objectWithID(objectID) as? A {
+            return object
+        }
+        return nil
+    }
 }
 
 extension NSManagedObjectContext {

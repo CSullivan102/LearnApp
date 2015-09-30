@@ -27,6 +27,10 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
             self.setupFetchedResultsController()
         }
         
+        if traitCollection.forceTouchCapability == .Available {
+            registerForPreviewingWithDelegate(self, sourceView: collectionView!)
+        } else { print("3D Touch is not available on this device.") }
+        
         setupNavigationItem()
     }
     
@@ -191,11 +195,46 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
         }
     }
     
-    private enum SegueIdentifier: String {
+    enum SegueIdentifier: String {
         case ShowCreateTopic = "ShowCreateTopic"
         case ShowArticles = "ShowArticles"
         case ShowTopicView = "ShowTopicView"
         case ShowPocketImport = "ShowPocketImport"
+    }
+}
+
+extension TopicCollectionViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
+        showViewController(viewControllerToCommit, sender: self)
+    }
+    
+    func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = collectionView?.indexPathForItemAtPoint(location),
+            cell = collectionView?.cellForItemAtIndexPath(indexPath) as? Cell,
+            topic = cell.topic else { return nil }
+
+        previewingContext.sourceRect = cell.backgroundView?.frame ?? cell.frame
+        
+        switch topicViewState {
+        case .BaseTopic:
+            guard let vc = storyboard?.instantiateViewControllerWithIdentifier("TopicViewController") as? TopicCollectionViewController else {
+                return nil
+            }
+            vc.parentTopic = topic
+            vc.managedObjectContext = managedObjectContext
+            vc.pocketAPI = pocketAPI
+            vc.preferredContentSize = CGSize(width: 0.0, height: 200.0)
+            return vc
+        case .SubTopic:
+            guard let vc = storyboard?.instantiateViewControllerWithIdentifier("ArticleViewController") as? ArticlesTableViewController else {
+                return nil
+            }
+            vc.topic = topic
+            vc.managedObjectContext = managedObjectContext
+            vc.pocketAPI = pocketAPI
+            vc.preferredContentSize = CGSize(width: 0.0, height: 400.0)
+            return vc
+        }
     }
 }
 

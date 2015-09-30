@@ -180,10 +180,11 @@ public class PocketAPI {
             self.requestToken = responseObj.code
             guard let requestToken = self.requestToken,
                 appId = self.appId,
-                URL = NSURL(string: "pocket-oauth-v1:///authorize?request_token=\(requestToken)&redirect_uri=pocketapp\(appId):authorizationFinished") else {
+                pocketAppURL = NSURL(string: "pocket-oauth-v1:///authorize?request_token=\(requestToken)&redirect_uri=pocketapp\(appId):authorizationFinished"),
+                webURL = NSURL(string: "https://getpocket.com/auth/authorize?request_token=\(requestToken)&redirect_uri=pocketapp\(appId):authorizationFinished") else {
                     fatalError("Bad URL for pocket oauth")
             }
-            delegate.promptOAuthUserAuthWithURL(URL)
+            delegate.promptOAuthUserAuthWithPocketAppURL(pocketAppURL, orWebURL: webURL)
         case .Failure(let error):
             self.onAuthenticationCompletion = nil
             print(error)

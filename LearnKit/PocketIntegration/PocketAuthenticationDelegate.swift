@@ -7,5 +7,5 @@
 //
 
 public protocol PocketAuthenticationDelegate {
-    func promptOAuthUserAuthWithURL(URL: NSURL)
+    func promptOAuthUserAuthWithPocketAppURL(pocketAppURL: NSURL, orWebURL webURL: NSURL)
 }
