@@ -66,7 +66,7 @@ public class CreateTopicViewController: UIViewController, ManagedObjectContextSe
         
         let oldString = textField.text ?? ""
         let newString = (oldString as NSString).stringByReplacingCharactersInRange(range, withString: string)
-        return createTopicModel.isValidEmojiValue(newString)
+        return createTopicModel.canChangeTopicIconToString(newString)
     }
     
     public func textFieldShouldReturn(textField: UITextField) -> Bool {

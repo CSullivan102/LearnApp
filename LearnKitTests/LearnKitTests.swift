@@ -11,26 +11,60 @@ import XCTest
 
 class LearnKitTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    let createTopicModel = CreateTopicModel()
+    
+    func testBlankTopicNameInvalid() {
+        XCTAssertFalse(createTopicModel.isValidTopicName(""))
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testTopicNameWithCharsValid() {
+        XCTAssertTrue(createTopicModel.isValidTopicName("Topic"))
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testCanChangeTopicIconToBlankString() {
+        XCTAssertTrue(createTopicModel.canChangeTopicIconToString(""))
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
+    func testCanChangeTopicIconToValidEmoji() {
+        XCTAssertTrue(createTopicModel.canChangeTopicIconToString("👨🏻"))
     }
     
+    func test👨🏻ValidEmoji() {
+        XCTAssertTrue(createTopicModel.isValidEmojiValue("👨🏻"))
+    }
+    
+    func test🌄ValidEmoji() {
+        XCTAssertTrue(createTopicModel.isValidEmojiValue("🌄"))
+    }
+    
+    func test📢ValidEmoji() {
+        XCTAssertTrue(createTopicModel.isValidEmojiValue("📢"))
+    }
+    
+    func test🅿️ValidEmoji() {
+        XCTAssertTrue(createTopicModel.isValidEmojiValue("🅿️"))
+    }
+    
+    func testBlankStringInvalidEmoji() {
+        XCTAssertFalse(createTopicModel.isValidEmojiValue(""))
+    }
+    func test😐😐InvalidEmoji() {
+        XCTAssertFalse(createTopicModel.isValidEmojiValue("😐😐"))
+    }
+    
+    func test😐DotInvalidEmoji() {
+        XCTAssertFalse(createTopicModel.isValidEmojiValue("😐."))
+    }
+    
+    func testAInvalidEmoji() {
+        XCTAssertFalse(createTopicModel.isValidEmojiValue("A"))
+    }
+    
+    func test9InvalidEmoji() {
+        XCTAssertFalse(createTopicModel.isValidEmojiValue("9"))
+    }
+    
+    func testSlashInvalidEmoji() {
+        XCTAssertFalse(createTopicModel.isValidEmojiValue("/"))
+    }
 }

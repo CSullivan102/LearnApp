@@ -45,7 +45,7 @@ public class PocketAPI {
         return authenticatedUser
     }
     
-    public func addURLToPocket(url: NSURL, completion: (PocketItem) -> ()) {
+    public func addURLToPocket(url: NSURL, successHandler: (PocketItem) -> (), errorHandler: (ErrorType) -> ()) {
         authenticateAndMakeRequest(.POST, urlAsString: "https://getpocket.com/v3/add", params: ["url": url.description]) {
             result in
             switch result {
@@ -53,7 +53,7 @@ public class PocketAPI {
                 let decodedResponse: Decoded<PocketAddResponse> = decode(JSON)
                 switch decodedResponse {
                 case .Success(let responseObj):
-                    completion(responseObj.item)
+                    successHandler(responseObj.item)
                 case .Failure(let error):
                     if case .TypeMismatch = error {
                         // The Pocket API's add URL response normally returns an "item" with a key "images"
@@ -72,16 +72,17 @@ public class PocketAPI {
                                 let decodedModifiedPocketItem: Decoded<PocketItem> = decode(modifiedJSON)
                                 switch decodedModifiedPocketItem {
                                 case .Success(let pocketItem):
-                                    completion(pocketItem)
+                                    successHandler(pocketItem)
                                 case .Failure(let error):
                                     print(error)
+                                    errorHandler(error)
                                 }
                             }
                         }
                     }
                 }
             case .Failure(let data, let error):
-                print("Request failed with error: \(error)")
+                errorHandler(error)
                 if let data = data {
                     print("Response data: \(NSString(data: data, encoding: NSUTF8StringEncoding)!)")
                 }

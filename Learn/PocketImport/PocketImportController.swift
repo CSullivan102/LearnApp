@@ -183,6 +183,7 @@ class PocketImportController: UITableViewController, ManagedObjectContextSettabl
                     self.pocketItems[indexPath.row].setImported(true)
                 }
                 self.tableView.reloadRowsAtIndexPaths(indexPaths, withRowAnimation: UITableViewRowAnimation.None)
+                self.checkModalValid()
                 self.dismissViewControllerAnimated(true, completion: nil)
             }
         }

@@ -25,6 +25,7 @@ class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSett
     @IBOutlet weak var chooseTopicContainerView: UIView!
     @IBOutlet weak var chooseContainerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private var titleTextValid = false { didSet { checkModalValid() } }
     private var topicValid = false { didSet { checkModalValid() } }
@@ -71,6 +72,9 @@ class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSett
             return
         }
         
+        saveButton.enabled = false
+        activityIndicator.startAnimating()
+        
         if let shareURL = shareURL {
             managedObjectContext.performChanges {
                 let learnItem: LearnItem = managedObjectContext.insertObject()
@@ -82,13 +86,18 @@ class ShareChooseTopicViewController: UIViewController, ManagedObjectContextSett
                 learnItem.topic = topic
                 let pocketAPI = PocketAPI(delegate: self, andCredentialsManager: PocketAPICredentialsKeychainManager())
                 if pocketAPI.isAuthenticated() {
-                    pocketAPI.addURLToPocket(shareURL) { pocketItem in
+                    pocketAPI.addURLToPocket(shareURL, successHandler: { pocketItem in
                         managedObjectContext.performChanges {
+                            self.activityIndicator.stopAnimating()
                             learnItem.copyDataFromPocketItem(pocketItem)
                             self.delegate?.dismissLearnShareSheetController()
                         }
-                    }
+                        }, errorHandler: { error in
+                            self.activityIndicator.stopAnimating()
+                            self.saveButton.enabled = true
+                        })
                 } else {
+                    self.activityIndicator.stopAnimating()
                     self.delegate?.dismissLearnShareSheetController()
                 }
             }

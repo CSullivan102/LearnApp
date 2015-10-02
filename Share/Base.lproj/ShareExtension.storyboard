@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="j1y-V4-xli">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="j1y-V4-xli">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -17,6 +17,7 @@
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="wbc-yd-nQP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
                     </view>
                     <connections>
                         <segue destination="iHY-YO-3p3" kind="presentation" identifier="ShowChooseTopicModal" id="RC0-Ub-OjY"/>
@@ -40,6 +41,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LearnIconInverted" translatesAutoresizingMaskIntoConstraints="NO" id="6gY-3o-ZVv">
                                 <rect key="frame" x="277" y="20" width="47" height="46"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="0uh-Ho-mKK"/>
                                     <constraint firstAttribute="width" constant="47" id="rek-OD-AQ8"/>
@@ -47,6 +49,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="alI-Ve-sag">
                                 <rect key="frame" x="20" y="28" width="48" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Cancel"/>
                                 <connections>
                                     <action selector="cancelButtonPressed:" destination="iHY-YO-3p3" eventType="touchUpInside" id="jEX-df-D4h"/>
@@ -54,6 +57,7 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7O-o0-OLF">
                                 <rect key="frame" x="546" y="28" width="34" height="30"/>
+                                <animations/>
                                 <state key="normal" title="Save"/>
                                 <connections>
                                     <action selector="saveButtonPressed:" destination="iHY-YO-3p3" eventType="touchUpInside" id="zdK-Oe-g5L"/>
@@ -61,6 +65,7 @@
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mtA-Gi-AVd">
                                 <rect key="frame" x="75" y="112" width="450" height="70"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="mn0-xm-yf1"/>
                                 </constraints>
@@ -70,16 +75,23 @@
                             </containerView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aqK-gv-wo9">
                                 <rect key="frame" x="75" y="74" width="450" height="30"/>
+                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="done"/>
                             </textField>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="O22-9X-Lpu">
+                                <rect key="frame" x="518" y="33" width="20" height="20"/>
+                                <animations/>
+                            </activityIndicatorView>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mtA-Gi-AVd" firstAttribute="width" secondItem="aqK-gv-wo9" secondAttribute="width" id="18i-b8-WRU"/>
                             <constraint firstItem="alI-Ve-sag" firstAttribute="baseline" secondItem="k7O-o0-OLF" secondAttribute="baseline" id="1E8-2L-ZfU"/>
                             <constraint firstItem="aqK-gv-wo9" firstAttribute="width" secondItem="HQo-w4-NaF" secondAttribute="width" multiplier="0.75" id="9Ts-WC-shV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="k7O-o0-OLF" secondAttribute="trailing" id="EhJ-VA-ZmA"/>
+                            <constraint firstItem="O22-9X-Lpu" firstAttribute="centerY" secondItem="k7O-o0-OLF" secondAttribute="centerY" id="Hyh-6H-7XV"/>
                             <constraint firstItem="mtA-Gi-AVd" firstAttribute="centerX" secondItem="aqK-gv-wo9" secondAttribute="centerX" id="QZw-oC-vxd"/>
                             <constraint firstAttribute="leadingMargin" secondItem="alI-Ve-sag" secondAttribute="leading" id="Yl9-sw-xfC"/>
                             <constraint firstItem="aqK-gv-wo9" firstAttribute="centerX" secondItem="HQo-w4-NaF" secondAttribute="centerX" id="c0y-ju-e4S"/>
@@ -88,6 +100,7 @@
                             <constraint firstItem="6gY-3o-ZVv" firstAttribute="top" secondItem="McH-kg-mYN" secondAttribute="bottom" id="g4P-yv-Jmk"/>
                             <constraint firstItem="mtA-Gi-AVd" firstAttribute="top" secondItem="aqK-gv-wo9" secondAttribute="bottom" constant="8" symbolic="YES" id="gqB-Wf-Dkw"/>
                             <constraint firstItem="6gY-3o-ZVv" firstAttribute="centerX" secondItem="HQo-w4-NaF" secondAttribute="centerX" id="ikP-RJ-Gzd"/>
+                            <constraint firstItem="k7O-o0-OLF" firstAttribute="leading" secondItem="O22-9X-Lpu" secondAttribute="trailing" constant="8" id="pB3-FX-Nr5"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -96,6 +109,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="O22-9X-Lpu" id="6Rr-To-ybp"/>
                         <outlet property="chooseContainerHeightConstraint" destination="mn0-xm-yf1" id="sEd-xN-zfB"/>
                         <outlet property="chooseTopicContainerView" destination="mtA-Gi-AVd" id="JBJ-VV-7aH"/>
                         <outlet property="saveButton" destination="k7O-o0-OLF" id="VFW-Jx-yzA"/>

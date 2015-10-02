@@ -30,11 +30,19 @@ public struct CreateTopicModel {
     ]
     
     public func isValidTopicName(name: String, andIcon icon: String) -> Bool {
-        return true
+        return isValidTopicName(name) && isValidEmojiValue(icon)
+    }
+    
+    public func canChangeTopicIconToString(string: String) -> Bool {
+        return string.lengthWithEmoji() == 0 || isValidEmojiValue(string)
+    }
+    
+    public func isValidTopicName(name: String) -> Bool {
+        return name.lengthWithEmoji() > 0
     }
     
     public func isValidEmojiValue(string: String) -> Bool {
-        if string.lengthWithEmoji() > maxEmojiTextLength {
+        if string.lengthWithEmoji() == 0 || string.lengthWithEmoji() > maxEmojiTextLength {
             return false
         }
         

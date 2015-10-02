@@ -164,7 +164,7 @@
 		742D30231B8A4AEE002B8028 /* SharePresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePresentationViewController.swift; sourceTree = "<group>"; };
 		742D30261B8A4AEE002B8028 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ShareExtension.storyboard; sourceTree = "<group>"; };
 		742D30281B8A4AEE002B8028 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		74418D0F1B83DD1500BCDD79 /* Learn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Learn.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74418D0F1B83DD1500BCDD79 /* Reading List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Reading List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		74418D121B83DD1500BCDD79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74418D171B83DD1500BCDD79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		74418D191B83DD1500BCDD79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -337,7 +337,7 @@
 		74418D061B83DD1500BCDD79 = {
 			isa = PBXGroup;
 			children = (
-				74418D111B83DD1500BCDD79 /* Learn */,
+				74418D111B83DD1500BCDD79 /* EmojiReadingLIst */,
 				7415CB721B8BCC9B008FB09B /* LearnKit */,
 				7415CB801B8BCC9B008FB09B /* LearnKitTests */,
 				74418D261B83DD1500BCDD79 /* LearnTests */,
@@ -354,7 +354,7 @@
 		74418D101B83DD1500BCDD79 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				74418D0F1B83DD1500BCDD79 /* Learn.app */,
+				74418D0F1B83DD1500BCDD79 /* Reading List.app */,
 				74418D231B83DD1500BCDD79 /* LearnTests.xctest */,
 				74418D2E1B83DD1500BCDD79 /* LearnUITests.xctest */,
 				742D30211B8A4AEE002B8028 /* Share.appex */,
@@ -364,7 +364,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		74418D111B83DD1500BCDD79 /* Learn */ = {
+		74418D111B83DD1500BCDD79 /* EmojiReadingLIst */ = {
 			isa = PBXGroup;
 			children = (
 				74C6E6521B866F8E0013B1BD /* ArticlesView */,
@@ -377,6 +377,7 @@
 				74D22E531B8BA2630097D5BC /* Learn.entitlements */,
 				74418D161B83DD1500BCDD79 /* Main.storyboard */,
 			);
+			name = EmojiReadingLIst;
 			path = Learn;
 			sourceTree = "<group>";
 		};
@@ -580,9 +581,9 @@
 			productReference = 742D30211B8A4AEE002B8028 /* Share.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		74418D0E1B83DD1500BCDD79 /* Learn */ = {
+		74418D0E1B83DD1500BCDD79 /* Reading List */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 74418D371B83DD1500BCDD79 /* Build configuration list for PBXNativeTarget "Learn" */;
+			buildConfigurationList = 74418D371B83DD1500BCDD79 /* Build configuration list for PBXNativeTarget "Reading List" */;
 			buildPhases = (
 				74418D0B1B83DD1500BCDD79 /* Sources */,
 				74418D0C1B83DD1500BCDD79 /* Frameworks */,
@@ -597,9 +598,9 @@
 				742D302A1B8A4AEE002B8028 /* PBXTargetDependency */,
 				7415CB851B8BCC9B008FB09B /* PBXTargetDependency */,
 			);
-			name = Learn;
+			name = "Reading List";
 			productName = Learn;
-			productReference = 74418D0F1B83DD1500BCDD79 /* Learn.app */;
+			productReference = 74418D0F1B83DD1500BCDD79 /* Reading List.app */;
 			productType = "com.apple.product-type.application";
 		};
 		74418D221B83DD1500BCDD79 /* LearnTests */ = {
@@ -690,7 +691,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 74418D0A1B83DD1500BCDD79 /* Build configuration list for PBXProject "Learn" */;
+			buildConfigurationList = 74418D0A1B83DD1500BCDD79 /* Build configuration list for PBXProject "EmojiReadingList" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -703,7 +704,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				74418D0E1B83DD1500BCDD79 /* Learn */,
+				74418D0E1B83DD1500BCDD79 /* Reading List */,
 				74418D221B83DD1500BCDD79 /* LearnTests */,
 				74418D2D1B83DD1500BCDD79 /* LearnUITests */,
 				742D30201B8A4AEE002B8028 /* Share */,
@@ -888,7 +889,7 @@
 		};
 		7415CB7F1B8BCC9B008FB09B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 74418D0E1B83DD1500BCDD79 /* Learn */;
+			target = 74418D0E1B83DD1500BCDD79 /* Reading List */;
 			targetProxy = 7415CB7E1B8BCC9B008FB09B /* PBXContainerItemProxy */;
 		};
 		7415CB851B8BCC9B008FB09B /* PBXTargetDependency */ = {
@@ -903,12 +904,12 @@
 		};
 		74418D251B83DD1500BCDD79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 74418D0E1B83DD1500BCDD79 /* Learn */;
+			target = 74418D0E1B83DD1500BCDD79 /* Reading List */;
 			targetProxy = 74418D241B83DD1500BCDD79 /* PBXContainerItemProxy */;
 		};
 		74418D301B83DD1500BCDD79 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 74418D0E1B83DD1500BCDD79 /* Learn */;
+			target = 74418D0E1B83DD1500BCDD79 /* Reading List */;
 			targetProxy = 74418D2F1B83DD1500BCDD79 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -999,22 +1000,30 @@
 		7415CB8D1B8BCC9B008FB09B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = LearnKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.LearnKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Learn.app/Learn";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reading List.app/Reading List";
 			};
 			name = Debug;
 		};
 		7415CB8E1B8BCC9B008FB09B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = LearnKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.LearnKitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Learn.app/Learn";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Reading List.app/Reading List";
 			};
 			name = Release;
 		};
@@ -1147,6 +1156,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Learn/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.Learn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1170,6 +1180,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Learn/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sullivan.j.chris.Learn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1256,7 +1267,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		74418D0A1B83DD1500BCDD79 /* Build configuration list for PBXProject "Learn" */ = {
+		74418D0A1B83DD1500BCDD79 /* Build configuration list for PBXProject "EmojiReadingList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				74418D351B83DD1500BCDD79 /* Debug */,
@@ -1265,7 +1276,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		74418D371B83DD1500BCDD79 /* Build configuration list for PBXNativeTarget "Learn" */ = {
+		74418D371B83DD1500BCDD79 /* Build configuration list for PBXNativeTarget "Reading List" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				74418D381B83DD1500BCDD79 /* Debug */,
