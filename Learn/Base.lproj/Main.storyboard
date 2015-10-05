@@ -30,29 +30,29 @@
         <!--Topic Collection View Controller-->
         <scene sceneID="93v-ae-2tR">
             <objects>
-                <collectionViewController storyboardIdentifier="TopicViewController" id="eNQ-9F-YH8" customClass="TopicCollectionViewController" customModule="Learn" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="TopicViewController" id="eNQ-9F-YH8" customClass="TopicCollectionViewController" customModule="Reading_List" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Ces-cP-C4b">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CKM-Th-7lh">
-                            <size key="itemSize" width="100" height="108"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="8" id="CKM-Th-7lh">
+                            <size key="itemSize" width="90" height="108"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TopicCollectionCell" id="y5r-4a-Xgc" customClass="LabeledTopicCollectionViewCell" customModule="LearnKit">
-                                <rect key="frame" x="10" y="74" width="100" height="108"/>
+                                <rect key="frame" x="10" y="74" width="90" height="108"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="108"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="90" height="108"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jqu-95-B9G">
-                                            <rect key="frame" x="13" y="0.0" width="74" height="74"/>
+                                            <rect key="frame" x="8" y="0.0" width="74" height="74"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="😈" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Llh-jJ-Q0K">
                                                     <rect key="frame" x="0.0" y="11" width="74" height="53"/>
@@ -78,7 +78,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hie-YM-Bzo">
-                                            <rect key="frame" x="30" y="80" width="40" height="20"/>
+                                            <rect key="frame" x="25" y="80" width="40" height="20"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -91,6 +91,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="Hie-YM-Bzo" firstAttribute="width" relation="lessThanOrEqual" secondItem="y5r-4a-Xgc" secondAttribute="width" id="EHA-Rs-Paf"/>
                                     <constraint firstItem="Hie-YM-Bzo" firstAttribute="bottom" secondItem="y5r-4a-Xgc" secondAttribute="bottomMargin" id="JpO-Ju-SQv"/>
                                     <constraint firstItem="Jqu-95-B9G" firstAttribute="top" secondItem="y5r-4a-Xgc" secondAttribute="top" id="L8Y-CT-8zn"/>
                                     <constraint firstItem="Jqu-95-B9G" firstAttribute="centerX" secondItem="y5r-4a-Xgc" secondAttribute="centerX" id="h0E-hi-nKf"/>
@@ -165,18 +166,18 @@
         <!--Articles Table View Controller-->
         <scene sceneID="Qrh-Qj-b80">
             <objects>
-                <tableViewController storyboardIdentifier="ArticleViewController" id="NOK-Ym-u2n" customClass="ArticlesTableViewController" customModule="Learn" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ArticleViewController" id="NOK-Ym-u2n" customClass="ArticlesTableViewController" customModule="Reading_List" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="118" sectionHeaderHeight="28" sectionFooterHeight="28" id="MKS-ZP-6Dt">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleTableCell" rowHeight="118" id="0jE-nK-pCP" customClass="ArticleTableViewCell" customModule="Learn" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleTableCell" rowHeight="118" id="0jE-nK-pCP" customClass="ArticleTableViewCell" customModule="Reading_List" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="118"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0jE-nK-pCP" id="IYg-bV-CXH">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="118"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="117"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hlL-eX-Xb2">
@@ -193,14 +194,14 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KjI-TI-lHC">
-                                                            <rect key="frame" x="0.0" y="20" width="475" height="68"/>
+                                                            <rect key="frame" x="0.0" y="20" width="475" height="67"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2GY-5I-8tb">
-                                                            <rect key="frame" x="0.0" y="88" width="475" height="14"/>
+                                                            <rect key="frame" x="0.0" y="87" width="475" height="14"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -262,7 +263,7 @@
         <!--Pocket Auth Modal Controller-->
         <scene sceneID="MJU-WR-Fco">
             <objects>
-                <viewController id="Va4-Qo-7N0" customClass="PocketAuthModalController" customModule="Learn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Va4-Qo-7N0" customClass="PocketAuthModalController" customModule="Reading_List" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ydP-fe-yAo"/>
                         <viewControllerLayoutGuide type="bottom" id="igi-9k-lJt"/>
@@ -356,18 +357,18 @@
         <!--Pocket Import-->
         <scene sceneID="4i1-2V-3yQ">
             <objects>
-                <tableViewController id="pkQ-aT-oJ4" customClass="PocketImportController" customModule="Learn" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="pkQ-aT-oJ4" customClass="PocketImportController" customModule="Reading_List" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="118" sectionHeaderHeight="28" sectionFooterHeight="28" id="mOI-Gr-1oj">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PocketItemTableViewCell" rowHeight="118" id="TJf-g2-7TF" customClass="PocketItemTableViewCell" customModule="Learn" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PocketItemTableViewCell" rowHeight="118" id="TJf-g2-7TF" customClass="PocketItemTableViewCell" customModule="Reading_List" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="118"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TJf-g2-7TF" id="Gqn-id-mMx">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="118"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="117"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uzg-gy-zaN">
@@ -384,7 +385,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wOG-ZU-0I2">
-                                                            <rect key="frame" x="0.0" y="20" width="475" height="68"/>
+                                                            <rect key="frame" x="0.0" y="20" width="475" height="67"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -469,7 +470,7 @@
         <!--Pocket Import Modal Controller-->
         <scene sceneID="iZU-QA-zai">
             <objects>
-                <viewController id="2dK-Mn-oPg" customClass="PocketImportModalController" customModule="Learn" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="2dK-Mn-oPg" customClass="PocketImportModalController" customModule="Reading_List" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cug-8Z-l88"/>
                         <viewControllerLayoutGuide type="bottom" id="T12-pj-XZS"/>

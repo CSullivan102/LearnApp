@@ -25,6 +25,9 @@ class TopicCollectionViewController: UICollectionViewController, ManagedObjectCo
         
         setupParentTopic {
             self.setupFetchedResultsController()
+            if let baseParentTopic = self.parentTopic where baseParentTopic.baseTopic {
+                HomescreenShortcutGenerator.generateShortcutsFromBaseTopic(baseParentTopic, andManagedObjectContext: self.managedObjectContext)
+            }
         }
         
         if traitCollection.forceTouchCapability == .Available {

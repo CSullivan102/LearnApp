@@ -52,6 +52,7 @@
 		749B88DF1BB20A1400CFED4E /* PocketAPICredentialsKeychainEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749B88DE1BB20A1400CFED4E /* PocketAPICredentialsKeychainEntry.swift */; settings = {ASSET_TAGS = (); }; };
 		749B88E21BB20B6400CFED4E /* PocketAPICredentialsKeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749B88E11BB20B6400CFED4E /* PocketAPICredentialsKeychainManager.swift */; settings = {ASSET_TAGS = (); }; };
 		749B88E41BB34A5C00CFED4E /* CreateTopicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749B88E31BB34A5C00CFED4E /* CreateTopicModel.swift */; settings = {ASSET_TAGS = (); }; };
+		749EED7A1BC3225C00725CA1 /* HomescreenShortcutGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749EED791BC3225C00725CA1 /* HomescreenShortcutGenerator.swift */; settings = {ASSET_TAGS = (); }; };
 		74A2A9161BB6153500CEDABD /* NSPredicate+ParentTopic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2A9151BB6153500CEDABD /* NSPredicate+ParentTopic.swift */; settings = {ASSET_TAGS = (); }; };
 		74A39A051BAA048D00334351 /* String+EmojiStringLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A39A041BAA048D00334351 /* String+EmojiStringLength.swift */; settings = {ASSET_TAGS = (); }; };
 		74A41DCC1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */; settings = {ASSET_TAGS = (); }; };
@@ -191,6 +192,7 @@
 		749B88DE1BB20A1400CFED4E /* PocketAPICredentialsKeychainEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAPICredentialsKeychainEntry.swift; sourceTree = "<group>"; };
 		749B88E11BB20B6400CFED4E /* PocketAPICredentialsKeychainManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PocketAPICredentialsKeychainManager.swift; sourceTree = "<group>"; };
 		749B88E31BB34A5C00CFED4E /* CreateTopicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTopicModel.swift; sourceTree = "<group>"; };
+		749EED791BC3225C00725CA1 /* HomescreenShortcutGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomescreenShortcutGenerator.swift; sourceTree = "<group>"; };
 		74A2A9151BB6153500CEDABD /* NSPredicate+ParentTopic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSPredicate+ParentTopic.swift"; sourceTree = "<group>"; };
 		74A39A041BAA048D00334351 /* String+EmojiStringLength.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+EmojiStringLength.swift"; sourceTree = "<group>"; };
 		74A41DCB1B8FBD32000C77CE /* AddableFetchedResultsCollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddableFetchedResultsCollectionDataSource.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				74CDD1A81B9F5EBB0022D116 /* PocketImport */,
 				74C6E6511B866F760013B1BD /* TopicsView */,
 				74418D121B83DD1500BCDD79 /* AppDelegate.swift */,
+				749EED791BC3225C00725CA1 /* HomescreenShortcutGenerator.swift */,
 				74418D191B83DD1500BCDD79 /* Assets.xcassets */,
 				74418D1E1B83DD1500BCDD79 /* Info.plist */,
 				74418D1B1B83DD1500BCDD79 /* LaunchScreen.storyboard */,
@@ -859,6 +862,7 @@
 				747BF6471BA771E200BBCF61 /* PocketItemTableCell.swift in Sources */,
 				74101D371BA7488300CF29AF /* PocketImportModalController.swift in Sources */,
 				74CDD1AC1B9F84870022D116 /* PocketAuthModalController.swift in Sources */,
+				749EED7A1BC3225C00725CA1 /* HomescreenShortcutGenerator.swift in Sources */,
 				74418D131B83DD1500BCDD79 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

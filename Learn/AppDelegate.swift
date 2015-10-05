@@ -32,8 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PocketAuthenticationDeleg
         vc.managedObjectContext = managedObjectContext
         vc.pocketAPI = pocketAPI
         
-        let _ = ShortcutGenerator(managedObjectContext: managedObjectContext)
-        
         return true
     }
 
@@ -91,28 +89,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, PocketAuthenticationDeleg
     func safariViewControllerDidFinish(controller: SFSafariViewController) {
         controller.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         controller.navigationController?.popViewControllerAnimated(true)
-    }
-}
-
-class ShortcutGenerator: TopicCollectionControllable {
-    var managedObjectContext: NSManagedObjectContext!
-    var parentTopic: Topic?
-    
-    init(managedObjectContext: NSManagedObjectContext) {
-        self.managedObjectContext = managedObjectContext
-        
-        setupParentTopic { () -> Void in
-            let fetchRequest = Topic.sortedFetchRequest
-            fetchRequest.predicate = NSPredicate(parentTopic: self.parentTopic!)
-            let results = try! self.managedObjectContext.executeFetchRequest(fetchRequest)
-            if let topicArray = results as? [Topic] {
-                var shortcutItems = [UIMutableApplicationShortcutItem]()
-                for (index, topic) in topicArray.enumerate() where index < 3 {
-                    let shortcutItem = UIMutableApplicationShortcutItem(type: "com.sullivan.j.chris.Learn.topic", localizedTitle: topic.iconAndName, localizedSubtitle: nil, icon: nil, userInfo: ["objectID": topic.objectID.URIRepresentation().absoluteString])
-                    shortcutItems.append(shortcutItem)
-                }
-                UIApplication.sharedApplication().shortcutItems = shortcutItems
-            }
-        }
     }
 }
